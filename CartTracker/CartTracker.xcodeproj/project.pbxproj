@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B348A0661A159433007C342B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B348A0651A159433007C342B /* CoreData.framework */; };
+		B348A06C1A1594BA007C342B /* CartModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B348A06A1A1594BA007C342B /* CartModel.xcdatamodeld */; };
+		B348A06F1A1594CF007C342B /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B348A06D1A1594CF007C342B /* UserModel.xcdatamodeld */; };
+		B348A0721A1594E5007C342B /* RequestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B348A0701A1594E5007C342B /* RequestModel.xcdatamodeld */; };
+		B348A0761A15968E007C342B /* CTbaseDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B348A0751A15968E007C342B /* CTbaseDataHandler.m */; };
+		B348A0791A15A195007C342B /* CTcartDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B348A0781A15A195007C342B /* CTcartDataHandler.m */; };
 		B3CAF5901A14E69A00274EEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF58F1A14E69A00274EEF /* Foundation.framework */; };
 		B3CAF5921A14E69A00274EEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF5911A14E69A00274EEF /* CoreGraphics.framework */; };
 		B3CAF5941A14E69A00274EEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF5931A14E69A00274EEF /* UIKit.framework */; };
@@ -35,6 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B348A0651A159433007C342B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B348A06B1A1594BA007C342B /* CartModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CartModel.xcdatamodel; sourceTree = "<group>"; };
+		B348A06E1A1594CF007C342B /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
+		B348A0711A1594E5007C342B /* RequestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RequestModel.xcdatamodel; sourceTree = "<group>"; };
+		B348A0741A15968E007C342B /* CTbaseDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTbaseDataHandler.h; path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CTbaseDataHandler.h"; sourceTree = "<group>"; };
+		B348A0751A15968E007C342B /* CTbaseDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTbaseDataHandler.m; path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CTbaseDataHandler.m"; sourceTree = "<group>"; };
+		B348A0771A15A195007C342B /* CTcartDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTcartDataHandler.h; path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CTcartDataHandler.h"; sourceTree = "<group>"; };
+		B348A0781A15A195007C342B /* CTcartDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTcartDataHandler.m; path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CTcartDataHandler.m"; sourceTree = "<group>"; };
+		B348A07B1A15A83E007C342B /* CTbaseDataHandlerSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTbaseDataHandlerSubclass.h; path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CTbaseDataHandlerSubclass.h"; sourceTree = "<group>"; };
 		B3CAF58C1A14E69A00274EEF /* CartTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CAF58F1A14E69A00274EEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3CAF5911A14E69A00274EEF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B348A0661A159433007C342B /* CoreData.framework in Frameworks */,
 				B3CAF5921A14E69A00274EEF /* CoreGraphics.framework in Frameworks */,
 				B3CAF5941A14E69A00274EEF /* UIKit.framework in Frameworks */,
 				B3CAF5901A14E69A00274EEF /* Foundation.framework in Frameworks */,
@@ -81,6 +97,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B339AACD1A156F8700CEFF7C /* ModelClases */ = {
+			isa = PBXGroup;
+			children = (
+				B348A06A1A1594BA007C342B /* CartModel.xcdatamodeld */,
+				B348A06D1A1594CF007C342B /* UserModel.xcdatamodeld */,
+				B348A0701A1594E5007C342B /* RequestModel.xcdatamodeld */,
+			);
+			name = ModelClases;
+			sourceTree = "<group>";
+		};
+		B348A0731A159654007C342B /* DataHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				B348A0741A15968E007C342B /* CTbaseDataHandler.h */,
+				B348A07B1A15A83E007C342B /* CTbaseDataHandlerSubclass.h */,
+				B348A0751A15968E007C342B /* CTbaseDataHandler.m */,
+				B348A0771A15A195007C342B /* CTcartDataHandler.h */,
+				B348A0781A15A195007C342B /* CTcartDataHandler.m */,
+			);
+			name = DataHandlers;
+			sourceTree = "<group>";
+		};
 		B3CAF5831A14E69A00274EEF = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +141,7 @@
 		B3CAF58E1A14E69A00274EEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B348A0651A159433007C342B /* CoreData.framework */,
 				B3CAF58F1A14E69A00274EEF /* Foundation.framework */,
 				B3CAF5911A14E69A00274EEF /* CoreGraphics.framework */,
 				B3CAF5931A14E69A00274EEF /* UIKit.framework */,
@@ -114,6 +153,8 @@
 		B3CAF5951A14E69A00274EEF /* CartTracker */ = {
 			isa = PBXGroup;
 			children = (
+				B348A0731A159654007C342B /* DataHandlers */,
+				B339AACD1A156F8700CEFF7C /* ModelClases */,
 				B3CAF59E1A14E69A00274EEF /* CTAppDelegate.h */,
 				B3CAF59F1A14E69A00274EEF /* CTAppDelegate.m */,
 				B3CAF5A11A14E69A00274EEF /* Main_iPhone.storyboard */,
@@ -254,9 +295,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B348A06F1A1594CF007C342B /* UserModel.xcdatamodeld in Sources */,
 				B3CAF59C1A14E69A00274EEF /* main.m in Sources */,
+				B348A06C1A1594BA007C342B /* CartModel.xcdatamodeld in Sources */,
+				B348A0721A1594E5007C342B /* RequestModel.xcdatamodeld in Sources */,
 				B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */,
 				B3CAF5A91A14E69B00274EEF /* CTViewController.m in Sources */,
+				B348A0761A15968E007C342B /* CTbaseDataHandler.m in Sources */,
+				B348A0791A15A195007C342B /* CTcartDataHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +517,7 @@
 				B3CAF5C31A14E69B00274EEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B3CAF5C41A14E69B00274EEF /* Build configuration list for PBXNativeTarget "CartTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -479,8 +526,45 @@
 				B3CAF5C61A14E69B00274EEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B348A06A1A1594BA007C342B /* CartModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B348A06B1A1594BA007C342B /* CartModel.xcdatamodel */,
+			);
+			currentVersion = B348A06B1A1594BA007C342B /* CartModel.xcdatamodel */;
+			name = CartModel.xcdatamodeld;
+			path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CartModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		B348A06D1A1594CF007C342B /* UserModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B348A06E1A1594CF007C342B /* UserModel.xcdatamodel */,
+			);
+			currentVersion = B348A06E1A1594CF007C342B /* UserModel.xcdatamodel */;
+			name = UserModel.xcdatamodeld;
+			path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/UserModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		B348A0701A1594E5007C342B /* RequestModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B348A0711A1594E5007C342B /* RequestModel.xcdatamodel */,
+			);
+			currentVersion = B348A0711A1594E5007C342B /* RequestModel.xcdatamodel */;
+			name = RequestModel.xcdatamodeld;
+			path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/RequestModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B3CAF5841A14E69A00274EEF /* Project object */;
 }
