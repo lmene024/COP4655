@@ -7,7 +7,6 @@
 //
 
 #import "CTbaseDataHandler.h"
-#import "CTbaseDataHandlerSubclass.h"
 
 
 @implementation CTbaseDataHandler
@@ -27,13 +26,13 @@
 }
 
 - (instancetype) init{
-    //This Class Should not be instantiated directly
-    return  nil;
+    self = [super init];
+    if (self) {
+        model = @"DataModel";
+    }
+    return self;
 }
 
-- (instancetype) initFromSubClass{
-    return [super init];
-}
 
 - (NSManagedObjectContext *) managedObjectContext
 {

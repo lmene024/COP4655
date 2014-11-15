@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Cart" syncable="YES"/>
+    <entity name="Request" syncable="YES"/>
+    <entity name="User" syncable="YES"/>
+    <elements>
+        <element name="Cart" positionX="-63" positionY="-18" width="128" height="43"/>
+        <element name="User" positionX="-54" positionY="-9" width="128" height="43"/>
+        <element name="Request" positionX="-36" positionY="0" width="128" height="45"/>
+    </elements>
+</model>
