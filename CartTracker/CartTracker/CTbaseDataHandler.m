@@ -25,12 +25,27 @@
     }
 }
 
-- (instancetype) init{
+- (instancetype) initPrivate{
     self = [super init];
     if (self) {
         model = @"DataModel";
     }
     return self;
+}
+
+- (instancetype) init{
+    return nil;
+}
+
++ (CTbaseDataHandler *) instance{
+    static CTbaseDataHandler * baseHandler = nil;
+    
+    @synchronized(self){
+        if (baseHandler == nil) {
+            baseHandler = [[self alloc] initPrivate];
+        }
+    }
+    return baseHandler;
 }
 
 

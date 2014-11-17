@@ -19,4 +19,6 @@
 
 @property (strong, nonatomic) NSString * model;
 
++ (CTbaseDataHandler *) instance;
+
 @end
