@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Cart" representedClassName="Cart" syncable="YES">
-        <attribute name="cartID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="cartName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cartID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="cartName" attributeType="String" syncable="YES"/>
         <attribute name="qrCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tagNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="useCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -13,7 +13,7 @@
         <attribute name="realEndTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="realStartTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="reqDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="reqID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="reqID" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="reqStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="schedEndTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="schedStartTime" optional="YES" attributeType="Date" syncable="YES"/>
