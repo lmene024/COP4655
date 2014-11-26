@@ -10,6 +10,10 @@
 
 @interface CTcartManager : NSObject
 
-@property (nonatomic, strong) NSArray * managedCarts;
+@property (nonatomic, readonly) NSFetchRequest * getCarts;
+@property (nonatomic, readonly) NSFetchRequest * getUsers;
+@property (nonatomic, readonly) NSFetchRequest * getRequests;
+
+- (NSManagedObjectContext *) context;
 
 @end

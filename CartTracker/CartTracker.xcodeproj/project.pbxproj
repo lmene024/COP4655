@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B33DF69C1A170E390094C4AC /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B33DF69A1A170E390094C4AC /* DataModel.xcdatamodeld */; };
-		B33DF69F1A171A8B0094C4AC /* CTcartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B33DF69E1A171A8B0094C4AC /* CTcartManager.m */; };
 		B348A0661A159433007C342B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B348A0651A159433007C342B /* CoreData.framework */; };
-		B348A0761A15968E007C342B /* CTbaseDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B348A0751A15968E007C342B /* CTbaseDataHandler.m */; };
-		B39870B51A19669900032148 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B39870B41A19669900032148 /* Cart.m */; };
-		B3B05FBB1A1966E300B32944 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FBA1A1966E300B32944 /* User.m */; };
-		B3B05FBE1A19670200B32944 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FBD1A19670200B32944 /* Request.m */; };
 		B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */; };
+		B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9D91A2586EB00B86E9B /* Cart.m */; };
+		B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9DC1A25870A00B86E9B /* Request.m */; };
+		B3BFE9E01A25870A00B86E9B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9DE1A25870A00B86E9B /* User.m */; };
+		B3BFE9E31A25872700B86E9B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9E11A25872700B86E9B /* DataModel.xcdatamodeld */; };
+		B3BFE9E61A25876E00B86E9B /* CTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9E51A25876E00B86E9B /* CTViewController.m */; };
+		B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9E81A25884900B86E9B /* CTDataListViewController.m */; };
+		B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3BFE9E91A25884900B86E9B /* CTDataListViewController.xib */; };
+		B3BFE9EE1A25888E00B86E9B /* CTcartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9ED1A25888E00B86E9B /* CTcartManager.m */; };
+		B3BFE9F51A25890700B86E9B /* CTAdminNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9F31A25890600B86E9B /* CTAdminNavigationViewController.m */; };
+		B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3BFE9F41A25890600B86E9B /* CTAdminNavigationViewController.xib */; };
+		B3BFE9F91A2589F200B86E9B /* CTbaseDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9F81A2589F200B86E9B /* CTbaseDataHandler.m */; };
 		B3CAF5901A14E69A00274EEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF58F1A14E69A00274EEF /* Foundation.framework */; };
 		B3CAF5921A14E69A00274EEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF5911A14E69A00274EEF /* CoreGraphics.framework */; };
 		B3CAF5941A14E69A00274EEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF5931A14E69A00274EEF /* UIKit.framework */; };
@@ -23,7 +28,6 @@
 		B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CAF59F1A14E69A00274EEF /* CTAppDelegate.m */; };
 		B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3CAF5A11A14E69A00274EEF /* Main_iPhone.storyboard */; };
 		B3CAF5A61A14E69A00274EEF /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3CAF5A41A14E69A00274EEF /* Main_iPad.storyboard */; };
-		B3CAF5A91A14E69B00274EEF /* CTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CAF5A81A14E69B00274EEF /* CTViewController.m */; };
 		B3CAF5AB1A14E69B00274EEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3CAF5AA1A14E69B00274EEF /* Images.xcassets */; };
 		B3CAF5B21A14E69B00274EEF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF5B11A14E69B00274EEF /* XCTest.framework */; };
 		B3CAF5B31A14E69B00274EEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF58F1A14E69A00274EEF /* Foundation.framework */; };
@@ -43,20 +47,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B33DF69B1A170E390094C4AC /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		B33DF69D1A171A8B0094C4AC /* CTcartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTcartManager.h; sourceTree = "<group>"; };
-		B33DF69E1A171A8B0094C4AC /* CTcartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTcartManager.m; sourceTree = "<group>"; };
 		B348A0651A159433007C342B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B348A0741A15968E007C342B /* CTbaseDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTbaseDataHandler.h; path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CTbaseDataHandler.h"; sourceTree = "<group>"; };
-		B348A0751A15968E007C342B /* CTbaseDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTbaseDataHandler.m; path = "../../../../../../school/Mobile/Team Project/COP4655/CartTracker/CartTracker/CTbaseDataHandler.m"; sourceTree = "<group>"; };
-		B39870B31A19669900032148 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
-		B39870B41A19669900032148 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
-		B3B05FB91A1966E300B32944 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		B3B05FBA1A1966E300B32944 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		B3B05FBC1A19670200B32944 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
-		B3B05FBD1A19670200B32944 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		B3B05FBF1A196CEC00B32944 /* CTimageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTimageTransformer.h; sourceTree = "<group>"; };
 		B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTimageTransformer.m; sourceTree = "<group>"; };
+		B3BFE9D81A2586EB00B86E9B /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
+		B3BFE9D91A2586EB00B86E9B /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
+		B3BFE9DB1A25870A00B86E9B /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		B3BFE9DC1A25870A00B86E9B /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
+		B3BFE9DD1A25870A00B86E9B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B3BFE9DE1A25870A00B86E9B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B3BFE9E21A25872700B86E9B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		B3BFE9E41A25876E00B86E9B /* CTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTViewController.h; sourceTree = "<group>"; };
+		B3BFE9E51A25876E00B86E9B /* CTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTViewController.m; sourceTree = "<group>"; };
+		B3BFE9E71A25884900B86E9B /* CTDataListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDataListViewController.h; sourceTree = "<group>"; };
+		B3BFE9E81A25884900B86E9B /* CTDataListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDataListViewController.m; sourceTree = "<group>"; };
+		B3BFE9E91A25884900B86E9B /* CTDataListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTDataListViewController.xib; sourceTree = "<group>"; };
+		B3BFE9EC1A25888E00B86E9B /* CTcartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTcartManager.h; sourceTree = "<group>"; };
+		B3BFE9ED1A25888E00B86E9B /* CTcartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTcartManager.m; sourceTree = "<group>"; };
+		B3BFE9F21A25890600B86E9B /* CTAdminNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAdminNavigationViewController.h; sourceTree = "<group>"; };
+		B3BFE9F31A25890600B86E9B /* CTAdminNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAdminNavigationViewController.m; sourceTree = "<group>"; };
+		B3BFE9F41A25890600B86E9B /* CTAdminNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminNavigationViewController.xib; sourceTree = "<group>"; };
+		B3BFE9F71A2589F200B86E9B /* CTbaseDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTbaseDataHandler.h; sourceTree = "<group>"; };
+		B3BFE9F81A2589F200B86E9B /* CTbaseDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTbaseDataHandler.m; sourceTree = "<group>"; };
 		B3CAF58C1A14E69A00274EEF /* CartTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CAF58F1A14E69A00274EEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3CAF5911A14E69A00274EEF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,8 +81,6 @@
 		B3CAF59F1A14E69A00274EEF /* CTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTAppDelegate.m; sourceTree = "<group>"; };
 		B3CAF5A21A14E69A00274EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		B3CAF5A51A14E69A00274EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		B3CAF5A71A14E69A00274EEF /* CTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTViewController.h; sourceTree = "<group>"; };
-		B3CAF5A81A14E69B00274EEF /* CTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTViewController.m; sourceTree = "<group>"; };
 		B3CAF5AA1A14E69B00274EEF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B3CAF5B01A14E69B00274EEF /* CartTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CAF5B11A14E69B00274EEF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -107,13 +117,13 @@
 		B33DF6A01A184FC10094C4AC /* Data Objects */ = {
 			isa = PBXGroup;
 			children = (
-				B3B05FB91A1966E300B32944 /* User.h */,
-				B3B05FBA1A1966E300B32944 /* User.m */,
-				B39870B31A19669900032148 /* Cart.h */,
-				B39870B41A19669900032148 /* Cart.m */,
-				B33DF69A1A170E390094C4AC /* DataModel.xcdatamodeld */,
-				B3B05FBC1A19670200B32944 /* Request.h */,
-				B3B05FBD1A19670200B32944 /* Request.m */,
+				B3BFE9E11A25872700B86E9B /* DataModel.xcdatamodeld */,
+				B3BFE9DB1A25870A00B86E9B /* Request.h */,
+				B3BFE9DC1A25870A00B86E9B /* Request.m */,
+				B3BFE9DD1A25870A00B86E9B /* User.h */,
+				B3BFE9DE1A25870A00B86E9B /* User.m */,
+				B3BFE9D81A2586EB00B86E9B /* Cart.h */,
+				B3BFE9D91A2586EB00B86E9B /* Cart.m */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -121,11 +131,11 @@
 		B348A0731A159654007C342B /* DataClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B3BFE9F71A2589F200B86E9B /* CTbaseDataHandler.h */,
+				B3BFE9F81A2589F200B86E9B /* CTbaseDataHandler.m */,
+				B3BFE9EC1A25888E00B86E9B /* CTcartManager.h */,
+				B3BFE9ED1A25888E00B86E9B /* CTcartManager.m */,
 				B33DF6A01A184FC10094C4AC /* Data Objects */,
-				B348A0741A15968E007C342B /* CTbaseDataHandler.h */,
-				B348A0751A15968E007C342B /* CTbaseDataHandler.m */,
-				B33DF69D1A171A8B0094C4AC /* CTcartManager.h */,
-				B33DF69E1A171A8B0094C4AC /* CTcartManager.m */,
 				B3B05FBF1A196CEC00B32944 /* CTimageTransformer.h */,
 				B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */,
 			);
@@ -166,13 +176,19 @@
 		B3CAF5951A14E69A00274EEF /* CartTracker */ = {
 			isa = PBXGroup;
 			children = (
+				B3BFE9F21A25890600B86E9B /* CTAdminNavigationViewController.h */,
+				B3BFE9F31A25890600B86E9B /* CTAdminNavigationViewController.m */,
+				B3BFE9F41A25890600B86E9B /* CTAdminNavigationViewController.xib */,
+				B3BFE9E71A25884900B86E9B /* CTDataListViewController.h */,
+				B3BFE9E81A25884900B86E9B /* CTDataListViewController.m */,
+				B3BFE9E91A25884900B86E9B /* CTDataListViewController.xib */,
+				B3BFE9E41A25876E00B86E9B /* CTViewController.h */,
+				B3BFE9E51A25876E00B86E9B /* CTViewController.m */,
 				B348A0731A159654007C342B /* DataClasses */,
 				B3CAF59E1A14E69A00274EEF /* CTAppDelegate.h */,
 				B3CAF59F1A14E69A00274EEF /* CTAppDelegate.m */,
 				B3CAF5A11A14E69A00274EEF /* Main_iPhone.storyboard */,
 				B3CAF5A41A14E69A00274EEF /* Main_iPad.storyboard */,
-				B3CAF5A71A14E69A00274EEF /* CTViewController.h */,
-				B3CAF5A81A14E69B00274EEF /* CTViewController.m */,
 				B3CAF5AA1A14E69B00274EEF /* Images.xcassets */,
 				B3CAF5961A14E69A00274EEF /* Supporting Files */,
 			);
@@ -287,6 +303,8 @@
 			files = (
 				B3CAF5A61A14E69A00274EEF /* Main_iPad.storyboard in Resources */,
 				B3CAF5AB1A14E69B00274EEF /* Images.xcassets in Resources */,
+				B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */,
+				B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */,
 				B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */,
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
 			);
@@ -307,16 +325,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3BFE9F91A2589F200B86E9B /* CTbaseDataHandler.m in Sources */,
+				B3BFE9E01A25870A00B86E9B /* User.m in Sources */,
+				B3BFE9E31A25872700B86E9B /* DataModel.xcdatamodeld in Sources */,
 				B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */,
-				B3B05FBB1A1966E300B32944 /* User.m in Sources */,
-				B39870B51A19669900032148 /* Cart.m in Sources */,
 				B3CAF59C1A14E69A00274EEF /* main.m in Sources */,
-				B33DF69C1A170E390094C4AC /* DataModel.xcdatamodeld in Sources */,
+				B3BFE9F51A25890700B86E9B /* CTAdminNavigationViewController.m in Sources */,
+				B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */,
+				B3BFE9E61A25876E00B86E9B /* CTViewController.m in Sources */,
 				B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */,
-				B3CAF5A91A14E69B00274EEF /* CTViewController.m in Sources */,
-				B33DF69F1A171A8B0094C4AC /* CTcartManager.m in Sources */,
-				B348A0761A15968E007C342B /* CTbaseDataHandler.m in Sources */,
-				B3B05FBE1A19670200B32944 /* Request.m in Sources */,
+				B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */,
+				B3BFE9EE1A25888E00B86E9B /* CTcartManager.m in Sources */,
+				B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,12 +565,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B33DF69A1A170E390094C4AC /* DataModel.xcdatamodeld */ = {
+		B3BFE9E11A25872700B86E9B /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B33DF69B1A170E390094C4AC /* DataModel.xcdatamodel */,
+				B3BFE9E21A25872700B86E9B /* DataModel.xcdatamodel */,
 			);
-			currentVersion = B33DF69B1A170E390094C4AC /* DataModel.xcdatamodel */;
+			currentVersion = B3BFE9E21A25872700B86E9B /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
