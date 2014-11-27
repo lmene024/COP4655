@@ -42,8 +42,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     self.navigationItem.rightBarButtonItem = addItem;
 
@@ -71,6 +70,40 @@
 }
 
 
+- (void) insertNewItem:(id) sender{
+    Cart * cart = [manager newCart];
+    cart.cartID = @"001";
+    cart.cartName =  @"My First Cart";
+    cart.qrCode = @"DSgfsgf";
+    cart.tagNumber = @"56ttyh";
+    cart.useCount = 0;
+    
+    
+    [manager save];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
+    // Configure the cell...
+    if (cell ==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.title];
+        cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    }
+    
+    [self setupCell:cell forIndexPath:indexPath];
+    return cell;
+}
+
+- (void) setupCell:(UITableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
+    if ([self.title isEqualToString:@"Carts"]) {
+        Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
+        cell.textLabel.text = aCart.cartName;
+    }
+}
+
 - (NSFetchedResultsController *) dataController{
     if (_dataController != nil) {
         return _dataController;
@@ -78,10 +111,10 @@
     
     NSFetchRequest * fetchRequest;
     if ([self.title isEqualToString:@"Carts"]) {
-        fetchRequest = [manager getCarts];
+        fetchRequest = [manager getAllCarts];
     }
     
-    NSFetchedResultsController * fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[manager context] sectionNameKeyPath:nil cacheName:self.title.copy];
+    NSFetchedResultsController * fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[manager context] sectionNameKeyPath:nil cacheName:@"test"];
     
     fetchedResultsController.delegate = self;
     self.dataController = fetchedResultsController;
@@ -94,8 +127,12 @@
     return _dataController;
 }
 
-- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller{
+- (void) controllerWillChangeContent:(NSFetchedResultsController *)controller{
     [self.tableView beginUpdates];
+}
+
+- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller{
+    [self.tableView endUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
@@ -125,36 +162,6 @@
 }
 
 
-- (void) insertNewItem:(id) sender{
-    NSEntityDescription * entityDescription = [NSEntityDescription entityForName:@"Cart" inManagedObjectContext:manager.context];
-    Cart * cart = [[Cart alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:manager.context];
-    [cart setCartID:@"001"];
-    [cart setCartName:@"My First Cart"];
-    
-    NSError * error = nil;
-    bool saveResult = [manager.context save:&error];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
-    // Configure the cell...
-    if (cell ==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.title];
-        cell.accessoryType = UITableViewCellAccessoryDetailButton;
-    }
-    
-    return cell;
-}
-
-- (void) setupCell:(UITableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
-    if ([self.title isEqualToString:@"Carts"]) {
-        Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
-        cell.textLabel.text = aCart.cartName;
-    }
-}
 
 
 /*

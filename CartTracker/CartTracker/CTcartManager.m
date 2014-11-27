@@ -8,15 +8,16 @@
 
 #import "CTcartManager.h"
 #import "CTbaseDataHandler.h"
+#import "Cart.h"
+#import "User.h"
+#import "Request.h"
 
 #define SORT_ASCENDING @"ASC"
 #define SORT_DESCENDING @"DSC"
 
 @implementation CTcartManager
 {
-    CTbaseDataHandler * dataHandler;
-    NSManagedObjectContext * context;
-    
+    CTbaseDataHandler * dataHandler;    
 }
 
 - (NSManagedObjectContext *) context{
@@ -24,44 +25,71 @@
         dataHandler = [CTbaseDataHandler instance];
     }
     
-    if (!context) {
-        context = dataHandler.managedObjectContext;
+    if (!_context) {
+        _context = dataHandler.managedObjectContext;
     }
-    return context;
+    return _context;
 }
 
 
-- (NSFetchRequest *) getCarts{
+- (NSFetchRequest *) getAllCarts{
     return [self getDataForEntity:@"Cart"
                    withSortFields:@[@"cartID"]
-                    andSortOrders:@[SORT_ASCENDING]];
+                    andSortOrders:@[SORT_ASCENDING]
+                    withPredicate:nil];
 }
 
-- (NSFetchRequest *) getUsers{
+- (NSFetchRequest *) getAllUsers{
     return [self getDataForEntity:@"User"
                    withSortFields:@[@"lastName", @"firstName"]
-                    andSortOrders:@[SORT_ASCENDING, SORT_ASCENDING]];
+                    andSortOrders:@[SORT_ASCENDING, SORT_ASCENDING]
+                    withPredicate:nil];
 }
 
-- (NSFetchRequest *) getRequests{
-    return [self getDataForEntity:@"Request" withSortFields:@[@"reqID"] andSortOrders:@[SORT_ASCENDING]];
+- (NSFetchRequest *) getAllRequests{
+    return [self getDataForEntity:@"Request"
+                   withSortFields:@[@"reqID"]
+                    andSortOrders:@[SORT_ASCENDING]
+                    withPredicate:nil];
+}
+
+- (NSFetchRequest *) getCartsWithPredicate:(NSPredicate *)predicate{
+    return [self getDataForEntity:@"Cart"
+                   withSortFields:@[@"cartName"]
+                    andSortOrders:@[SORT_ASCENDING]
+                    withPredicate:predicate];
+}
+
+- (NSFetchRequest *) getUsersWithPredicate:(NSPredicate *)predicate{
+    return [self getDataForEntity:@"User"
+                   withSortFields:@[@"lastName", @"firstName"]
+                    andSortOrders:@[SORT_ASCENDING, SORT_ASCENDING]
+                    withPredicate:predicate];
+}
+
+- (NSFetchRequest *) getRequestsWithPredicate:(NSPredicate *)predicate{
+    return [self getDataForEntity:@"Request"
+                   withSortFields:@[@"reqID"]
+                    andSortOrders:@[SORT_ASCENDING]
+                    withPredicate:predicate];
 }
 
 - (NSFetchRequest *) getDataForEntity:(NSString *) entityName
                        withSortFields:(NSArray *) sortFields
                         andSortOrders:(NSArray *) sortOrders
+                        withPredicate:(NSPredicate *) predicate
 {
-    if (!dataHandler) {
+  /*  if (!dataHandler) {
         dataHandler = [CTbaseDataHandler instance];
     }
     
-    if (!context) {
-        context = dataHandler.managedObjectContext;
+    if (!self.context) {
+        _context = dataHandler.managedObjectContext;
     }
-    
+    */
 
     
-    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
     NSMutableArray * sortDescriptors = [[NSMutableArray alloc] init];
     
     NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] init];
@@ -91,8 +119,27 @@
         [fetchRequest setSortDescriptors:sortDescriptors];
     }
     
+    
     return fetchRequest;
    
+}
+
+- (Cart *) newCart{
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Cart" inManagedObjectContext:self.context];
+    Cart * nCart = [[Cart alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    return nCart;
+}
+
+- (User *) newUser{
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.context];
+    User * nUser = [[User alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    return nUser;
+}
+
+- (Request *) newRequest{
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Request" inManagedObjectContext:self.context];
+    Request * nRequest = [[Request alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    return nRequest;
 }
 
 - (bool) save{

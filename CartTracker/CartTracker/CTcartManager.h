@@ -8,12 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+@class Cart;
+@class User;
+@class Request;
+
 @interface CTcartManager : NSObject
 
-@property (nonatomic, readonly) NSFetchRequest * getCarts;
-@property (nonatomic, readonly) NSFetchRequest * getUsers;
-@property (nonatomic, readonly) NSFetchRequest * getRequests;
+@property (nonatomic, strong) NSManagedObjectContext * context;
 
-- (NSManagedObjectContext *) context;
+- (NSFetchRequest *) getAllCarts;
+- (NSFetchRequest *) getAllUsers;
+- (NSFetchRequest *) getAllRequests;
+
+- (NSFetchRequest *) getCartsWithPredicate:(NSPredicate *)predicate;
+- (NSFetchRequest *) getUsersWithPredicate:(NSPredicate *)predicate;
+- (NSFetchRequest *) getRequestsWithPredicate:(NSPredicate *)predicate;
+
+- (Cart *) newCart;
+- (User *) newUser;
+- (Request *) newRequest;
+
+- (bool) save;
 
 @end
