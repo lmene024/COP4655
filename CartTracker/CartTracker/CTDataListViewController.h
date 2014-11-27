@@ -12,7 +12,7 @@
 @interface CTDataListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) CTcartManager * manager;
-@property (nonatomic, weak) NSFetchedResultsController * dataController;
+@property (nonatomic, strong) NSFetchedResultsController * dataController;
 
 - (instancetype) initWithData:(NSString *) dataType;
 
