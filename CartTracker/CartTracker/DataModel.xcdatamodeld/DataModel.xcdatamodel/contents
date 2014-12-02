@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Cart" representedClassName="Cart" syncable="YES">
         <attribute name="cartID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="cartName" attributeType="String" syncable="YES"/>
@@ -33,8 +33,8 @@
         <relationship name="requests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Request" inverseName="user" inverseEntity="Request" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cart" positionX="-81" positionY="-18" width="146" height="135"/>
+        <element name="Cart" positionX="25" positionY="-151" width="146" height="133"/>
         <element name="Request" positionX="-270" positionY="-54" width="128" height="210"/>
-        <element name="User" positionX="-72" positionY="-192" width="128" height="180"/>
+        <element name="User" positionX="-29" positionY="90" width="128" height="180"/>
     </elements>
 </model>

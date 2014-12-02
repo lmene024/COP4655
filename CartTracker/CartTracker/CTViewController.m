@@ -8,6 +8,7 @@
 
 #import "CTViewController.h"
 #import "CTAdminNavigationViewController.h"
+#import "CTRequestNavigationViewController.h"
 
 @interface CTViewController ()
 
@@ -19,8 +20,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     CTAdminNavigationViewController * adminController = [[CTAdminNavigationViewController alloc] init];
-    self.viewControllers = @[adminController];
+    CTRequestNavigationViewController *requestController = [[CTRequestNavigationViewController alloc] init];
+    
+    self.viewControllers = @[adminController,requestController];
 }
 
 - (void)didReceiveMemoryWarning

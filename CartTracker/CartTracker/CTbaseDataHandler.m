@@ -7,12 +7,13 @@
 //
 
 #import "CTbaseDataHandler.h"
-
+#import "Constants.h"
 
 @implementation CTbaseDataHandler
 
 @synthesize managedObjectContext, managedObjectModel, persistentStoreCoordinator;
 @synthesize model;
+
 - (void) saveContext{
     NSError * error = nil;
     NSManagedObjectContext * managedObjectContext = self.managedObjectContext;

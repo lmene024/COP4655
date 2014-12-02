@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * tagNumber;
 @property (nonatomic, retain) NSNumber * useCount;
 @property (nonatomic, retain) NSSet *requests;
+
 @end
 
 @interface Cart (CoreDataGeneratedAccessors)
