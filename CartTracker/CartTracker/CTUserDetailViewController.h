@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CTDetailViewDelegate.h"
+#import "CTADetailViewController.h"
 
 @class User,CTcartManager;
 
-@interface CTUserDetailViewController : UIViewController <CTDetailViewDelegate>
+@interface CTUserDetailViewController : CTADetailViewController <CTDetailViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet UITextField *licenseTextField;

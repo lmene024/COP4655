@@ -28,6 +28,10 @@
 - (User *) newUser;
 - (Request *) newRequest;
 
+- (void) deleteCart:(Cart *)cart;
+- (void) deleteUser:(User *)user;
+- (void) deleteRequest:(Request *)request;
+
 - (bool) save;
 
 @end

@@ -20,6 +20,8 @@
 		4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */; };
 		4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */; };
 		4CE4AF201A2D2DFB00C3C8A3 /* CTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */; };
+		B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EB1A2D80A200F79E60 /* CTScrollView.m */; };
+		B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */; };
 		B348A0661A159433007C342B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B348A0651A159433007C342B /* CoreData.framework */; };
 		B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */; };
 		B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9D91A2586EB00B86E9B /* Cart.m */; };
@@ -81,6 +83,10 @@
 		4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewController.m; sourceTree = "<group>"; };
 		4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTLoginViewController.xib; sourceTree = "<group>"; };
 		4CE4AF2D1A2D409900C3C8A3 /* CTDetailViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CTDetailViewDelegate.h; path = CartTracker/CTDetailViewDelegate.h; sourceTree = "<group>"; };
+		B30C56EA1A2D80A200F79E60 /* CTScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTScrollView.h; sourceTree = "<group>"; };
+		B30C56EB1A2D80A200F79E60 /* CTScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTScrollView.m; sourceTree = "<group>"; };
+		B30C56ED1A2D82D300F79E60 /* CTADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTADetailViewController.h; sourceTree = "<group>"; };
+		B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTADetailViewController.m; sourceTree = "<group>"; };
 		B348A0651A159433007C342B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B3B05FBF1A196CEC00B32944 /* CTimageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTimageTransformer.h; sourceTree = "<group>"; };
 		B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTimageTransformer.m; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C0906061A2D4D6D004986B0 /* CTCartDetailViewController.xib */,
 				4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */,
 				4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */,
 				4C8376641A2CF402003108BB /* CTCameraViewController.xib */,
@@ -159,6 +166,8 @@
 				4C83765A1A2CB751003108BB /* CTUserDetailViewController.xib */,
 				B3BFE9F41A25890600B86E9B /* CTAdminNavigationViewController.xib */,
 				B3BFE9E91A25884900B86E9B /* CTDataListViewController.xib */,
+				B30C56EA1A2D80A200F79E60 /* CTScrollView.h */,
+				B30C56EB1A2D80A200F79E60 /* CTScrollView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -168,7 +177,6 @@
 			children = (
 				4C0906041A2D4D6D004986B0 /* CTCartDetailViewController.h */,
 				4C0906051A2D4D6D004986B0 /* CTCartDetailViewController.m */,
-				4C0906061A2D4D6D004986B0 /* CTCartDetailViewController.xib */,
 				4C8376621A2CF402003108BB /* CTCameraViewController.h */,
 				4C8376631A2CF402003108BB /* CTCameraViewController.m */,
 				4C8376581A2CB751003108BB /* CTUserDetailViewController.h */,
@@ -185,6 +193,8 @@
 				B3BFE9E51A25876E00B86E9B /* CTViewController.m */,
 				4CE4AF1C1A2D2DFB00C3C8A3 /* CTLoginViewController.h */,
 				4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */,
+				B30C56ED1A2D82D300F79E60 /* CTADetailViewController.h */,
+				B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -415,7 +425,9 @@
 				B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */,
 				4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */,
 				B3BFE9E61A25876E00B86E9B /* CTViewController.m in Sources */,
+				B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */,
 				B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */,
+				B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */,
 				B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */,
 				4C8376651A2CF402003108BB /* CTCameraViewController.m in Sources */,
 				B3BFE9EE1A25888E00B86E9B /* CTcartManager.m in Sources */,
