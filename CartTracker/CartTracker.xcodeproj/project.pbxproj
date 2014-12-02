@@ -24,7 +24,6 @@
 		B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */; };
 		B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9D91A2586EB00B86E9B /* Cart.m */; };
 		B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9DC1A25870A00B86E9B /* Request.m */; };
-		B3BFE9E01A25870A00B86E9B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9DE1A25870A00B86E9B /* User.m */; };
 		B3BFE9E31A25872700B86E9B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9E11A25872700B86E9B /* DataModel.xcdatamodeld */; };
 		B3BFE9E61A25876E00B86E9B /* CTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9E51A25876E00B86E9B /* CTViewController.m */; };
 		B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9E81A25884900B86E9B /* CTDataListViewController.m */; };
@@ -47,6 +46,7 @@
 		B3CAF5B41A14E69B00274EEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CAF5931A14E69A00274EEF /* UIKit.framework */; };
 		B3CAF5BC1A14E69B00274EEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3CAF5BA1A14E69B00274EEF /* InfoPlist.strings */; };
 		B3CAF5BE1A14E69B00274EEF /* CartTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CAF5BD1A14E69B00274EEF /* CartTrackerTests.m */; };
+		B3F635291A2D54A80048F7FB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F635281A2D54A80048F7FB /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +88,6 @@
 		B3BFE9D91A2586EB00B86E9B /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
 		B3BFE9DB1A25870A00B86E9B /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		B3BFE9DC1A25870A00B86E9B /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
-		B3BFE9DD1A25870A00B86E9B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		B3BFE9DE1A25870A00B86E9B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		B3BFE9E21A25872700B86E9B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		B3BFE9E41A25876E00B86E9B /* CTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTViewController.h; sourceTree = "<group>"; };
 		B3BFE9E51A25876E00B86E9B /* CTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTViewController.m; sourceTree = "<group>"; };
@@ -121,6 +119,8 @@
 		B3CAF5B91A14E69B00274EEF /* CartTrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CartTrackerTests-Info.plist"; sourceTree = "<group>"; };
 		B3CAF5BB1A14E69B00274EEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3CAF5BD1A14E69B00274EEF /* CartTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartTrackerTests.m; sourceTree = "<group>"; };
+		B3F635271A2D54A80048F7FB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B3F635281A2D54A80048F7FB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,10 +195,10 @@
 				B3BFE9E11A25872700B86E9B /* DataModel.xcdatamodeld */,
 				B3BFE9DB1A25870A00B86E9B /* Request.h */,
 				B3BFE9DC1A25870A00B86E9B /* Request.m */,
-				B3BFE9DD1A25870A00B86E9B /* User.h */,
-				B3BFE9DE1A25870A00B86E9B /* User.m */,
 				B3BFE9D81A2586EB00B86E9B /* Cart.h */,
 				B3BFE9D91A2586EB00B86E9B /* Cart.m */,
+				B3F635271A2D54A80048F7FB /* User.h */,
+				B3F635281A2D54A80048F7FB /* User.m */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -405,7 +405,7 @@
 			files = (
 				B3BFE9F91A2589F200B86E9B /* CTbaseDataHandler.m in Sources */,
 				4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */,
-				B3BFE9E01A25870A00B86E9B /* User.m in Sources */,
+				B3F635291A2D54A80048F7FB /* User.m in Sources */,
 				B3BFE9E31A25872700B86E9B /* DataModel.xcdatamodeld in Sources */,
 				B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */,
 				B3CAF59C1A14E69A00274EEF /* main.m in Sources */,
