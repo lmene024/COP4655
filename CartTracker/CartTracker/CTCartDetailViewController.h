@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CTDetailViewDelegate.h"
+#import "CTADetailViewController.h"
 
 @class Cart,CTcartManager;
 
-@interface CTCartDetailViewController : UIViewController <CTDetailViewDelegate>
+@interface CTCartDetailViewController : CTADetailViewController <CTDetailViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *cartIdTextField;
 @property (strong, nonatomic) IBOutlet UITextField *cartNameTextField;
