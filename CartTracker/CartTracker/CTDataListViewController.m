@@ -7,8 +7,13 @@
 //
 
 #import "CTDataListViewController.h"
+#import "CTCartDetailViewController.h"
+#import "CTUserDetailViewController.h"
 #import "CTcartManager.h"
 #import "Cart.h"
+#import "Request.h"
+#import "User.h"
+#import "Constants.h"
 
 @interface CTDataListViewController ()
 
@@ -17,7 +22,6 @@
 @implementation CTDataListViewController
 
 @synthesize manager;
-
 
 - (instancetype) init{
     //Prevent direct use of init without sepcifying data type
@@ -42,12 +46,16 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
-    self.navigationItem.rightBarButtonItem = addItem;
     
-    NSLog(@"TEsting");
+    self.navigationItem.rightBarButtonItem = addItem;
 
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,16 +79,46 @@
     return [sectionInfo numberOfObjects];
 }
 
+/*! Description Selector for UIBarButtonItem Add in UITableView
+ 
+ @param
+ @return
+ 
+ */
 
 - (void) insertNewItem:(id) sender{
-    Cart * cart = [manager newCart];
-    cart.cartID = @"001";
-    cart.cartName =  @"My First Cart";
-    cart.qrCode = @"DSgfsgf";
-    cart.tagNumber = @"56ttyh";
-    cart.useCount = 0;
     
+    /*CTCartDetailViewController *cartDetailViewController = [[CTCartDetailViewController alloc] init];
     
+    cartDetailViewController.cart = cart;
+    
+    [self.navigationController pushViewController:cartDetailViewController animated:YES];*/
+    
+    if (CART_VIEW) {
+        /*Cart * cart = [manager newCart];
+        cart.cartID = @"001";
+        cart.cartName =  @"My First C";
+        cart.qrCode = @"DSgfsgf";
+        cart.tagNumber = @"56ttyh";
+        cart.useCount = 0;*/
+        
+        CTCartDetailViewController *cartController = [[CTCartDetailViewController alloc] init];
+        cartController.manager = self.manager;
+        cartController.cart = nil;
+        [self.navigationController pushViewController:cartController animated:YES];
+        
+    } else if (REQUEST_VIEW) {
+        Request *request = [manager newRequest];
+        request.reqID = [[NSNumber alloc] initWithInt:123123];
+    } else if (USERS_VIEW){
+        
+        CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
+        userController.user = nil;
+        userController.manager = self.manager;
+        [self.navigationController pushViewController:userController animated:YES];
+        
+    }
+
     [manager save];
 }
 
@@ -100,20 +138,39 @@
 }
 
 - (void) setupCell:(UITableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
-    if ([self.title isEqualToString:@"Carts"]) {
+    
+    if (CART_VIEW) {
+        
         Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
         cell.textLabel.text = aCart.cartName;
+        
+    } else if (REQUEST_VIEW){
+        
+        Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
+        NSString *cellInformation = [NSString stringWithFormat:@"%@     %@      %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
+        cell.textLabel.text = cellInformation;
+        
+    } else if (USERS_VIEW){
+        
+        User *aUser = [self.dataController objectAtIndexPath:indexPath];
+        cell.textLabel.text = aUser.firstName;
     }
 }
 
 - (NSFetchedResultsController *) dataController{
+    
     if (_dataController != nil) {
         return _dataController;
     }
     
     NSFetchRequest * fetchRequest;
-    if ([self.title isEqualToString:@"Carts"]) {
+    
+    if (CART_VIEW) {
         fetchRequest = [manager getAllCarts];
+    } else if (REQUEST_VIEW){
+        fetchRequest = [manager getAllRequests];
+    } else if (USERS_VIEW){
+        fetchRequest = [manager getAllUsers];
     }
     
     NSFetchedResultsController * fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[manager context] sectionNameKeyPath:nil cacheName:@"test"];
@@ -122,6 +179,7 @@
     self.dataController = fetchedResultsController;
     
     NSError * error = nil;
+    
     if (![self.dataController performFetch:&error]) {
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
@@ -165,15 +223,13 @@
 
 
 
-
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+
 
 /*
 // Override to support editing the table view.
@@ -181,7 +237,10 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if (USERS_VIEW) {
+            
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -204,7 +263,7 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -212,13 +271,28 @@
 {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
     
     // Pass the selected object to the new view controller.
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    if (CART_VIEW) {
+        
+        Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
+        CTCartDetailViewController *cartDetailViewController = [[CTCartDetailViewController alloc] init];
+        cartDetailViewController.cart = aCart;
+        [self.navigationController pushViewController:cartDetailViewController animated:YES];
+        
+    } else if (REQUEST_VIEW){
+        
+        
+    } else if (USERS_VIEW){
+        
+        User *aUser = [self.dataController objectAtIndexPath:indexPath];
+        CTUserDetailViewController *userDetailViewController = [[CTUserDetailViewController alloc] init];
+        userDetailViewController.user = aUser;
+        [self.navigationController pushViewController:userDetailViewController animated:YES];
+        
+    }
 }
-*/
+
 
 @end

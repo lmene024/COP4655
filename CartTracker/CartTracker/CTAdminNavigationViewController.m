@@ -8,6 +8,7 @@
 
 #import "CTAdminNavigationViewController.h"
 #import "CTDataListViewController.h"
+#import "CTAdminTableViewController.h"
 
 @interface CTAdminNavigationViewController ()
 
@@ -22,6 +23,7 @@
         // Custom initialization
         self.title = @"Admin";
     }
+    
     return self;
 }
 
@@ -29,8 +31,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    CTDataListViewController * cartController = [[CTDataListViewController alloc] initWithData:@"Carts"];
-    self.viewControllers = @[cartController];
+    
+    CTAdminTableViewController * tableViewController = [[CTAdminTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    self.viewControllers = @[tableViewController];
+    
+    //CTDataListViewController * cartController = [[CTDataListViewController alloc] initWithData:@"Carts"];
+    //self.viewControllers = @[cartController];
+    
+    //CTDataListViewController * requestController = [[CTDataListViewController alloc] initWithData:@"Requests"];
+    //self.viewControllers = @[requestController];
+    
+    //CTDataListViewController *userController = [[CTDataListViewController alloc] initWithData:@"Users"];
+    //self.viewControllers = @[userController];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,5 +52,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

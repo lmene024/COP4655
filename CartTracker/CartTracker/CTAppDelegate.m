@@ -7,12 +7,17 @@
 //
 
 #import "CTAppDelegate.h"
+#import "CTLoginViewController.h"
 
 @implementation CTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    CTLoginViewController *loginController = [[CTLoginViewController alloc] init];
+    [self.window setRootViewController:loginController];
+    
     return YES;
 }
 							

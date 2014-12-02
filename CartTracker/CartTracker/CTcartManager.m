@@ -11,9 +11,8 @@
 #import "Cart.h"
 #import "User.h"
 #import "Request.h"
+#import "Constants.h"
 
-#define SORT_ASCENDING @"ASC"
-#define SORT_DESCENDING @"DSC"
 
 @implementation CTcartManager
 {
@@ -21,6 +20,7 @@
 }
 
 - (NSManagedObjectContext *) context{
+    
     if (!dataHandler) {
         dataHandler = [CTbaseDataHandler instance];
     }
