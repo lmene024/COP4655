@@ -2,7 +2,7 @@
 //  User.h
 //  CartTracker
 //
-//  Created by leo on 11/25/14.
+//  Created by leo on 12/1/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
 
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSNumber * requestCount;
+@property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSSet *requests;
 @end
 

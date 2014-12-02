@@ -2,7 +2,7 @@
 //  User.m
 //  CartTracker
 //
-//  Created by leo on 11/25/14.
+//  Created by leo on 12/1/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 @dynamic lastName;
 @dynamic password;
 @dynamic requestCount;
+@dynamic email;
 @dynamic requests;
 
 @end

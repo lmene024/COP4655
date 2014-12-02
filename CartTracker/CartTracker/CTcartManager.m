@@ -142,6 +142,19 @@
     return nRequest;
 }
 
+
+- (void) deleteCart:(Cart *) cart{
+    [self.context deleteObject:cart];
+}
+
+- (void) deleteUser:(User *)user{
+    [self.context deleteObject:user];
+}
+
+- (void) deleteRequest:(Request *)request{
+    [self.context deleteObject:request];
+}
+
 - (bool) save{
     NSError * error;
     BOOL result = [dataHandler.managedObjectContext save:&error];
