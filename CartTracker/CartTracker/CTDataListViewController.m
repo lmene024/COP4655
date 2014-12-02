@@ -9,6 +9,8 @@
 #import "CTDataListViewController.h"
 #import "CTCartDetailViewController.h"
 #import "CTUserDetailViewController.h"
+#import "CTRequestDetailViewController.h"
+#import "CTRequestNewViewController.h"
 #import "CTcartManager.h"
 #import "Cart.h"
 #import "Request.h"
@@ -22,6 +24,7 @@
 @implementation CTDataListViewController
 
 @synthesize manager;
+@synthesize searchBar;
 
 - (instancetype) init{
     //Prevent direct use of init without sepcifying data type
@@ -51,6 +54,9 @@
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
     self.navigationItem.rightBarButtonItem = addItem;
+    
+    //UISearchBar *searchBar
+#warning Complete search bar
 
 }
 
@@ -108,8 +114,13 @@
         [self.navigationController pushViewController:cartController animated:YES];
         
     } else if (REQUEST_VIEW) {
-        Request *request = [manager newRequest];
-        request.reqID = [[NSNumber alloc] initWithInt:123123];
+        //Request *request = [manager newRequest];
+        //request.reqID = [[NSNumber alloc] initWithInt:123123];
+        
+        CTRequestNewViewController *requestController = [[CTRequestNewViewController alloc] init];
+        requestController.manager = self.manager;
+        [self.navigationController pushViewController:requestController animated:YES];
+        
     } else if (USERS_VIEW){
         
         CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
@@ -139,21 +150,29 @@
 
 - (void) setupCell:(UITableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
     
+    NSString *cellInformation;
+    
     if (CART_VIEW) {
         
         Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
+        
+        //cellInformation = [NSString stringWithFormat:@"%@, %@",aCart]
+        
         cell.textLabel.text = aCart.cartName;
         
     } else if (REQUEST_VIEW){
         
         Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
-        NSString *cellInformation = [NSString stringWithFormat:@"%@     %@      %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
+        cellInformation = [NSString stringWithFormat:@"%@     %@      %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
         cell.textLabel.text = cellInformation;
         
     } else if (USERS_VIEW){
         
         User *aUser = [self.dataController objectAtIndexPath:indexPath];
-        cell.textLabel.text = aUser.firstName;
+        
+        cellInformation = [NSString stringWithFormat:@"%@,  %@",aUser.lastName,aUser.firstName];
+        
+        cell.textLabel.text = cellInformation;
     }
 }
 
@@ -235,6 +254,9 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    User *userToDelete;
+    UITableViewCell *cell;
+        
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         if (USERS_VIEW) {
@@ -279,17 +301,27 @@
         Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
         CTCartDetailViewController *cartDetailViewController = [[CTCartDetailViewController alloc] init];
         cartDetailViewController.cart = aCart;
-        [self.navigationController pushViewController:cartDetailViewController animated:YES];
+        [self.navigationController
+         pushViewController:cartDetailViewController
+         animated:YES];
         
     } else if (REQUEST_VIEW){
         
+        Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
+        CTRequestDetailViewController *requestDetailViewController = [[CTRequestDetailViewController alloc] init];
+        requestDetailViewController.request = aRequest;
+        [self.navigationController
+         pushViewController:requestDetailViewController
+         animated:YES];
         
     } else if (USERS_VIEW){
         
         User *aUser = [self.dataController objectAtIndexPath:indexPath];
         CTUserDetailViewController *userDetailViewController = [[CTUserDetailViewController alloc] init];
         userDetailViewController.user = aUser;
-        [self.navigationController pushViewController:userDetailViewController animated:YES];
+        [self.navigationController
+         pushViewController:userDetailViewController
+         animated:YES];
         
     }
 }

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		4C0906071A2D4D6D004986B0 /* CTCartDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0906051A2D4D6D004986B0 /* CTCartDetailViewController.m */; };
 		4C0906081A2D4D6D004986B0 /* CTCartDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0906061A2D4D6D004986B0 /* CTCartDetailViewController.xib */; };
+		4C576AE11A2E4F04000E9053 /* CTRequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */; };
+		4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */; };
+		4C576AF01A2E61F8000E9053 /* CTRequestNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576AEE1A2E61F8000E9053 /* CTRequestNewViewController.m */; };
+		4C576AF11A2E61F8000E9053 /* CTRequestNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C576AEF1A2E61F8000E9053 /* CTRequestNewViewController.xib */; };
 		4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376591A2CB751003108BB /* CTUserDetailViewController.m */; };
 		4C83765C1A2CB751003108BB /* CTUserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C83765A1A2CB751003108BB /* CTUserDetailViewController.xib */; };
 		4C8376651A2CF402003108BB /* CTCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376631A2CF402003108BB /* CTCameraViewController.m */; };
@@ -65,6 +69,12 @@
 		4C0906041A2D4D6D004986B0 /* CTCartDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCartDetailViewController.h; sourceTree = "<group>"; };
 		4C0906051A2D4D6D004986B0 /* CTCartDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCartDetailViewController.m; sourceTree = "<group>"; };
 		4C0906061A2D4D6D004986B0 /* CTCartDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCartDetailViewController.xib; sourceTree = "<group>"; };
+		4C576ADE1A2E4F03000E9053 /* CTRequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestDetailViewController.h; sourceTree = "<group>"; };
+		4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestDetailViewController.m; sourceTree = "<group>"; };
+		4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestDetailViewController.xib; sourceTree = "<group>"; };
+		4C576AED1A2E61F8000E9053 /* CTRequestNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestNewViewController.h; sourceTree = "<group>"; };
+		4C576AEE1A2E61F8000E9053 /* CTRequestNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestNewViewController.m; sourceTree = "<group>"; };
+		4C576AEF1A2E61F8000E9053 /* CTRequestNewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestNewViewController.xib; sourceTree = "<group>"; };
 		4C8376581A2CB751003108BB /* CTUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTUserDetailViewController.h; sourceTree = "<group>"; };
 		4C8376591A2CB751003108BB /* CTUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTUserDetailViewController.m; sourceTree = "<group>"; };
 		4C83765A1A2CB751003108BB /* CTUserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTUserDetailViewController.xib; sourceTree = "<group>"; };
@@ -158,6 +168,11 @@
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+=======
+				4C576AEF1A2E61F8000E9053 /* CTRequestNewViewController.xib */,
+				4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */,
+>>>>>>> origin/arugg003
 				4C0906061A2D4D6D004986B0 /* CTCartDetailViewController.xib */,
 				4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */,
 				4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */,
@@ -175,10 +190,19 @@
 		4C8376571A2CB719003108BB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				4C0906041A2D4D6D004986B0 /* CTCartDetailViewController.h */,
 				4C0906051A2D4D6D004986B0 /* CTCartDetailViewController.m */,
+=======
+>>>>>>> origin/arugg003
 				4C8376621A2CF402003108BB /* CTCameraViewController.h */,
 				4C8376631A2CF402003108BB /* CTCameraViewController.m */,
+				4C576AED1A2E61F8000E9053 /* CTRequestNewViewController.h */,
+				4C576AEE1A2E61F8000E9053 /* CTRequestNewViewController.m */,
+				4C576ADE1A2E4F03000E9053 /* CTRequestDetailViewController.h */,
+				4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */,
+				4C0906041A2D4D6D004986B0 /* CTCartDetailViewController.h */,
+				4C0906051A2D4D6D004986B0 /* CTCartDetailViewController.m */,
 				4C8376581A2CB751003108BB /* CTUserDetailViewController.h */,
 				4C8376591A2CB751003108BB /* CTUserDetailViewController.m */,
 				4C83766F1A2D097E003108BB /* CTAdminTableViewController.h */,
@@ -389,10 +413,12 @@
 				B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */,
 				B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */,
 				4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */,
+				4C576AF11A2E61F8000E9053 /* CTRequestNewViewController.xib in Resources */,
 				4C0906081A2D4D6D004986B0 /* CTCartDetailViewController.xib in Resources */,
 				B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */,
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
 				4CE4AF201A2D2DFB00C3C8A3 /* CTLoginViewController.xib in Resources */,
+				4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */,
 				4C83765C1A2CB751003108BB /* CTUserDetailViewController.xib in Resources */,
 				4C8376661A2CF402003108BB /* CTCameraViewController.xib in Resources */,
 			);
@@ -417,12 +443,14 @@
 				4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */,
 				B3F635291A2D54A80048F7FB /* User.m in Sources */,
 				B3BFE9E31A25872700B86E9B /* DataModel.xcdatamodeld in Sources */,
+				4C576AF01A2E61F8000E9053 /* CTRequestNewViewController.m in Sources */,
 				B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */,
 				B3CAF59C1A14E69A00274EEF /* main.m in Sources */,
 				4C8376771A2D1EB2003108BB /* CTRequestNavigationViewController.m in Sources */,
 				B3BFE9F51A25890700B86E9B /* CTAdminNavigationViewController.m in Sources */,
 				4C0906071A2D4D6D004986B0 /* CTCartDetailViewController.m in Sources */,
 				B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */,
+				4C576AE11A2E4F04000E9053 /* CTRequestDetailViewController.m in Sources */,
 				4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */,
 				B3BFE9E61A25876E00B86E9B /* CTViewController.m in Sources */,
 				B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */,

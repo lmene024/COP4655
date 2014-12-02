@@ -21,7 +21,10 @@
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
+<<<<<<< HEAD
     NSLog(@"super view = %@", self.superview);
+=======
+>>>>>>> origin/arugg003
     [self.superview  touchesBegan:touches withEvent:event];
 }
 

@@ -10,6 +10,7 @@
 
 @protocol CTDetailViewDelegate <NSObject>
 
+@optional
 -(void) loadDataToView;
 -(void) setEditing:(BOOL)editing animated:(BOOL)animated;
 -(void) setBorderStyleToUITextFields:(UITextBorderStyle) borderStyle;
