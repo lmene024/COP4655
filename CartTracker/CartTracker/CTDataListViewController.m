@@ -45,6 +45,8 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     self.navigationItem.rightBarButtonItem = addItem;
+    
+    NSLog(@"TEsting");
 
 }
 
