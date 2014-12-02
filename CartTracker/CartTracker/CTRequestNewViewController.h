@@ -15,7 +15,6 @@
 @property (strong, nonatomic) CTcartManager *manager;
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSFetchedResultsController * dataController;
 
 

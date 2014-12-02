@@ -20,7 +20,6 @@
 }
 
 @synthesize searchBar;
-@synthesize tableView;
 @synthesize manager;
 
 #pragma mark - UIViewController
@@ -38,10 +37,19 @@
 {
     [super viewDidLoad];
     
-    self.tableView = [[UITableView alloc] init];
+    NSError *error = nil;
+	
+    NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
+    
+    userArray = [[NSArray alloc] initWithArray:array];
+    
+    for (User *s in userArray) {
+        NSLog(@"Name: %@",s.firstName);
+    }
     
     // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,11 +58,13 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-    [self.searchBar becomeFirstResponder];
+    //[self.searchBar becomeFirstResponder];
     [super viewDidAppear:animated];
 }
 
 #pragma mark UISearchBarDelegate
+
+/*
 
 -(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     
@@ -71,8 +81,8 @@
     
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
+    //self.tableView.allowsSelection = YES;
+    //self.tableView.scrollEnabled = YES;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -86,8 +96,8 @@
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
     
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
+    //self.tableView.allowsSelection = YES;
+    //self.tableView.scrollEnabled = YES;
     
     NSError *error = nil;
 	
@@ -99,11 +109,15 @@
         NSLog(@"Name: %@",s.firstName);
     }
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
+ 
+ */
 
 #pragma mark - Table view data source
 
+
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -123,7 +137,8 @@
     NSLog(@"Formating Cells");
     
     static NSString *FirstLevelCell= @"FirstLevelCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                              FirstLevelCell];
     
     if (cell == nil) {
@@ -133,9 +148,11 @@
     // Configure the cell
     
     NSLog(@"HELLOOOOO");
+    
     [cell.textLabel setText:[userArray objectAtIndex:[indexPath row]]];
     
     return cell;
 }
+*/
 
 @end
