@@ -114,6 +114,7 @@
         [self.navigationController pushViewController:cartController animated:YES];
         
     } else if (REQUEST_VIEW) {
+<<<<<<< HEAD
         //Request *request = [manager newRequest];
         //request.reqID = [[NSNumber alloc] initWithInt:123123];
         
@@ -121,6 +122,12 @@
         requestController.manager = self.manager;
         [self.navigationController pushViewController:requestController animated:YES];
         
+=======
+        Request *request = [manager newRequest];
+        request.reqID = [[NSNumber alloc] initWithInt:123123];
+        request.schedStartTime = [NSDate date];
+        request.schedEndTime = [NSDate date];
+>>>>>>> lmene024
     } else if (USERS_VIEW){
         
         CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
@@ -250,7 +257,8 @@
 }
 
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -267,7 +275,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+ 
 
 /*
 // Override to support rearranging the table view.
