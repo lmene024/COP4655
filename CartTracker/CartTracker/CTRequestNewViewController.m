@@ -44,7 +44,6 @@
     [super viewDidLoad];
     
     filteredContentList = [[NSMutableArray alloc] init];
-    
     NSError *error = nil;
     NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
     userArray = [[NSArray alloc] initWithArray:array];
@@ -123,10 +122,11 @@
     [self.tableView setHidden:NO];
     
     NSString *searchString = self.searchBar.text;
-    
+    NSLog(@"SearchBarText: %@",self.searchBar.text);
     for (User *aUser in userArray) {
         NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
         if (result == NSOrderedSame) {
+            NSLog(@"Testing result");
             [filteredContentList addObject:aUser];
         }
     }
