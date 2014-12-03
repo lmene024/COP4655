@@ -12,6 +12,7 @@
 @class Request;
 
 @interface CTRequestDetailViewController : UIViewController <CTDetailViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UITextField *reqIdTextField;
 @property (strong, nonatomic) IBOutlet UITextField *userTextField;
 @property (strong, nonatomic) IBOutlet UITextField *cartTextField;

@@ -14,8 +14,11 @@
 
 @property (strong, nonatomic) CTcartManager *manager;
 
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSFetchedResultsController * dataController;
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UISearchDisplayController *searchBarController;
+@property  BOOL isSearching;
 
 @end

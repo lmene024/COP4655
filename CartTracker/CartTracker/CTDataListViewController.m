@@ -54,8 +54,7 @@
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
     self.navigationItem.rightBarButtonItem = addItem;
-    
-    //UISearchBar *searchBar
+
 #warning Complete search bar
 
 }
@@ -254,12 +253,15 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    User *userToDelete;
-    UITableViewCell *cell;
         
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         if (USERS_VIEW) {
+            User *aUser = [self.dataController objectAtIndexPath:indexPath];
+            
+            NSLog(@"User deleted: %@",aUser.firstName);
+            
+            [manager deleteUser:aUser];
             
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
@@ -268,6 +270,7 @@
     }   
 }
 */
+
 
 /*
 // Override to support rearranging the table view.
@@ -313,6 +316,8 @@
         [self.navigationController
          pushViewController:requestDetailViewController
          animated:YES];
+        
+        
         
     } else if (USERS_VIEW){
         

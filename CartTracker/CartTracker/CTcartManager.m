@@ -148,6 +148,7 @@
 }
 
 - (void) deleteUser:(User *)user{
+    NSLog(@"User about to be deleted: %@",user.firstName);
     [self.context deleteObject:user];
 }
 
