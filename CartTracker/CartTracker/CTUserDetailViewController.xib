@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CTUserDetailViewController">
             <connections>
+                <outlet property="adminSwitch" destination="qvB-KS-Ago" id="6Kf-08-e57"/>
+                <outlet property="emailTextField" destination="96Y-Ub-XQN" id="HRi-t1-RXb"/>
                 <outlet property="firstNameTextField" destination="rDv-gR-rSe" id="DZO-UG-gH6"/>
                 <outlet property="lastNameTextField" destination="ARH-k0-lCS" id="2ch-Xd-Z3T"/>
                 <outlet property="licenseTextField" destination="7VT-DX-jJq" id="SXi-SN-uSh"/>
@@ -145,6 +147,9 @@
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="qvB-KS-Ago">
                             <rect key="frame" x="118" y="373" width="51" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="changeAdmin:" destination="-1" eventType="valueChanged" id="Z84-DU-j4E"/>
+                            </connections>
                         </switch>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

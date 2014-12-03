@@ -93,21 +93,7 @@
  */
 
 - (void) insertNewItem:(id) sender{
-    
-    /*CTCartDetailViewController *cartDetailViewController = [[CTCartDetailViewController alloc] init];
-    
-    cartDetailViewController.cart = cart;
-    
-    [self.navigationController pushViewController:cartDetailViewController animated:YES];*/
-    
     if (CART_VIEW) {
-        /*Cart * cart = [manager newCart];
-        cart.cartID = @"001";
-        cart.cartName =  @"My First C";
-        cart.qrCode = @"DSgfsgf";
-        cart.tagNumber = @"56ttyh";
-        cart.useCount = 0;*/
-        
         CTCartDetailViewController *cartController = [[CTCartDetailViewController alloc] init];
         cartController.manager = self.manager;
         cartController.cart = nil;
@@ -130,7 +116,7 @@
         
     }
 
-    [manager save];
+    //[manager save];
 }
 
 
@@ -255,15 +241,22 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    User *userToDelete;
-    UITableViewCell *cell;
-        
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         if (USERS_VIEW) {
+            User * aUser = [self.dataController objectAtIndexPath:indexPath];
+            [manager deleteUser:aUser];
+            //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }else if (CART_VIEW){
+            Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
+            [manager deleteCart:aCart];
+        }else if (REQUEST_VIEW){
+            //this one might be different
             
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
+        
+        [manager save];
+        [self.tableView reloadData];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -320,6 +313,7 @@
         User *aUser = [self.dataController objectAtIndexPath:indexPath];
         CTUserDetailViewController *userDetailViewController = [[CTUserDetailViewController alloc] init];
         userDetailViewController.user = aUser;
+        userDetailViewController.manager = self.manager;
         [self.navigationController
          pushViewController:userDetailViewController
          animated:YES];
