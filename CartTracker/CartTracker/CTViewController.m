@@ -9,6 +9,7 @@
 #import "CTViewController.h"
 #import "CTAdminNavigationViewController.h"
 #import "CTRequestNavigationViewController.h"
+#import "CTCalendarViewController.h"
 
 @interface CTViewController ()
 
@@ -23,14 +24,19 @@
     
     CTAdminNavigationViewController * adminController = [[CTAdminNavigationViewController alloc] init];
     CTRequestNavigationViewController *requestController = [[CTRequestNavigationViewController alloc] init];
+    CTCalendarViewController * calendarController = [[CTCalendarViewController alloc] init];
     
-    self.viewControllers = @[adminController,requestController];
+    self.viewControllers = @[adminController,requestController, calendarController];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:true];
 }
 
 @end

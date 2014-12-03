@@ -73,7 +73,8 @@
     CGFloat navbarHeight = self.navigationController.navigationBar.frame.size.height;
     
     visibleRect.size.height = visibleRect.size.height - keyboardSize.height - navbarHeight ;
-    if (!CGRectContainsPoint(visibleRect, buttonOrigin)) {
+    if (!CGRectContainsPoint(visibleRect, CGPointMake(buttonOrigin.x, buttonOrigin.y+buttonHeight))) {
+
         CGPoint scrollPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight);
         [(UIScrollView *)self.view setContentOffset:scrollPoint animated:true];
     }

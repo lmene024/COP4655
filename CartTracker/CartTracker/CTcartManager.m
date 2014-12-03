@@ -79,16 +79,7 @@
                         andSortOrders:(NSArray *) sortOrders
                         withPredicate:(NSPredicate *) predicate
 {
-  /*  if (!dataHandler) {
-        dataHandler = [CTbaseDataHandler instance];
-    }
-    
-    if (!self.context) {
-        _context = dataHandler.managedObjectContext;
-    }
-    */
-
-    
+   
     NSEntityDescription * entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
     NSMutableArray * sortDescriptors = [[NSMutableArray alloc] init];
     
@@ -119,6 +110,9 @@
         [fetchRequest setSortDescriptors:sortDescriptors];
     }
     
+    if (predicate) {
+        [fetchRequest setPredicate:predicate];
+    }
     
     return fetchRequest;
    
