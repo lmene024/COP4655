@@ -54,8 +54,7 @@
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
     self.navigationItem.rightBarButtonItem = addItem;
-    
-    //UISearchBar *searchBar
+
 #warning Complete search bar
 
 }
@@ -263,6 +262,7 @@
 }
  
 
+
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
@@ -307,6 +307,8 @@
         [self.navigationController
          pushViewController:requestDetailViewController
          animated:YES];
+        
+        
         
     } else if (USERS_VIEW){
         
