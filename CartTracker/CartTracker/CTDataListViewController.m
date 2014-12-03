@@ -114,7 +114,6 @@
         [self.navigationController pushViewController:cartController animated:YES];
         
     } else if (REQUEST_VIEW) {
-<<<<<<< HEAD
         //Request *request = [manager newRequest];
         //request.reqID = [[NSNumber alloc] initWithInt:123123];
         
@@ -122,12 +121,6 @@
         requestController.manager = self.manager;
         [self.navigationController pushViewController:requestController animated:YES];
         
-=======
-        Request *request = [manager newRequest];
-        request.reqID = [[NSNumber alloc] initWithInt:123123];
-        request.schedStartTime = [NSDate date];
-        request.schedEndTime = [NSDate date];
->>>>>>> lmene024
     } else if (USERS_VIEW){
         
         CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
