@@ -41,12 +41,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
     if (self.user != nil) {
         // The view is loaded for an existing user
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         [self loadDataToView];
         [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
+        [self setTitle:@"User"];
     } else {
         //Creating a new user
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
@@ -55,6 +55,7 @@
                                        action:@selector(saveButton:)];
         
         self.navigationItem.rightBarButtonItem = saveButton;
+        [self setTitle:@"New User"];
         [self enableFields:YES andSetBorderStyle:UITextBorderStyleRoundedRect];
     }
 }

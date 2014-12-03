@@ -9,6 +9,7 @@
 #import "CTRequestNewViewController.h"
 #import "CTcartManager.h"
 #import "User.h"
+#import "Cart.h"
 
 @interface CTRequestNewViewController ()
 
@@ -18,6 +19,9 @@
 {
     NSArray *userArray;
     NSMutableArray *filteredContentList;
+    NSArray *cartArray;
+    NSMutableArray *filteredCartArray;
+    Boolean isSecondSearchBar;
 }
 
 #pragma mark - Properties
@@ -27,6 +31,11 @@
 @synthesize searchBarController;
 @synthesize isSearching;
 @synthesize manager;
+@synthesize cartSearchBar;
+@synthesize requestDateLabel;
+@synthesize requestDatePicker;
+@synthesize notesLabel;
+@synthesize notesTextView;
 
 #pragma mark - UIViewController
 
@@ -43,16 +52,36 @@
 {
     [super viewDidLoad];
     
+    [self initArrays];
+    
+    [self.searchBar setBarTintColor:[UIColor whiteColor]];
+    [self.cartSearchBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self setViewHidden:YES];
+    
+    [self setTitle:@"New Request"];
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                   target:self
+                                   action:nil];
+    
+    self.navigationItem.rightBarButtonItem = saveButton;
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+-(void) initArrays{
     filteredContentList = [[NSMutableArray alloc] init];
     NSError *error = nil;
     NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
     userArray = [[NSArray alloc] initWithArray:array];
     
-    [self.searchBar setBarTintColor:[UIColor whiteColor]];
-    
-    // Do any additional setup after loading the view from its nib.
+    filteredCartArray = [[NSMutableArray alloc] init];
+    NSError *error2 = nil;
+    NSArray *arrayCart = [manager.context executeFetchRequest:[manager getAllCarts] error:&error2];
+    cartArray = [[NSArray alloc] initWithArray:arrayCart];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -66,22 +95,40 @@
 
 #pragma mark UISearchBarDelegate
 
+-(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    [searchBar setText:[searchBar text]];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.cartSearchBar setShowsCancelButton:NO animated:YES];
+}
+
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
     
     isSearching = YES;
     
+    [self setViewHidden:YES];
+    
+    if (searchBar == self.cartSearchBar) {
+        isSecondSearchBar = YES;
+        NSLog(@"%hhu",isSecondSearchBar);
+    } else {
+        isSecondSearchBar = NO;
+    }
+    
     [self.searchBar setShowsCancelButton:YES animated:YES];
-    self.tableView.allowsSelection = NO;
-    self.tableView.scrollEnabled = NO;
+    [self.cartSearchBar setShowsCancelButton:YES animated:YES];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
     //Remove all objects first.
     [filteredContentList removeAllObjects];
+    [filteredCartArray removeAllObjects];
     
     if([searchText length] != 0) {
         isSearching = YES;
+        [self.tableView setHidden:NO];
+        [self setViewHidden:YES];
         [self searchTableList];
     }
     else {
@@ -96,13 +143,14 @@
     //NSLog(@"Cancel clicked");
     
     self.searchBar.text=@"";
+    self.cartSearchBar.text=@"";
     
     [self.tableView setHidden:YES];
     
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
+    [self.cartSearchBar setShowsCancelButton:NO animated:YES];
+    [self.cartSearchBar resignFirstResponder];
     
 }
 
@@ -110,6 +158,9 @@
     
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
+    [self.cartSearchBar setShowsCancelButton:NO animated:YES];
+    [self.cartSearchBar resignFirstResponder];
+    
     self.tableView.allowsSelection = YES;
     self.tableView.scrollEnabled = YES;
 
@@ -121,16 +172,33 @@
     
     [self.tableView setHidden:NO];
     
-    NSString *searchString = self.searchBar.text;
-    NSLog(@"SearchBarText: %@",self.searchBar.text);
-    for (User *aUser in userArray) {
-        NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
-        if (result == NSOrderedSame) {
-            NSLog(@"Testing result");
-            [filteredContentList addObject:aUser];
+    if (!isSecondSearchBar) {
+        for (User *aUser in userArray) {
+            NSString *searchString = self.searchBar.text;
+            NSLog(@"SearchBarText: %@",self.searchBar.text);
+            NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
+            if (result == NSOrderedSame) {
+                NSLog(@"Testing result");
+                [filteredContentList addObject:aUser];
+            }
         }
+    } else {
+        NSString *searchString = self.cartSearchBar.text;
+        NSLog(@"SearchBarText: %@",searchString);
+        
+        for (Cart *aCart in cartArray) {
+            NSComparisonResult cartResult = [aCart.cartName
+                                             compare:searchString
+                                             options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)
+                                             range:NSMakeRange(0, [searchString length])];
+            if (cartResult == NSOrderedSame) {
+                NSLog(@"Testing result");
+                [filteredCartArray addObject:aCart];
+            }
+        }
+        
     }
-    
+
 }
 
 #pragma mark - Table view data source
@@ -147,11 +215,19 @@
     // Return the number of rows in the section.
     //NSLog(@"rows in table view");
     
-    if (isSearching) {
-        return [filteredContentList count];
-    }
-    else {
-        return [userArray count];
+    if (!isSecondSearchBar) {
+        if (isSearching) {
+            return [filteredContentList count];
+        }
+        else {
+            return [userArray count];
+        }
+    } else{
+        if (isSearching) {
+            return [filteredCartArray count];
+        } else {
+            return [cartArray count];
+        }
     }
     
 }
@@ -160,8 +236,6 @@
     
     return 40;
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -174,32 +248,75 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    User *aUser = [userArray objectAtIndex:[indexPath row]];
+    if (!isSecondSearchBar) {
+        User *aUser = [userArray objectAtIndex:[indexPath row]];
+        
+        // Configure the cell...
+        if (isSearching == YES) {
+            User *a = [filteredContentList objectAtIndex:indexPath.row];
+            cell.textLabel.text = a.firstName;
+        }
+        else {
+            [cell.textLabel setText:aUser.firstName];
+        }
+    } else {
+        
+        NSLog(@"index %ld",(long)[indexPath row]);
+        
+        Cart *aCart = [cartArray objectAtIndex:[indexPath row]];
+        
+        if (isSearching) {
+            Cart *c = [filteredCartArray objectAtIndex:[indexPath row]];
+            cell.textLabel.text = c.cartName;
+        } else {
+            [cell.textLabel setText:aCart.cartName];
+        }
+    }
     
-    // Configure the cell...
-    if (isSearching == YES) {
-        User *a = [filteredContentList objectAtIndex:indexPath.row];
-        cell.textLabel.text = a.firstName;
-    }
-    else {
-        [cell.textLabel setText:aUser.firstName];
-    }
+    
     
     return cell;
 }
 
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [UIView transitionWithView:self.tableView
-                      duration:0.5
-                       options:UIViewAnimationOptionTransitionNone
-                    animations:nil
-                    completion:^(BOOL finished) {
-                        [self.view.superview addSubview:self.tableView];
-                    }];
     
+    //[self.searchBar setText:[userArray objectAtIndex:[indexPath row]]];
+    //[self.cartSearchBar setText:[cartArray objectAtIndex:[indexPath row]]];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if (!isSecondSearchBar){
+        [self.searchBar setText:cell.textLabel.text];
+    } else {
+        [self.cartSearchBar setText:cell.textLabel.text];
+    }
+    
+    [self.searchBar resignFirstResponder];
+    [self.cartSearchBar resignFirstResponder];
+    
+    [self.searchBar setShowsCancelButton:NO animated:NO];
+    [self.cartSearchBar setShowsCancelButton:NO animated:NO];
+    
+    [self setClearButtonMode:self.searchBar];
+    [self setClearButtonMode:self.cartSearchBar];
+
+    [self.tableView setHidden:YES];
+    [self setViewHidden:NO];
+}
+
+#pragma mark - Update UI
+
+-(void) setViewHidden:(BOOL)value{
+    [requestDateLabel setHidden:value];
+    [requestDatePicker setHidden:value];
+    [notesLabel setHidden:value];
+    [notesTextView setHidden:value];
+}
+
+-(void) setClearButtonMode:(UISearchBar *)mySearchBar{
+    UITextField *textField = [mySearchBar valueForKey:@"_searchField"];
+    textField.clearButtonMode = UITextFieldViewModeNever;
 }
 
 
