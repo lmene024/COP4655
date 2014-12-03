@@ -64,7 +64,7 @@
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                    target:self
-                                   action:nil];
+                                   action:@selector(saveButtonPressed:)];
     
     self.navigationItem.rightBarButtonItem = saveButton;
     
@@ -140,7 +140,6 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    //NSLog(@"Cancel clicked");
     
     self.searchBar.text=@"";
     self.cartSearchBar.text=@"";
@@ -261,8 +260,6 @@
         }
     } else {
         
-        NSLog(@"index %ld",(long)[indexPath row]);
-        
         Cart *aCart = [cartArray objectAtIndex:[indexPath row]];
         
         if (isSearching) {
@@ -319,5 +316,18 @@
     textField.clearButtonMode = UITextFieldViewModeNever;
 }
 
+#pragma mark - IBAction
+
+-(IBAction)saveButtonPressed:(id)sender{
+    NSDate *date = self.requestDatePicker.date;
+    
+    if ((![self.cartSearchBar.text isEqualToString:@""]) & (![self.searchBar.text isEqualToString:@""])) {
+        for (Cart *aCart in cartArray) {
+            if ([self.cartSearchBar.text isEqualToString:aCart.cartName]) {
+#warning Validate is a cart is at use or not
+            }
+        }
+    }
+}
 
 @end
