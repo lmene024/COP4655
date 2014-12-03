@@ -20,13 +20,15 @@
 		4C8376681A2CF453003108BB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8376671A2CF453003108BB /* MobileCoreServices.framework */; };
 		4C8376721A2D097E003108BB /* CTAdminTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376701A2D097E003108BB /* CTAdminTableViewController.m */; };
 		4C8376731A2D097E003108BB /* CTAdminTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376711A2D097E003108BB /* CTAdminTableViewController.xib */; };
-		4C8376771A2D1EB2003108BB /* CTRequestNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376751A2D1EB2003108BB /* CTRequestNavigationViewController.m */; };
 		4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */; };
 		4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */; };
 		4CE4AF201A2D2DFB00C3C8A3 /* CTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */; };
 		B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EB1A2D80A200F79E60 /* CTScrollView.m */; };
 		B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */; };
 		B348A0661A159433007C342B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B348A0651A159433007C342B /* CoreData.framework */; };
+		B34ADA3E1A2ED6A000D3A29A /* CTRequestNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34ADA3C1A2ED6A000D3A29A /* CTRequestNewViewController.m */; };
+		B34ADA3F1A2ED6A000D3A29A /* CTRequestNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34ADA3D1A2ED6A000D3A29A /* CTRequestNewViewController.xib */; };
+		B34ADA421A2ED79000D3A29A /* CTRequestNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */; };
 		B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */; };
 		B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9D91A2586EB00B86E9B /* Cart.m */; };
 		B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9DC1A25870A00B86E9B /* Request.m */; };
@@ -90,8 +92,6 @@
 		4C83766F1A2D097E003108BB /* CTAdminTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAdminTableViewController.h; sourceTree = "<group>"; };
 		4C8376701A2D097E003108BB /* CTAdminTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAdminTableViewController.m; sourceTree = "<group>"; };
 		4C8376711A2D097E003108BB /* CTAdminTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminTableViewController.xib; sourceTree = "<group>"; };
-		4C8376741A2D1EB2003108BB /* CTRequestNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestNavigationViewController.h; sourceTree = "<group>"; };
-		4C8376751A2D1EB2003108BB /* CTRequestNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestNavigationViewController.m; sourceTree = "<group>"; };
 		4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestNavigationViewController.xib; sourceTree = "<group>"; };
 		4CE4AF1C1A2D2DFB00C3C8A3 /* CTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLoginViewController.h; sourceTree = "<group>"; };
 		4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewController.m; sourceTree = "<group>"; };
@@ -102,6 +102,11 @@
 		B30C56ED1A2D82D300F79E60 /* CTADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTADetailViewController.h; sourceTree = "<group>"; };
 		B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTADetailViewController.m; sourceTree = "<group>"; };
 		B348A0651A159433007C342B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B34ADA3B1A2ED6A000D3A29A /* CTRequestNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestNewViewController.h; sourceTree = "<group>"; };
+		B34ADA3C1A2ED6A000D3A29A /* CTRequestNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestNewViewController.m; sourceTree = "<group>"; };
+		B34ADA3D1A2ED6A000D3A29A /* CTRequestNewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestNewViewController.xib; sourceTree = "<group>"; };
+		B34ADA401A2ED79000D3A29A /* CTRequestNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestNavigationViewController.h; sourceTree = "<group>"; };
+		B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestNavigationViewController.m; sourceTree = "<group>"; };
 		B3B05FBF1A196CEC00B32944 /* CTimageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTimageTransformer.h; sourceTree = "<group>"; };
 		B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTimageTransformer.m; sourceTree = "<group>"; };
 		B3BFE9D81A2586EB00B86E9B /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
@@ -178,15 +183,10 @@
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 				4C576AEF1A2E61F8000E9053 /* CTRequestNewViewController.xib */,
 				4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */,
->>>>>>> origin/arugg003
-=======
 				B3CE64CA1A2ECFE5004470A7 /* CTCalendarViewController.xib */,
->>>>>>> lmene024
 				4C0906061A2D4D6D004986B0 /* CTCartDetailViewController.xib */,
 				4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */,
 				4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */,
@@ -207,11 +207,13 @@
 		4C8376571A2CB719003108BB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+
+				B34ADA401A2ED79000D3A29A /* CTRequestNavigationViewController.h */,
+				B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */,
+				B34ADA3B1A2ED6A000D3A29A /* CTRequestNewViewController.h */,
+				B34ADA3C1A2ED6A000D3A29A /* CTRequestNewViewController.m */,
 				4C0906041A2D4D6D004986B0 /* CTCartDetailViewController.h */,
 				4C0906051A2D4D6D004986B0 /* CTCartDetailViewController.m */,
-=======
->>>>>>> origin/arugg003
 				4C8376621A2CF402003108BB /* CTCameraViewController.h */,
 				4C8376631A2CF402003108BB /* CTCameraViewController.m */,
 				4C576AED1A2E61F8000E9053 /* CTRequestNewViewController.h */,
@@ -226,8 +228,6 @@
 				4C8376701A2D097E003108BB /* CTAdminTableViewController.m */,
 				B3BFE9E71A25884900B86E9B /* CTDataListViewController.h */,
 				B3BFE9E81A25884900B86E9B /* CTDataListViewController.m */,
-				4C8376741A2D1EB2003108BB /* CTRequestNavigationViewController.h */,
-				4C8376751A2D1EB2003108BB /* CTRequestNavigationViewController.m */,
 				B3BFE9F21A25890600B86E9B /* CTAdminNavigationViewController.h */,
 				B3BFE9F31A25890600B86E9B /* CTAdminNavigationViewController.m */,
 				B3BFE9E41A25876E00B86E9B /* CTViewController.h */,
@@ -431,13 +431,11 @@
 				B3D6674C1A2E8FF900A91C9A /* CTCartStatusTableViewCell.xib in Resources */,
 				B3CAF5AB1A14E69B00274EEF /* Images.xcassets in Resources */,
 				B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */,
+				B34ADA3F1A2ED6A000D3A29A /* CTRequestNewViewController.xib in Resources */,
 				B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */,
 				4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */,
-<<<<<<< HEAD
 				4C576AF11A2E61F8000E9053 /* CTRequestNewViewController.xib in Resources */,
-=======
 				B3CE64CB1A2ECFE5004470A7 /* CTCalendarViewController.xib in Resources */,
->>>>>>> lmene024
 				4C0906081A2D4D6D004986B0 /* CTCartDetailViewController.xib in Resources */,
 				B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */,
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
@@ -470,7 +468,6 @@
 				4C576AF01A2E61F8000E9053 /* CTRequestNewViewController.m in Sources */,
 				B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */,
 				B3CAF59C1A14E69A00274EEF /* main.m in Sources */,
-				4C8376771A2D1EB2003108BB /* CTRequestNavigationViewController.m in Sources */,
 				B3CE64CE1A2ED033004470A7 /* CTCalendarViewController.m in Sources */,
 				B3BFE9F51A25890700B86E9B /* CTAdminNavigationViewController.m in Sources */,
 				4C0906071A2D4D6D004986B0 /* CTCartDetailViewController.m in Sources */,
@@ -478,10 +475,12 @@
 				4C576AE11A2E4F04000E9053 /* CTRequestDetailViewController.m in Sources */,
 				4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */,
 				B3BFE9E61A25876E00B86E9B /* CTViewController.m in Sources */,
+				B34ADA421A2ED79000D3A29A /* CTRequestNavigationViewController.m in Sources */,
 				B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */,
 				B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */,
 				B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */,
 				B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */,
+				B34ADA3E1A2ED6A000D3A29A /* CTRequestNewViewController.m in Sources */,
 				4C8376651A2CF402003108BB /* CTCameraViewController.m in Sources */,
 				B3BFE9EE1A25888E00B86E9B /* CTcartManager.m in Sources */,
 				B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */,
