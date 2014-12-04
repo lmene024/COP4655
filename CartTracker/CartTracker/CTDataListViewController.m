@@ -11,6 +11,7 @@
 #import "CTUserDetailViewController.h"
 #import "CTRequestDetailViewController.h"
 #import "CTRequestNewViewController.h"
+#import "CTCartStatusTableViewCell.h"
 #import "CTcartManager.h"
 #import "Cart.h"
 #import "Request.h"
@@ -214,16 +215,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
+    CTCartStatusTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
+    
     // Configure the cell...
     if (cell ==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.title];
-        cell.accessoryType = UITableViewCellAccessoryDetailButton;
+        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.title];
+        //cell.accessoryType = UITableViewCellAccessoryDetailButton;
+        
+        cell = [[CTCartStatusTableViewCell alloc] init];
     }
     
     [self setupCell:cell forIndexPath:indexPath];
     return cell;
 }
+
 
 - (void) setupCell:(UITableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
     
@@ -240,7 +246,12 @@
     } else if (REQUEST_VIEW){
         
         Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
-        cellInformation = [NSString stringWithFormat:@"%@     %@      %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
+        
+        // Show open requests only
+        if (aRequest.reqStatus == [NSNumber numberWithInt:1]) {
+            cellInformation = [NSString stringWithFormat:@"%@  %@  %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
+        }
+        
         cell.textLabel.text = cellInformation;
         
     } else if (USERS_VIEW){
@@ -252,6 +263,47 @@
         cell.textLabel.text = cellInformation;
     }
 }
+
+ 
+/*
+
+- (void) setupCustomCell:(CTCartStatusTableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
+    
+    NSString *cellInformation;
+    
+    if (CART_VIEW) {
+        
+        Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
+        
+        //cellInformation = [NSString stringWithFormat:@"%@, %@",aCart]
+        
+        cell.cartName.text = aCart.cartName;
+        
+    } else if (REQUEST_VIEW){
+        
+        Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
+        
+        // Show open requests only
+        if (aRequest.reqStatus == [NSNumber numberWithInt:1]) {
+            //cellInformation = [NSString stringWithFormat:@"%@  %@  %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
+            //cell.cartName.text = aRequest.user.firstName;
+            //cell.cartID.text = [aRequest.reqID stringValue];
+            //cell.cartStatus.backgroundColor = [UIColor yellowColor];
+        }
+        
+        //cell.textLabel.text = cellInformation;
+        
+    } else if (USERS_VIEW){
+        
+        User *aUser = [self.dataController objectAtIndexPath:indexPath];
+        
+        cellInformation = [NSString stringWithFormat:@"%@,  %@",aUser.lastName,aUser.firstName];
+        
+        cell.cartName.text = cellInformation;
+    }
+}
+ 
+ */
 
 - (NSFetchedResultsController *) dataController{
     

@@ -20,6 +20,7 @@
 		4C8E4A2A1A30C90100E46C74 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B375F8851A309C8B007D45DE /* libzbar.a */; };
 		4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */; };
 		4CE4AF201A2D2DFB00C3C8A3 /* CTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */; };
+		4CF895A21A30E9A3003C6809 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF895A11A30E9A3003C6809 /* MessageUI.framework */; };
 		B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EB1A2D80A200F79E60 /* CTScrollView.m */; };
 		B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */; };
 		B3232DCA1A2FE85500F98CF4 /* contactIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B3232DC91A2FE85500F98CF4 /* contactIcon.png */; };
@@ -103,6 +104,7 @@
 		4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewController.m; sourceTree = "<group>"; };
 		4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTLoginViewController.xib; sourceTree = "<group>"; };
 		4CE4AF2D1A2D409900C3C8A3 /* CTDetailViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CTDetailViewDelegate.h; path = CartTracker/CTDetailViewDelegate.h; sourceTree = "<group>"; };
+		4CF895A11A30E9A3003C6809 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B30C56EA1A2D80A200F79E60 /* CTScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTScrollView.h; sourceTree = "<group>"; };
 		B30C56EB1A2D80A200F79E60 /* CTScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTScrollView.m; sourceTree = "<group>"; };
 		B30C56ED1A2D82D300F79E60 /* CTADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTADetailViewController.h; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF895A21A30E9A3003C6809 /* MessageUI.framework in Frameworks */,
 				4C8E4A2A1A30C90100E46C74 /* libzbar.a in Frameworks */,
 				4C8E4A291A30C8E300E46C74 /* libiconv.dylib in Frameworks */,
 				B3235BD01A30239700F98CF4 /* AudioToolbox.framework in Frameworks */,
@@ -655,6 +658,7 @@
 		B3CAF58E1A14E69A00274EEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4CF895A11A30E9A3003C6809 /* MessageUI.framework */,
 				B375F82A1A309C8B007D45DE /* CartTracker */,
 				B3235BCF1A30239700F98CF4 /* AudioToolbox.framework */,
 				B32344E01A300D9D00F98CF4 /* ImageIO.framework */,
