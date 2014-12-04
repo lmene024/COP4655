@@ -10,6 +10,7 @@
 #import "CTcartManager.h"
 #import "User.h"
 #import "Cart.h"
+#import "Request.h"
 
 @interface CTRequestNewViewController ()
 
@@ -22,6 +23,8 @@
     NSArray *cartArray;
     NSMutableArray *filteredCartArray;
     Boolean isSecondSearchBar;
+    User *userForRequest;
+    Cart *cartForRequest;
 }
 
 #pragma mark - Properties
@@ -93,7 +96,7 @@
     [super viewDidAppear:animated];
 }
 
-#pragma mark UISearchBarDelegate
+#pragma mark - UISearchBarDelegate
 
 -(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [searchBar setText:[searchBar text]];
@@ -166,11 +169,19 @@
     [self searchTableList];
 }
 
+/*! Method that performs the search for the UISearchBar
+ 
+ @param none
+ @return none
+ 
+ */
+
 -(void) searchTableList{
     //NSLog(@"Searching Table List...");
     
     [self.tableView setHidden:NO];
     
+    // Searching users
     if (!isSecondSearchBar) {
         for (User *aUser in userArray) {
             NSString *searchString = self.searchBar.text;
@@ -182,8 +193,12 @@
             }
         }
     } else {
+        // Searching carts
+        
         NSString *searchString = self.cartSearchBar.text;
         NSLog(@"SearchBarText: %@",searchString);
+        
+        Cart *cartFound = nil;
         
         for (Cart *aCart in cartArray) {
             NSComparisonResult cartResult = [aCart.cartName
@@ -193,6 +208,7 @@
             if (cartResult == NSOrderedSame) {
                 NSLog(@"Testing result");
                 [filteredCartArray addObject:aCart];
+                //cartFound = aCart;
             }
         }
         
@@ -284,9 +300,18 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     if (!isSecondSearchBar){
-        [self.searchBar setText:cell.textLabel.text];
+        
+        NSString *userName = cell.textLabel.text;
+        [self.searchBar setText:userName];
+        //userForRequest = [userArray objectAtIndex:[indexPath row]];
+        
+        //Get the user requesting the cart
+        userForRequest = [self searchArray:userArray withCriteria:userName theClass:[User class]];
+        
     } else {
-        [self.cartSearchBar setText:cell.textLabel.text];
+        NSString *cartName = cell.textLabel.text;
+        [self.cartSearchBar setText:cartName];
+        cartForRequest = [self searchArray:cartArray withCriteria:cartName theClass:[Cart class]];
     }
     
     [self.searchBar resignFirstResponder];
@@ -304,12 +329,26 @@
 
 #pragma mark - Update UI
 
+/*! Method that sets the SetHidden property of elements of the View
+ 
+ @param Boolean value: Yes to hide view, No otherwise
+ @return
+ 
+ */
+
 -(void) setViewHidden:(BOOL)value{
     [requestDateLabel setHidden:value];
     [requestDatePicker setHidden:value];
     [notesLabel setHidden:value];
     [notesTextView setHidden:value];
 }
+
+/*! Method that sets clear button mode
+ 
+ @param UISearchBar
+ @return none
+ 
+ */
 
 -(void) setClearButtonMode:(UISearchBar *)mySearchBar{
     UITextField *textField = [mySearchBar valueForKey:@"_searchField"];
@@ -318,16 +357,111 @@
 
 #pragma mark - IBAction
 
+/*! Selector to the UIButton Save: Saves a new request
+ 
+ @param
+ @return
+ 
+ */
+
 -(IBAction)saveButtonPressed:(id)sender{
-    NSDate *date = self.requestDatePicker.date;
     
     if ((![self.cartSearchBar.text isEqualToString:@""]) & (![self.searchBar.text isEqualToString:@""])) {
+        
+        //Get the cart requested by the user
+        BOOL carIsValid = [self validateCarAvailability:cartForRequest forUser:userForRequest];
+        if (carIsValid) {
+            
+            Request *req = [self.manager newRequest];
+            
+            NSLog(@"User: %@ Cart %@",userForRequest.firstName,cartForRequest.cartName);
+            
+            [req setUser:userForRequest];
+            [req setCart:cartForRequest];
+            [req setSchedStartTime:requestDatePicker.date];
+            [req setSchedEndTime:requestDatePicker.date];
+            NSNumber *number = [NSNumber numberWithInt:1];
+            [req setReqStatus:number];
+            [req setReqDate:requestDatePicker.date];
+            
+            [manager save];
+
+        }
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Some Fields are Empty"
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+#pragma mark - Validation Methods
+
+
+/*! Checks if a Cart is available for a User
+ 
+ @param Cart and User
+ @return Boolean: YES if the cart is available, and NO if the cart is not available
+ 
+ */
+
+-(BOOL) validateCarAvailability:(Cart *)cart forUser:(User*)user{
+    NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
+        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: requestDatePicker.date];
+        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:requestDatePicker.date];
+        
+        return  (start != NSOrderedDescending && end!=NSOrderedAscending);
+    }];
+    
+    NSSet * requestSet = [cart.requests filteredSetUsingPredicate:currentItemsOnly];
+    NSLog(@"requestSet count: %lu",(unsigned long)[requestSet count]);
+    
+    int requestCount = [requestSet count];
+    
+    if (requestCount == 0) {
+        NSLog(@"Free");
+        
+        return YES;
+    } else {
+        NSLog(@"Request is more than 0");
+        
+        return NO;
+    }
+}
+
+/*! Method that iterates and lookds for an Element in Array with a determined Criteria
+ 
+ @param NSArray, NSString & id
+ @return
+ 
+ */
+
+-(id) searchArray:(NSArray *)array withCriteria:(NSString*)criteria theClass:(id)element{
+    if ([element class] == [Cart class]) {
+        NSLog(@"CLASS CART");
         for (Cart *aCart in cartArray) {
-            if ([self.cartSearchBar.text isEqualToString:aCart.cartName]) {
-#warning Validate is a cart is at use or not
+            if ([aCart.cartName isEqualToString:criteria]) {
+                NSLog(@"FOUND CART %@",aCart);
+                return aCart;
+            }
+        }
+    } else if ([element class] == [User class]){
+        NSLog(@"CLASS USER");
+        for (User *aUser in userArray) {
+            NSLog(@"aUser name: %@ element name: %@",aUser.firstName,criteria);
+            if ([aUser.firstName isEqualToString:criteria]) {
+                NSLog(@"FOUND USER %@",aUser);
+#warning Remember to modify user search criteria in array
+                return aUser;
             }
         }
     }
+    
+    return nil;
 }
 
 @end
