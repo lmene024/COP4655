@@ -220,4 +220,47 @@
 }
 
 
+- (IBAction)scanQrCode:(id)sender {
+    ZBarReaderViewController * scannerController = [ZBarReaderViewController new];
+    scannerController.readerDelegate = self;
+    scannerController.supportedOrientationsMask = ZBarOrientationMaskAll;
+    
+    ZBarImageScanner * scanner = scannerController.scanner;
+    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
+    
+    [self presentViewController:scannerController animated:true completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
+    ZBarSymbol * symbol = nil;
+    for (symbol in results) {
+        //already set first barcode to symbol
+        break;
+    }
+    NSString * qrText = symbol.data;
+    
+    self.barCodeImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:true completion:nil];
+}
+
+
+/*- (IBAction)scanQrCode:(id)sender {
+    CTScannerQRViewController * scannerController = [[CTScannerQRViewController alloc] init];
+//    scannerController.capture.delegate = self;
+    
+    [self presentViewController:scannerController animated:true completion:nil];
+ }
+
+- (void)captureResult:(ZXCapture *)capture result:(ZXResult *)result {
+    if (!result) return;
+    
+    // We got a result. Display information about the result onscreen.
+    NSString * qrText = result.text;
+    
+    NSLog(@"Scanned: %@", qrText);
+    // Vibrate
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+*/
 @end

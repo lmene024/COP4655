@@ -9,16 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "CTDetailViewDelegate.h"
 #import "CTADetailViewController.h"
+#import "ZBarSDK.h"
+//#import "ZXingObjC.h"
 
 @class Cart,CTcartManager;
 
-@interface CTCartDetailViewController : CTADetailViewController <CTDetailViewDelegate>
+@interface CTCartDetailViewController : CTADetailViewController <CTDetailViewDelegate, ZBarReaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *cartIdTextField;
 @property (strong, nonatomic) IBOutlet UITextField *cartNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *tagTextField;
+@property (strong, nonatomic) IBOutlet UIImageView *barCodeImage;
+@property (strong, nonatomic) IBOutlet UIButton *scanButton;
 @property (strong, nonatomic) CTcartManager * manager;
 
 @property (nonatomic, retain) Cart *cart;
+
+- (IBAction)scanQrCode:(id)sender;
 
 @end
