@@ -411,6 +411,7 @@
         Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
         CTCartDetailViewController *cartDetailViewController = [[CTCartDetailViewController alloc] init];
         cartDetailViewController.cart = aCart;
+        cartDetailViewController.manager = self.manager;
         [self.navigationController
          pushViewController:cartDetailViewController
          animated:YES];
