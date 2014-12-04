@@ -18,6 +18,8 @@
 
 @implementation CTCartDetailViewController
 
+#pragma mark - Properties
+
 @synthesize cartIdTextField,cartNameTextField,tagTextField;
 @synthesize cart;
 @synthesize manager;

@@ -17,6 +17,8 @@
 
 @implementation CTRequestDetailViewController
 
+#pragma mark - Properties
+
 @synthesize request;
 @synthesize reqIdTextField;
 @synthesize reqStTextField;

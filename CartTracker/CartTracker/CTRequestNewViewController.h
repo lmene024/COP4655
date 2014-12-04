@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
+
 @class CTcartManager;
 
-@interface CTRequestNewViewController : UIViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,MFMailComposeViewControllerDelegate>
+@interface CTRequestNewViewController : UIViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) CTcartManager *manager;
 
@@ -28,5 +29,7 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *requestDatePicker;
 @property (strong, nonatomic) IBOutlet UILabel *notesLabel;
 @property (strong, nonatomic) IBOutlet UITextView *notesTextView;
+
+@property (nonatomic, retain) MFMailComposeViewController *confirmationComposer;
 
 @end

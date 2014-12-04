@@ -91,7 +91,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*! Description Method that handles editing mode of editBarButton
+/*! Method that handles editing mode of editBarButton
  
  @param
  @return
@@ -147,9 +147,9 @@
     [self.emailTextField setBorderStyle:borderStyle];
 }
 
-/*! Description Method that enables the fields in the UI
+/*! Method that enables the fields in the UI
  
- @param BOOL
+ @param Boolean
  @return void
  
  */
@@ -166,9 +166,9 @@
     [self.passwordTextField setEnabled:(self.adminSwitch.isOn && booleanValue)];
 }
 
-/*! Description Method that enables/disables and sets the border style
+/*! Method that enables/disables and sets the border style
  
- @param BOOl and UITextBorderStyle
+ @param Boolean and UITextBorderStyle
  @return void
  
  */
@@ -194,7 +194,7 @@
 
 #pragma mark - IBAction
 
-/*! Description Cancel Button selector
+/*! Cancel Button selector
  
  @param
  @return
@@ -234,7 +234,7 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-/*! Description Save button selector
+/*! Save button selector
  
  @param
  @return

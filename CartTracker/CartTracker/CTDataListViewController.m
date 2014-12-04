@@ -24,7 +24,11 @@
 
 @implementation CTDataListViewController
 
+#pragma mark - Properties
+
 @synthesize manager;
+
+#pragma mark - UIViewController
 
 - (instancetype) init{
     //Prevent direct use of init without sepcifying data type
@@ -162,7 +166,7 @@
 }*/
 
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -176,41 +180,6 @@
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.dataController sections][section];
     return [sectionInfo numberOfObjects];
 }
-
-/*! Description Selector for UIBarButtonItem Add in UITableView
- 
- @param
- @return
- 
- */
-
-- (void) insertNewItem:(id) sender{
-    
-    if (CART_VIEW) {
-        
-        CTCartDetailViewController *cartController = [[CTCartDetailViewController alloc] init];
-        cartController.manager = self.manager;
-        cartController.cart = nil;
-        [self.navigationController pushViewController:cartController animated:YES];
-        
-    } else if (REQUEST_VIEW) {
-        
-        CTRequestNewViewController *requestController = [[CTRequestNewViewController alloc] init];
-        requestController.manager = self.manager;
-        [self.navigationController pushViewController:requestController animated:YES];
-        
-    } else if (USERS_VIEW){
-        
-        CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
-        userController.user = nil;
-        userController.manager = self.manager;
-        [self.navigationController pushViewController:userController animated:YES];
-        
-    }
-
-    //[manager save];
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -261,6 +230,47 @@
         cellInformation = [NSString stringWithFormat:@"%@,  %@",aUser.lastName,aUser.firstName];
         
         cell.textLabel.text = cellInformation;
+    }
+}
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        if (USERS_VIEW) {
+            
+            User *aUser = [self.dataController objectAtIndexPath:indexPath];
+            
+            NSLog(@"User deleted: %@",aUser.firstName);
+            
+            [manager deleteUser:aUser];
+            
+        } else if (CART_VIEW) {
+            
+            Cart *aCart = [self.dataController objectAtIndexPath:indexPath];
+            
+            NSLog(@"User deleted: %@",aCart.cartName);
+            
+            [manager deleteCart:aCart];
+        } else if (REQUEST_VIEW){
+            Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
+            NSLog(@"Reques Deleted: %@",aRequest.reqID);
+            [manager deleteRequest:aRequest];
+        }
+        
+        [manager save];
+        [self.tableView reloadData];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
 
@@ -369,49 +379,6 @@
     }
 }
 
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        if (USERS_VIEW) {
-            
-            User *aUser = [self.dataController objectAtIndexPath:indexPath];
-            
-            NSLog(@"User deleted: %@",aUser.firstName);
-            
-            [manager deleteUser:aUser];
-            
-        } else if (CART_VIEW) {
-            
-            Cart *aCart = [self.dataController objectAtIndexPath:indexPath];
-            
-            NSLog(@"User deleted: %@",aCart.cartName);
-            
-            [manager deleteCart:aCart];
-        } else if (REQUEST_VIEW){
-            Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
-            NSLog(@"Reques Deleted: %@",aRequest.reqID);
-            [manager deleteRequest:aRequest];
-        }
-        
-        [manager save];
-        [self.tableView reloadData];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
- 
-
-
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
@@ -429,7 +396,7 @@
 */
 
 
-#pragma mark - Table view delegate
+#pragma mark - UITableViewDelegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -470,6 +437,42 @@
          animated:YES];
         
     }
+}
+
+#pragma mark - IBAction
+
+/*! Selector for UIBarButtonItem Add in UITableView
+ 
+ @param
+ @return
+ 
+ */
+
+- (void) insertNewItem:(id) sender{
+    
+    if (CART_VIEW) {
+        
+        CTCartDetailViewController *cartController = [[CTCartDetailViewController alloc] init];
+        cartController.manager = self.manager;
+        cartController.cart = nil;
+        [self.navigationController pushViewController:cartController animated:YES];
+        
+    } else if (REQUEST_VIEW) {
+        
+        CTRequestNewViewController *requestController = [[CTRequestNewViewController alloc] init];
+        requestController.manager = self.manager;
+        [self.navigationController pushViewController:requestController animated:YES];
+        
+    } else if (USERS_VIEW){
+        
+        CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
+        userController.user = nil;
+        userController.manager = self.manager;
+        [self.navigationController pushViewController:userController animated:YES];
+        
+    }
+    
+    //[manager save];
 }
 
 
