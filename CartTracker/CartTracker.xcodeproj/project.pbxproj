@@ -20,6 +20,7 @@
 		4CE4AF201A2D2DFB00C3C8A3 /* CTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */; };
 		B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EB1A2D80A200F79E60 /* CTScrollView.m */; };
 		B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */; };
+		B3232DCA1A2FE85500F98CF4 /* contactIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B3232DC91A2FE85500F98CF4 /* contactIcon.png */; };
 		B348A0661A159433007C342B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B348A0651A159433007C342B /* CoreData.framework */; };
 		B34ADA421A2ED79000D3A29A /* CTRequestNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */; };
 		B34ADA451A2EDB6B00D3A29A /* CTRequestNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34ADA441A2EDB6B00D3A29A /* CTRequestNewViewController.m */; };
@@ -93,6 +94,7 @@
 		B30C56EB1A2D80A200F79E60 /* CTScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTScrollView.m; sourceTree = "<group>"; };
 		B30C56ED1A2D82D300F79E60 /* CTADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTADetailViewController.h; sourceTree = "<group>"; };
 		B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTADetailViewController.m; sourceTree = "<group>"; };
+		B3232DC91A2FE85500F98CF4 /* contactIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contactIcon.png; sourceTree = "<group>"; };
 		B348A0651A159433007C342B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B34ADA401A2ED79000D3A29A /* CTRequestNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestNavigationViewController.h; sourceTree = "<group>"; };
 		B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestNavigationViewController.m; sourceTree = "<group>"; };
@@ -234,6 +236,14 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		B3232DCB1A2FE85F00F98CF4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3232DC91A2FE85500F98CF4 /* contactIcon.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		B33DF6A01A184FC10094C4AC /* Data Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +308,7 @@
 		B3CAF5951A14E69A00274EEF /* CartTracker */ = {
 			isa = PBXGroup;
 			children = (
+				B3232DCB1A2FE85F00F98CF4 /* Resources */,
 				4C8376571A2CB719003108BB /* Controller */,
 				4C8376561A2CB708003108BB /* View */,
 				B348A0731A159654007C342B /* DataClasses */,
@@ -433,6 +444,7 @@
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
 				4CE4AF201A2D2DFB00C3C8A3 /* CTLoginViewController.xib in Resources */,
 				4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */,
+				B3232DCA1A2FE85500F98CF4 /* contactIcon.png in Resources */,
 				4C8376661A2CF402003108BB /* CTCameraViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

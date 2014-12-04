@@ -12,7 +12,7 @@
 
 @class User,CTcartManager;
 
-@interface CTUserDetailViewController : CTADetailViewController <CTDetailViewDelegate>
+@interface CTUserDetailViewController : CTADetailViewController <CTDetailViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet UITextField *licenseTextField;

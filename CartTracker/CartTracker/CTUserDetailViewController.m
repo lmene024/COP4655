@@ -17,6 +17,9 @@
 @end
 
 @implementation CTUserDetailViewController
+{
+    bool didAddImage;
+}
 
 #pragma mark - Properties
 
@@ -58,13 +61,14 @@
         [self setTitle:@"New User"];
         [self enableFields:YES andSetBorderStyle:UITextBorderStyleRoundedRect];
     }
+    //set didAdd image to false to prevent saving a default image
+    didAddImage = false;
 }
 
 -(void) loadDataToView{
     
     if (self.user != nil) {
         
-        [self.userImage setImage:user.image];
         [self.licenseTextField setText:user.driversLicense];
         [self.firstNameTextField setText:user.firstName];
         [self.lastNameTextField setText:user.lastName];
@@ -72,6 +76,11 @@
         [self.emailTextField setText:user.email];
         [self.passwordTextField setText:user.password];
         [self.adminSwitch setOn:user.isAdmin.boolValue animated:true];
+        
+        //check if we have a saved image to show
+        if (user.image) {
+            [self.userImage setImage:user.image];
+        }
     }
     
 }
@@ -104,17 +113,17 @@
         self.navigationItem.leftBarButtonItem = cancelButton;
         
     } else {
-        // Disabling UITextFields
-        [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
-        
-        self.navigationItem.hidesBackButton = NO;
-        
-        self.navigationItem.leftBarButtonItem = nil;
-        
-        //don't forget to save changes
-        if (user!=nil) {
-            [self saveUserDataForUser:user];
+        // save changes before finishing edit
+        if([self saveUserDataForUser:user]){
+            
+            // Disabling UITextFields
+            [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
+            
+            self.navigationItem.hidesBackButton = NO;
+            
+            self.navigationItem.leftBarButtonItem = nil;
         }
+
         
     }
 }
@@ -200,10 +209,29 @@
 
 - (IBAction)takePicture:(id)sender {
     
-#warning Implement Camera View Controller
-    //CTCameraViewController *cameraViewController = [[CTCameraViewController alloc] init];
-    //[self.navigationController pushViewController:cameraViewController animated:NO];
+    UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && [sender tag] == 0) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }else
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.delegate = self;
     
+    [self presentViewController:imagePicker animated:true completion:nil];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage * image = info[UIImagePickerControllerOriginalImage];
+    userImage.image = image;
+    if (!self.isEditing && user != nil) {
+        //picture taken from the detail view
+        [user setImage:image];
+        [manager save];
+    }else{
+        //defer saving until the entire record is saved
+        didAddImage = true;
+    }
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 /*! Description Save button selector
@@ -224,6 +252,11 @@
         [aUser setEmail:self.emailTextField.text];
         [aUser setIsAdmin:[NSNumber numberWithBool:self.adminSwitch.isOn]];
         
+        if (didAddImage) {
+            [aUser setImage:userImage.image];
+            //reset did add flag
+            didAddImage = false;
+        }
         [self.manager save];
         return true;
     } else {
@@ -264,13 +297,15 @@
             return isAdmin;
         }];
         NSError * error = nil;
-        NSArray * adminArray = [manager.context executeFetchRequest:[manager getUsersWithPredicate:findAdmins] error:&error];
+        NSArray * userArray = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
+        
+        NSArray * adminArray = [userArray filteredArrayUsingPredicate:findAdmins];
         
         for (User* aUser in adminArray) {
             NSLog(@"Admin: %@ %@", aUser.firstName, aUser.lastName);
         }
         
-        if (!adminArray.count>1) {
+        if (adminArray.count<=1) {
             //switch it back
             [adminSwitch setOn:true];
             

@@ -143,6 +143,35 @@
 
 - (void) deleteUser:(User *)user{
     NSLog(@"User about to be deleted: %@",user.firstName);
+    //before deleting user we need to make sure we are not eliminating an admin
+    if (user.isAdmin) {
+        //make sure we still have an available admin otherwise we will be locked out
+        NSPredicate * findAdmins = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            NSNumber* admin =  [evaluatedObject isAdmin];
+            bool isAdmin = [admin boolValue];
+            return isAdmin;
+        }];
+        NSError * error = nil;
+        NSArray * userArray = [self.context executeFetchRequest:[self getAllUsers] error:&error];
+        
+        NSArray * adminArray = [userArray filteredArrayUsingPredicate:findAdmins];
+        
+        for (User* aUser in adminArray) {
+            NSLog(@"Admin: %@ %@", aUser.firstName, aUser.lastName);
+        }
+        
+        if (adminArray.count<=1) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Set Admin Error"
+                                  message:@"Sorry, you must keep at least one admin, set another user to admin before removing this user"
+                                  delegate:self
+                                  cancelButtonTitle:@"Ok"
+                                  otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
+    }
+    
     [self.context deleteObject:user];
 }
 
