@@ -16,9 +16,9 @@
 
 - (void) saveContext{
     NSError * error = nil;
-    NSManagedObjectContext * managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+    NSManagedObjectContext * aManagedObjectContext = self.managedObjectContext;
+    if (aManagedObjectContext != nil) {
+        if ([aManagedObjectContext hasChanges] && ![aManagedObjectContext save:&error]) {
             //FIXME - add proper error handling implementation
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();

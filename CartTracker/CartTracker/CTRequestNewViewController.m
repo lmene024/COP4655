@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
 
+#import <MessageUI/MessageUI.h>
 #import "CTRequestNewViewController.h"
 #import "CTcartManager.h"
 #import "User.h"
 #import "Cart.h"
 #import "Request.h"
+#import <MessageUI/MessageUI.h>
 
 @interface CTRequestNewViewController ()
 
@@ -39,6 +41,7 @@
 @synthesize requestDatePicker;
 @synthesize notesLabel;
 @synthesize notesTextView;
+@synthesize confirmationComposer;
 
 #pragma mark - UIViewController
 
@@ -51,6 +54,18 @@
     return self;
 }
 
+-(void) initArrays{
+    filteredContentList = [[NSMutableArray alloc] init];
+    NSError *error = nil;
+    NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
+    userArray = [[NSArray alloc] initWithArray:array];
+    
+    filteredCartArray = [[NSMutableArray alloc] init];
+    NSError *error2 = nil;
+    NSArray *arrayCart = [manager.context executeFetchRequest:[manager getAllCarts] error:&error2];
+    cartArray = [[NSArray alloc] initWithArray:arrayCart];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,6 +73,7 @@
     [self initArrays];
     
     [self.searchBar setBarTintColor:[UIColor whiteColor]];
+    
     [self.cartSearchBar setBarTintColor:[UIColor whiteColor]];
     
     [self setViewHidden:YES];
@@ -74,16 +90,8 @@
     // Do any additional setup after loading the view from its nib.
 }
 
--(void) initArrays{
-    filteredContentList = [[NSMutableArray alloc] init];
-    NSError *error = nil;
-    NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
-    userArray = [[NSArray alloc] initWithArray:array];
-    
-    filteredCartArray = [[NSMutableArray alloc] init];
-    NSError *error2 = nil;
-    NSArray *arrayCart = [manager.context executeFetchRequest:[manager getAllCarts] error:&error2];
-    cartArray = [[NSArray alloc] initWithArray:arrayCart];
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,11 +100,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
+#pragma mark - Delegates
 
-#pragma mark - UISearchBarDelegate
+#pragma mark UISearchBarDelegate
 
 -(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [searchBar setText:[searchBar text]];
@@ -187,7 +193,9 @@
             NSString *searchString = self.searchBar.text;
             NSLog(@"SearchBarText: %@",self.searchBar.text);
             NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
-            if (result == NSOrderedSame) {
+            NSComparisonResult result2 = [aUser.lastName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
+            
+            if ((result == NSOrderedSame) || (result2 == NSOrderedSame)) {
                 NSLog(@"Testing result");
                 [filteredContentList addObject:aUser];
             }
@@ -197,8 +205,6 @@
         
         NSString *searchString = self.cartSearchBar.text;
         NSLog(@"SearchBarText: %@",searchString);
-        
-        Cart *cartFound = nil;
         
         for (Cart *aCart in cartArray) {
             NSComparisonResult cartResult = [aCart.cartName
@@ -216,7 +222,7 @@
 
 }
 
-#pragma mark - Table view data source
+#pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -269,10 +275,16 @@
         // Configure the cell...
         if (isSearching == YES) {
             User *a = [filteredContentList objectAtIndex:indexPath.row];
-            cell.textLabel.text = a.firstName;
+            NSMutableString *firstAndLast = [[NSMutableString alloc] initWithString:a.lastName];
+            [firstAndLast appendString:@", "];
+            [firstAndLast appendString:a.firstName];
+            cell.textLabel.text = firstAndLast;
         }
         else {
-            [cell.textLabel setText:aUser.firstName];
+            NSMutableString *firstAndLast = [[NSMutableString alloc] initWithString:aUser.lastName];
+            [firstAndLast appendString:@", "];
+            [firstAndLast appendString:aUser.firstName];
+            [cell.textLabel setText:firstAndLast];
         }
     } else {
         
@@ -302,11 +314,13 @@
     if (!isSecondSearchBar){
         
         NSString *userName = cell.textLabel.text;
-        [self.searchBar setText:userName];
-        //userForRequest = [userArray objectAtIndex:[indexPath row]];
         
-        //Get the user requesting the cart
-        userForRequest = [self searchArray:userArray withCriteria:userName theClass:[User class]];
+        [self.searchBar setText:userName];
+        
+        NSArray *splitName = [userName componentsSeparatedByString:@","];
+        
+        //splitName[0] contains the last name of the person
+        userForRequest = [self searchArray:userArray withCriteria:splitName[0] theClass:[User class]];
         
     } else {
         NSString *cartName = cell.textLabel.text;
@@ -327,7 +341,75 @@
     [self setViewHidden:NO];
 }
 
-#pragma mark - Update UI
+
+#pragma mark MFMailComposeViewControllerDelegate
+
+-(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    NSLog(@"Inside Mail Delegate");
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark Email Method
+
+-(void) composeEmailToUserEmail:(NSString*)email {
+    
+    // Email Subject
+    NSString *emailTitle = @"Test Email";
+    // Email Content
+    NSString *messageBody = @"<h1>You just made a reservation!</h1>"; // Change the message body to HTML
+    // To address
+    NSLog(@"Message sent to email: %@",userForRequest.email);
+    NSArray *toRecipents = [NSArray arrayWithObject:email];
+    
+    confirmationComposer = [[MFMailComposeViewController alloc] init];
+    [confirmationComposer setMailComposeDelegate:self];
+    [confirmationComposer setSubject:emailTitle];
+    [confirmationComposer setMessageBody:messageBody isHTML:YES];
+    [confirmationComposer setToRecipients:toRecipents];
+    
+    // Present mail view controller on screen
+    [self presentViewController:confirmationComposer animated:YES completion:NULL];
+    
+}
+
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Yes"])
+    {
+        [self composeEmailToUserEmail:userForRequest.email];
+        //[self.navigationController popViewControllerAnimated:YES];
+    }
+    else if([title isEqualToString:@"No"])
+    {
+        NSLog(@"Button 2 was selected.");
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - User Interface
 
 /*! Method that sets the SetHidden property of elements of the View
  
@@ -369,8 +451,9 @@
     if ((![self.cartSearchBar.text isEqualToString:@""]) & (![self.searchBar.text isEqualToString:@""])) {
         
         //Get the cart requested by the user
-        BOOL carIsValid = [self validateCarAvailability:cartForRequest forUser:userForRequest];
-        if (carIsValid) {
+        BOOL cartIsValid = [self validateCarAvailability:cartForRequest forUser:userForRequest];
+        
+        if (cartIsValid) {
             
             Request *req = [self.manager newRequest];
             
@@ -385,9 +468,16 @@
             [req setReqDate:requestDatePicker.date];
             
             [manager save];
-
+            
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Email Confirmation"
+                                  message:@"Do you want to send a confirmation email?"
+                                  delegate:self
+                                  cancelButtonTitle:@"Yes"
+                                  otherButtonTitles:@"No",nil];
+            [alert show];
+            
         }
-        
     } else {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error"
@@ -429,6 +519,14 @@
     } else {
         NSLog(@"Request is more than 0");
         
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Cart is busy at the selected time"
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil,nil];
+        [alert show];
+        
         return NO;
     }
 }
@@ -453,7 +551,7 @@
         NSLog(@"CLASS USER");
         for (User *aUser in userArray) {
             NSLog(@"aUser name: %@ element name: %@",aUser.firstName,criteria);
-            if ([aUser.firstName isEqualToString:criteria]) {
+            if ([aUser.lastName isEqualToString:criteria]) {
                 NSLog(@"FOUND USER %@",aUser);
 #warning Remember to modify user search criteria in array
                 return aUser;
