@@ -16,6 +16,8 @@
 		4C8376721A2D097E003108BB /* CTAdminTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376701A2D097E003108BB /* CTAdminTableViewController.m */; };
 		4C8376731A2D097E003108BB /* CTAdminTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376711A2D097E003108BB /* CTAdminTableViewController.xib */; };
 		4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */; };
+		4C8E4A291A30C8E300E46C74 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3232DF91A2FF3D000F98CF4 /* libiconv.dylib */; };
+		4C8E4A2A1A30C90100E46C74 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B375F8851A309C8B007D45DE /* libzbar.a */; };
 		4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */; };
 		4CE4AF201A2D2DFB00C3C8A3 /* CTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1E1A2D2DFB00C3C8A3 /* CTLoginViewController.xib */; };
 		B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EB1A2D80A200F79E60 /* CTScrollView.m */; };
@@ -39,8 +41,6 @@
 		B34ADA4C1A2EDC4E00D3A29A /* CTRequestNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34ADA4B1A2EDC4E00D3A29A /* CTRequestNewViewController.xib */; };
 		B34ADA521A2EDD5F00D3A29A /* CTCartDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34ADA511A2EDD5F00D3A29A /* CTCartDetailViewController.xib */; };
 		B34ADA541A2EDD8A00D3A29A /* CTUserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34ADA531A2EDD8A00D3A29A /* CTUserDetailViewController.xib */; };
-		B375F8951A309C99007D45DE /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B375F8851A309C8B007D45DE /* libzbar.a */; };
-		B375F8961A309CE0007D45DE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3232DF91A2FF3D000F98CF4 /* libiconv.dylib */; };
 		B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */; };
 		B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9D91A2586EB00B86E9B /* Cart.m */; };
 		B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9DC1A25870A00B86E9B /* Request.m */; };
@@ -300,8 +300,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B375F8961A309CE0007D45DE /* libiconv.dylib in Frameworks */,
-				B375F8951A309C99007D45DE /* libzbar.a in Frameworks */,
+				4C8E4A2A1A30C90100E46C74 /* libzbar.a in Frameworks */,
+				4C8E4A291A30C8E300E46C74 /* libiconv.dylib in Frameworks */,
 				B3235BD01A30239700F98CF4 /* AudioToolbox.framework in Frameworks */,
 				B32344E11A300D9D00F98CF4 /* ImageIO.framework in Frameworks */,
 				B3232DF81A2FF3B500F98CF4 /* QuartzCore.framework in Frameworks */,

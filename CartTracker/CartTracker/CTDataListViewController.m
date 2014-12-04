@@ -193,8 +193,6 @@
         [self.navigationController pushViewController:cartController animated:YES];
         
     } else if (REQUEST_VIEW) {
-        //Request *request = [manager newRequest];
-        //request.reqID = [[NSNumber alloc] initWithInt:123123];
         
         CTRequestNewViewController *requestController = [[CTRequestNewViewController alloc] init];
         requestController.manager = self.manager;
@@ -348,7 +346,9 @@
             
             [manager deleteCart:aCart];
         } else if (REQUEST_VIEW){
-            
+            Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
+            NSLog(@"Reques Deleted: %@",aRequest.reqID);
+            [manager deleteRequest:aRequest];
         }
         
         [manager save];
