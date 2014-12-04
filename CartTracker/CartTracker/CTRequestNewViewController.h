@@ -10,7 +10,7 @@
 
 @class CTcartManager;
 
-@interface CTRequestNewViewController : UIViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface CTRequestNewViewController : UIViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @property (strong, nonatomic) CTcartManager *manager;
 
@@ -19,6 +19,13 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchBarController;
+
 @property  BOOL isSearching;
+
+@property (strong, nonatomic) IBOutlet UISearchBar *cartSearchBar;
+@property (strong, nonatomic) IBOutlet UILabel *requestDateLabel;
+@property (strong, nonatomic) IBOutlet UIDatePicker *requestDatePicker;
+@property (strong, nonatomic) IBOutlet UILabel *notesLabel;
+@property (strong, nonatomic) IBOutlet UITextView *notesTextView;
 
 @end

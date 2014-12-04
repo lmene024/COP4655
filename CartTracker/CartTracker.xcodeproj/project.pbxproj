@@ -77,7 +77,6 @@
 		4C576AEE1A2E61F8000E9053 /* CTRequestNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestNewViewController.m; sourceTree = "<group>"; };
 		4C8376581A2CB751003108BB /* CTUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTUserDetailViewController.h; sourceTree = "<group>"; };
 		4C8376591A2CB751003108BB /* CTUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTUserDetailViewController.m; sourceTree = "<group>"; };
-		4C8376621A2CF402003108BB /* CTCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCameraViewController.h; sourceTree = "<group>"; };
 		4C8376631A2CF402003108BB /* CTCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCameraViewController.m; sourceTree = "<group>"; };
 		4C8376641A2CF402003108BB /* CTCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCameraViewController.xib; sourceTree = "<group>"; };
 		4C8376671A2CF453003108BB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -209,8 +208,6 @@
 				B34ADA441A2EDB6B00D3A29A /* CTRequestNewViewController.m */,
 				B34ADA401A2ED79000D3A29A /* CTRequestNavigationViewController.h */,
 				B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */,
-				4C8376621A2CF402003108BB /* CTCameraViewController.h */,
-				4C8376631A2CF402003108BB /* CTCameraViewController.m */,
 				4C576AED1A2E61F8000E9053 /* CTRequestNewViewController.h */,
 				4C576AEE1A2E61F8000E9053 /* CTRequestNewViewController.m */,
 				4C576ADE1A2E4F03000E9053 /* CTRequestDetailViewController.h */,
@@ -230,6 +227,8 @@
 				B30C56ED1A2D82D300F79E60 /* CTADetailViewController.h */,
 				B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */,
 				B3CE64CC1A2ED033004470A7 /* CTCalendarViewController.m */,
+				B3CE64CD1A2ED033004470A7 /* CTCameraViewController.h */,
+				4C8376631A2CF402003108BB /* CTCameraViewController.m */,
 				B3CE64CD1A2ED033004470A7 /* CTCameraViewController.h */,
 			);
 			name = Controller;

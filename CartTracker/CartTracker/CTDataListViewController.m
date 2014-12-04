@@ -24,7 +24,6 @@
 @implementation CTDataListViewController
 
 @synthesize manager;
-@synthesize searchBar;
 
 - (instancetype) init{
     //Prevent direct use of init without sepcifying data type
@@ -50,12 +49,18 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    //searchBarFilteredArray = [[NSMutableArray alloc] init];
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
+    /*NSError *error = nil;
+    NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
+    searchBarDataArray = [[NSArray alloc] initWithArray:array];*/
+    
+    
+    
     self.navigationItem.rightBarButtonItem = addItem;
-
-#warning Complete search bar
 
 }
 
@@ -68,6 +73,93 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+
+#pragma mark UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+    NSLog(@"DidBeginEditing");
+    
+    isSearching = YES;
+    
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    self.tableView.allowsSelection = NO;
+    self.tableView.scrollEnabled = NO;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    //Remove all objects first.
+    [searchBarFilteredArray removeAllObjects];
+    
+    if([searchText length] != 0) {
+        isSearching = YES;
+        [self searchTableList];
+    }
+    else {
+        //[self.tableView setHidden:YES];
+        isSearching = NO;
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    //NSLog(@"Cancel clicked");
+    
+    self.searchBar.text=@"";
+    
+    //[self.tableView setHidden:YES];
+    
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
+    self.tableView.allowsSelection = YES;
+    self.tableView.scrollEnabled = YES;
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
+    self.tableView.allowsSelection = YES;
+    self.tableView.scrollEnabled = YES;
+    
+    [self searchTableList];
+}
+
+-(void) searchTableList{
+    //NSLog(@"Searching Table List...");
+    
+    [self.tableView setHidden:NO];
+    
+    NSString *searchString = self.searchBar.text;
+    
+    NSLog(@"SearchBarText: %@",self.searchBar.text);
+    
+    for (User *aUser in searchBarDataArray) {
+        
+        NSComparisonResult resultFirstName = [self compareString:aUser.firstName toSearchString:searchString];
+        
+        NSComparisonResult resultLastName = [self compareString:aUser.lastName toSearchString:searchString];
+        
+        if ((resultFirstName == NSOrderedSame) || (resultLastName == NSOrderedSame)) {
+            NSLog(@"Testing result");
+            [searchBarFilteredArray addObject:aUser];
+        }
+    }
+    
+}
+
+-(NSComparisonResult) compareString:(NSString*)string toSearchString:(NSString*)searchString{
+    
+    NSComparisonResult result = [string compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
+    
+    return result;
+}*/
+
 
 #pragma mark - Table view data source
 
@@ -92,7 +184,9 @@
  */
 
 - (void) insertNewItem:(id) sender{
+    
     if (CART_VIEW) {
+        
         CTCartDetailViewController *cartController = [[CTCartDetailViewController alloc] init];
         cartController.manager = self.manager;
         cartController.cart = nil;
@@ -225,8 +319,6 @@
     }
 }
 
-
-
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -234,23 +326,28 @@
     return YES;
 }
 
-
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         if (USERS_VIEW) {
-            User * aUser = [self.dataController objectAtIndexPath:indexPath];
+            
+            User *aUser = [self.dataController objectAtIndexPath:indexPath];
+            
+            NSLog(@"User deleted: %@",aUser.firstName);
+            
             [manager deleteUser:aUser];
-            //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }else if (CART_VIEW){
-            Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
+            
+        } else if (CART_VIEW) {
+            
+            Cart *aCart = [self.dataController objectAtIndexPath:indexPath];
+            
+            NSLog(@"User deleted: %@",aCart.cartName);
+            
             [manager deleteCart:aCart];
-        }else if (REQUEST_VIEW){
-            //this one might be different
+        } else if (REQUEST_VIEW){
             
         }
         

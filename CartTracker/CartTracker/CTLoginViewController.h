@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTcartManager.h"
 
-@interface CTLoginViewController : UIViewController
+@interface CTLoginViewController : UIViewController <NSFetchedResultsControllerDelegate,UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *signInButton;
+
+@property (nonatomic, strong) CTcartManager * manager;
+@property (nonatomic, strong) NSFetchedResultsController * dataController;
+@property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)buttonPressed:(id)sender;
 @end
