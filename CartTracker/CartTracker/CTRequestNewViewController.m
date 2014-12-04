@@ -379,7 +379,7 @@
             [req setUser:userForRequest];
             [req setCart:cartForRequest];
             [req setSchedStartTime:requestDatePicker.date];
-            [req setSchedEndTime:requestDatePicker.date];
+            [req setSchedEndTime:[requestDatePicker.date dateByAddingTimeInterval:36000]];
             NSNumber *number = [NSNumber numberWithInt:1];
             [req setReqStatus:number];
             [req setReqDate:requestDatePicker.date];
