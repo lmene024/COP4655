@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "CTADetailViewController.h"
 
 
 @class CTcartManager;
+@class Cart;
+@class User;
 
-@interface CTRequestNewViewController : UIViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,MFMailComposeViewControllerDelegate>
+@interface CTRequestNewViewController : CTADetailViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,MFMailComposeViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) CTcartManager *manager;
 
@@ -31,5 +34,9 @@
 @property (strong, nonatomic) IBOutlet UITextView *notesTextView;
 
 @property (nonatomic, retain) MFMailComposeViewController *confirmationComposer;
+
+@property (strong, nonatomic) User *userForRequest;
+@property (strong, nonatomic) Cart *cartForRequest;
+
 
 @end

@@ -13,6 +13,7 @@
 #import "Cart.h"
 #import "Request.h"
 #import <MessageUI/MessageUI.h>
+#import "Constants.h"
 
 @interface CTRequestNewViewController ()
 
@@ -25,8 +26,8 @@
     NSArray *cartArray;
     NSMutableArray *filteredCartArray;
     Boolean isSecondSearchBar;
-    User *userForRequest;
-    Cart *cartForRequest;
+ //   User *userForRequest;
+ //   Cart *cartForRequest;
 }
 
 #pragma mark - Properties
@@ -42,6 +43,7 @@
 @synthesize notesLabel;
 @synthesize notesTextView;
 @synthesize confirmationComposer;
+@synthesize cartForRequest, userForRequest;
 
 #pragma mark - UIViewController
 
@@ -76,9 +78,11 @@
     
     [self.cartSearchBar setBarTintColor:[UIColor whiteColor]];
     
-    [self setViewHidden:YES];
+    //[self setViewHidden:YES];
     
     [self setTitle:@"New Request"];
+    
+    [self.requestDatePicker setMinimumDate:[NSDate date]];
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemSave
@@ -86,8 +90,13 @@
                                    action:@selector(saveButtonPressed:)];
     
     self.navigationItem.rightBarButtonItem = saveButton;
-    
-    // Do any additional setup after loading the view from its nib.
+
+    if (cartForRequest) {
+        [self.cartSearchBar setText:cartForRequest.cartName];
+       // [self searchBarTextDidBeginEditing:self.cartSearchBar];
+       // [self searchBar:cartSearchBar textDidChange:cartForRequest.cartName];
+       // [self searchBarTextDidEndEditing:self.cartSearchBar];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -115,7 +124,7 @@
     
     isSearching = YES;
     
-    [self setViewHidden:YES];
+    //[self setViewHidden:YES];
     
     if (searchBar == self.cartSearchBar) {
         isSecondSearchBar = YES;
@@ -137,7 +146,7 @@
     if([searchText length] != 0) {
         isSearching = YES;
         [self.tableView setHidden:NO];
-        [self setViewHidden:YES];
+        //[self setViewHidden:YES];
         [self searchTableList];
     }
     else {
@@ -150,9 +159,13 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
-    self.searchBar.text=@"";
-    self.cartSearchBar.text=@"";
-    
+    if (isSecondSearchBar) {
+        self.cartSearchBar.text=@"";
+        cartForRequest = nil;
+    }else{
+        self.searchBar.text=@"";
+        userForRequest = nil;
+    }
     [self.tableView setHidden:YES];
     
     [self.searchBar setShowsCancelButton:NO animated:YES];
@@ -275,16 +288,21 @@
         // Configure the cell...
         if (isSearching == YES) {
             User *a = [filteredContentList objectAtIndex:indexPath.row];
-            NSMutableString *firstAndLast = [[NSMutableString alloc] initWithString:a.lastName];
+           /* NSMutableString *firstAndLast = [[NSMutableString alloc] initWithString:a.lastName];
             [firstAndLast appendString:@", "];
             [firstAndLast appendString:a.firstName];
             cell.textLabel.text = firstAndLast;
+            */
+            cell.textLabel.text = [self getFormatedNameWithFirst:a.firstName andLast:a.lastName];
         }
         else {
+            /*
             NSMutableString *firstAndLast = [[NSMutableString alloc] initWithString:aUser.lastName];
             [firstAndLast appendString:@", "];
             [firstAndLast appendString:aUser.firstName];
             [cell.textLabel setText:firstAndLast];
+             */
+            cell.textLabel.text = [self getFormatedNameWithFirst:aUser.firstName andLast:aUser.lastName];
         }
     } else {
         
@@ -303,6 +321,10 @@
     return cell;
 }
 
+- (NSString *) getFormatedNameWithFirst:(NSString *) firstName andLast: (NSString *) lastName{
+    return [NSString stringWithFormat:@"%@, %@", lastName, firstName];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -313,7 +335,7 @@
     
     if (!isSecondSearchBar){
         
-        NSString *userName = cell.textLabel.text;
+       /* NSString *userName = cell.textLabel.text;
         
         [self.searchBar setText:userName];
         
@@ -321,11 +343,18 @@
         
         //splitName[0] contains the last name of the person
         userForRequest = [self searchArray:userArray withCriteria:splitName[0] theClass:[User class]];
+        */
+        userForRequest = [filteredContentList objectAtIndex:indexPath.row];
+        [self.searchBar setText:[self getFormatedNameWithFirst:userForRequest.firstName andLast:userForRequest.lastName]];
         
     } else {
+        /*
         NSString *cartName = cell.textLabel.text;
         [self.cartSearchBar setText:cartName];
         cartForRequest = [self searchArray:cartArray withCriteria:cartName theClass:[Cart class]];
+         */
+        cartForRequest = [filteredCartArray objectAtIndex:indexPath.row];
+        [self.cartSearchBar setText:cartForRequest.cartName];
     }
     
     [self.searchBar resignFirstResponder];
@@ -338,7 +367,7 @@
     [self setClearButtonMode:self.cartSearchBar];
 
     [self.tableView setHidden:YES];
-    [self setViewHidden:NO];
+    //[self setViewHidden:NO];
 }
 
 
@@ -381,14 +410,17 @@
     NSArray *toRecipents = [NSArray arrayWithObject:email];
     
     confirmationComposer = [[MFMailComposeViewController alloc] init];
-    [confirmationComposer setMailComposeDelegate:self];
-    [confirmationComposer setSubject:emailTitle];
-    [confirmationComposer setMessageBody:messageBody isHTML:YES];
-    [confirmationComposer setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    [self presentViewController:confirmationComposer animated:YES completion:NULL];
-    
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        [confirmationComposer setDelegate:self];
+        [confirmationComposer setMailComposeDelegate:self];
+        [confirmationComposer setSubject:emailTitle];
+        [confirmationComposer setMessageBody:messageBody isHTML:YES];
+        [confirmationComposer setToRecipients:toRecipents];
+        
+        // Present mail view controller on screen
+        [self presentViewController:confirmationComposer animated:YES completion:NULL];
+    }
 }
 
 #pragma mark UIAlertViewDelegate
@@ -463,7 +495,7 @@
             [req setCart:cartForRequest];
             [req setSchedStartTime:requestDatePicker.date];
             [req setSchedEndTime:[requestDatePicker.date dateByAddingTimeInterval:36000]];
-            NSNumber *number = [NSNumber numberWithInt:1];
+            NSNumber *number = [NSNumber numberWithInt: REQUEST_STATUS_SCHEDULED];
             [req setReqStatus:number];
             [req setReqDate:requestDatePicker.date];
             

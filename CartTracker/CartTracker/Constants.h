@@ -17,4 +17,9 @@
 
 #define FIELD_ISEMPTY(x) [(x) isEqualToString:@""]
 
+#define REQUEST_STATUS_SCHEDULED 0
+#define REQUEST_STATUS_INPROCESS 1
+#define REQUEST_STATUS_COMPLETED 2
+
+#define MAX_REQUEST_TIME_VARIANCE 60*30
 #endif

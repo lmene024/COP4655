@@ -21,6 +21,9 @@
     if (self) {
         // Custom initialization
         self.title = @"Request";
+        CTDataListViewController * requestController = [[CTDataListViewController alloc] initWithData:@"Requests"];
+        self.viewControllers = @[requestController];
+
     }
     return self;
 }
@@ -28,9 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    CTDataListViewController * requestController = [[CTDataListViewController alloc] initWithData:@"Requests"];
-    self.viewControllers = @[requestController];
     
     // Do any additional setup after loading the view from its nib.
 }

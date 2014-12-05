@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CTcartManager.h"
+#import "CTADetailViewController.h"
 
-@interface CTLoginViewController : UIViewController <NSFetchedResultsControllerDelegate,UITextFieldDelegate>
+@interface CTLoginViewController : CTADetailViewController <NSFetchedResultsControllerDelegate,UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *signInButton;
 
 @property (nonatomic, strong) CTcartManager * manager;

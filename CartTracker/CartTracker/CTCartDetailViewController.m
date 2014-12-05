@@ -14,9 +14,14 @@
 
 @interface CTCartDetailViewController ()
 
+@property (strong, nonatomic) NSString * cartQrData;
+
 @end
 
 @implementation CTCartDetailViewController
+{
+    bool didAddQR;
+}
 
 #pragma mark - Properties
 
@@ -57,6 +62,7 @@
         
     }
     
+    didAddQR = false;
 }
 
 /*! Description Method that loads the item selected in
@@ -74,6 +80,11 @@
         self.cartNameTextField.text = cart.cartName;
         self.cartIdTextField.text = cart.cartID;
         self.tagTextField.text = cart.tagNumber;
+        
+        if (cart.qrCode !=nil) {
+            self.cartQrData = cart.qrCode;
+            self.barCodeImage.image = [self createNonInterpolatedUIImageFromCIImage:[self generateQRForString:cart.qrCode]];
+        }
     }
     
 }
@@ -108,15 +119,16 @@
         self.navigationItem.leftBarButtonItem = cancelButton;
         
     } else {
-        
-        // Disabling UITextFields
-        [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
-        
-        self.navigationItem.hidesBackButton = NO;
-        
-        self.navigationItem.leftBarButtonItem = nil;
-        
-        NSLog(@"Done Button Pressed");
+        if([self saveDataForCart:cart]){
+            // Disabling UITextFields
+            [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
+            
+            self.navigationItem.hidesBackButton = NO;
+            
+            self.navigationItem.leftBarButtonItem = nil;
+            
+            NSLog(@"Done Button Pressed");
+        }
     }
 }
 
@@ -194,19 +206,21 @@
  
  */
 
--(IBAction)saveButton:(id)sender{
-    
-    Cart *aCart = [self.manager newCart];
-    
+- (bool) saveDataForCart:(Cart *) aCart{
     if (![self fieldsAreEmpty]) {
         
         [aCart setCartID:self.cartIdTextField.text];
         [aCart setCartName:self.cartNameTextField.text];
         [aCart setTagNumber:self.tagTextField.text];
         
+        if (didAddQR) {
+            [aCart setQrCode:self.cartQrData];
+            didAddQR = false;
+        }
+        
         [manager save];
         
-        [self.navigationController popViewControllerAnimated:YES];
+        return true;
         
     } else {
         
@@ -217,6 +231,16 @@
                               cancelButtonTitle:@"Ok"
                               otherButtonTitles:nil, nil];
         [alert show];
+    }
+    return false;
+}
+
+-(IBAction)saveButton:(id)sender{
+    
+    Cart *aCart = [self.manager newCart];
+    
+    if ([self saveDataForCart:aCart]) {
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
@@ -240,9 +264,16 @@
         //already set first barcode to symbol
         break;
     }
-    NSString * qrText = symbol.data;
+    self.cartQrData = symbol.data;
+    NSLog(@"QR Data: %@", symbol.data);
+    if (!self.isEditing && cart!=nil) {
+        [cart setQrCode:symbol.data];
+        [manager save];
+    }else{
+        didAddQR = true;
+    }
     
-    UIImage * qrImage = [self createNonInterpolatedUIImageFromCIImage:[self generateQRForString:qrText] withScale:[[UIScreen mainScreen] scale]*10];
+    UIImage * qrImage = [self createNonInterpolatedUIImageFromCIImage:[self generateQRForString:symbol.data]];
     
     self.barCodeImage.image = qrImage;
     [picker dismissViewControllerAnimated:true completion:nil];
@@ -259,10 +290,11 @@
     return qrFilter.outputImage;
 }
 
-- (UIImage *)createNonInterpolatedUIImageFromCIImage:(CIImage *)image withScale:(CGFloat)scale
+- (UIImage *)createNonInterpolatedUIImageFromCIImage:(CIImage *)image
 {
     // Render the CIImage into a CGImage
     CGImageRef cgImage = [[CIContext contextWithOptions:nil] createCGImage:image fromRect:image.extent];
+    CGFloat scale = [[UIScreen mainScreen] scale]*10;
     
     // Now we'll rescale using CoreGraphics
     UIGraphicsBeginImageContext(CGSizeMake(image.extent.size.width * scale, image.extent.size.width * scale));
@@ -282,22 +314,6 @@
     
     return flippedImage;
 }
-/*- (IBAction)scanQrCode:(id)sender {
-    CTScannerQRViewController * scannerController = [[CTScannerQRViewController alloc] init];
-//    scannerController.capture.delegate = self;
-    
-    [self presentViewController:scannerController animated:true completion:nil];
- }
 
-- (void)captureResult:(ZXCapture *)capture result:(ZXResult *)result {
-    if (!result) return;
-    
-    // We got a result. Display information about the result onscreen.
-    NSString * qrText = result.text;
-    
-    NSLog(@"Scanned: %@", qrText);
-    // Vibrate
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-}
-*/
+
 @end

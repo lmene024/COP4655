@@ -11,6 +11,10 @@
 #import "Cart.h"
 #import "Request.h"
 #import "CTCartStatusTableViewCell.h"
+#import "CTRequestDetailViewController.h"
+#import "CTRequestNewViewController.h"
+#import "Constants.h"
+#import "CTRequestNavigationViewController.h"
 
 @interface CTCalendarViewController ()
 
@@ -82,26 +86,28 @@
     cell.cartID.text = cart.cartID;
     cell.cartStatus.backgroundColor = [UIColor greenColor];
     
- /*   NSString * dateString = [sqlDateFormatter stringFromDate:DatePicker.date];
-    NSPredicate * currentItemsOnly = [NSPredicate predicateWithFormat:@"%@ <= schedEndTime && %@ >= schedStartTime", DatePicker.date, DatePicker.date];*/
     
+    NSSet * requestSet = [cart.requests filteredSetUsingPredicate:[self getCurrentItems]];
+    if (requestSet.count > 0) {
+        Request * request = (Request *)[requestSet allObjects][0];
+        if (request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED) {
+            cell.cartStatus.backgroundColor = [UIColor redColor];
+        }else if (request.reqStatus.intValue == REQUEST_STATUS_INPROCESS){
+            cell.cartStatus.backgroundColor = [UIColor yellowColor];
+        }else
+            cell.cartStatus.backgroundColor = [UIColor greenColor];
+    }
+}
+
+- (NSPredicate *) getCurrentItems{
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
         NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: DatePicker.date];
         NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:DatePicker.date];
         
         return  (start != NSOrderedDescending && end!=NSOrderedAscending);
     }];
-    
-    NSSet * requestSet = [cart.requests filteredSetUsingPredicate:currentItemsOnly];
-    if (requestSet.count > 0) {
-        Request * request = (Request *)[requestSet allObjects][0];
-        if (request.reqStatus.intValue == 1) {
-            cell.cartStatus.backgroundColor = [UIColor yellowColor];
-        }else
-            cell.cartStatus.backgroundColor = [UIColor redColor];
-    }
+    return currentItemsOnly;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     static CTCartStatusTableViewCell * cell = nil;
     if (cell == nil) {
@@ -115,5 +121,38 @@
 
 - (IBAction)dateChanged:(id)sender {
     [tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Cart * cart = [cartsArray objectAtIndex:indexPath.row];
+    NSSet * requestSet = [cart.requests filteredSetUsingPredicate:[self getCurrentItems]];
+    UITabBarController * tabController = self.tabBarController;
+    CTRequestNavigationViewController * reqNav;
+    for (UIViewController * controller in tabController.viewControllers) {
+        if ([controller isKindOfClass:[CTRequestNavigationViewController class]]) {
+            reqNav = (CTRequestNavigationViewController *)controller;
+            break;
+        }
+    }
+    
+    
+    
+    if (requestSet.count>0) {
+        //show the request detail
+        Request * request = [requestSet allObjects][0];
+        CTRequestDetailViewController * requestDetails = [[CTRequestDetailViewController alloc] init];
+        [requestDetails setRequest:request];
+        
+        [reqNav pushViewController:requestDetails animated:true];
+        tabController.selectedViewController = reqNav;
+    }else{
+        //allow a new request
+        CTRequestNewViewController * newRequest = [[CTRequestNewViewController alloc]init];
+        newRequest.cartForRequest = cart;
+        newRequest.manager = self.manager;
+        newRequest.requestDatePicker.date = self.DatePicker.date;
+        [reqNav pushViewController:newRequest animated:true];
+        tabController.selectedViewController = reqNav;
+    }
 }
 @end
