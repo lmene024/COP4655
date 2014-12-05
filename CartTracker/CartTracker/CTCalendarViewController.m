@@ -150,6 +150,7 @@
         CTRequestNewViewController * newRequest = [[CTRequestNewViewController alloc]init];
         newRequest.cartForRequest = cart;
         newRequest.manager = self.manager;
+        newRequest.requestDatePicker.date = self.DatePicker.date;
         [reqNav pushViewController:newRequest animated:true];
         tabController.selectedViewController = reqNav;
     }

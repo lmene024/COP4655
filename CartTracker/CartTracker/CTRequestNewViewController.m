@@ -78,9 +78,11 @@
     
     [self.cartSearchBar setBarTintColor:[UIColor whiteColor]];
     
-    [self setViewHidden:YES];
+    //[self setViewHidden:YES];
     
     [self setTitle:@"New Request"];
+    
+    [self.requestDatePicker setMinimumDate:[NSDate date]];
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemSave
@@ -122,7 +124,7 @@
     
     isSearching = YES;
     
-    [self setViewHidden:YES];
+    //[self setViewHidden:YES];
     
     if (searchBar == self.cartSearchBar) {
         isSecondSearchBar = YES;
@@ -144,7 +146,7 @@
     if([searchText length] != 0) {
         isSearching = YES;
         [self.tableView setHidden:NO];
-        [self setViewHidden:YES];
+        //[self setViewHidden:YES];
         [self searchTableList];
     }
     else {
@@ -365,7 +367,7 @@
     [self setClearButtonMode:self.cartSearchBar];
 
     [self.tableView setHidden:YES];
-    [self setViewHidden:NO];
+    //[self setViewHidden:NO];
 }
 
 
