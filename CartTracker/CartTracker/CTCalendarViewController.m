@@ -149,6 +149,7 @@
         //allow a new request
         CTRequestNewViewController * newRequest = [[CTRequestNewViewController alloc]init];
         newRequest.cartForRequest = cart;
+        newRequest.manager = self.manager;
         [reqNav pushViewController:newRequest animated:true];
         tabController.selectedViewController = reqNav;
     }
