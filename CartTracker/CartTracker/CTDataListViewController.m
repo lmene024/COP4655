@@ -424,8 +424,6 @@
          pushViewController:requestDetailViewController
          animated:YES];
         
-        
-        
     } else if (USERS_VIEW){
         
         User *aUser = [self.dataController objectAtIndexPath:indexPath];

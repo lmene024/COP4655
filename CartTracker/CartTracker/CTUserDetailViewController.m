@@ -50,6 +50,7 @@
         [self loadDataToView];
         [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
         [self setTitle:@"User"];
+         NSLog(@"User has %lu requests",(unsigned long)[user.requests count]);
     } else {
         //Creating a new user
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
@@ -63,6 +64,7 @@
     }
     //set didAdd image to false to prevent saving a default image
     didAddImage = false;
+
 }
 
 -(void) loadDataToView{
