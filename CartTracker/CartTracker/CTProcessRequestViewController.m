@@ -9,6 +9,9 @@
 #import "CTProcessRequestViewController.h"
 #import "CTcartManager.h"
 #import "User.h"
+#import "Request.h"
+#import "Cart.h"
+#import "Constants.h"
 
 @interface CTProcessRequestViewController ()
 
@@ -18,11 +21,11 @@
 @implementation CTProcessRequestViewController
 {
     NSArray * userArray;
-    NSArray * filterArray;
+    NSMutableArray * filterArray;
     User * userToProcess;
 }
 
-@synthesize manager, searchUserBar, userTableView;
+@synthesize manager, searchUserBar, tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,7 +68,7 @@
         self.returnView.hidden = true;
 
         //reset dependent views
-        self.userTableView.hidden = true;
+        self.tableView.hidden = true;
         self.detailView.hidden = true;
         
         //change button text
@@ -92,19 +95,18 @@
 }
 
 - (void) loadFilterArray{
-    if (self.searchUserBar.text.length!=0) {
         NSString * searchString = self.searchUserBar.text;
         NSPredicate * predicate = [NSPredicate predicateWithBlock:^BOOL(User* aUser, NSDictionary *bindings) {
             NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
             NSComparisonResult result2 = [aUser.lastName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
             return (result == NSOrderedSame) || (result2 == NSOrderedSame);
         }];
-        
-        filterArray = [userArray filteredArrayUsingPredicate:predicate];
-    }else{
-        //EmptyArray
-        filterArray= nil;
-    }
+    
+    if (filterArray == nil) {
+        filterArray = [NSMutableArray arrayWithArray:[userArray filteredArrayUsingPredicate:predicate]];
+    }else
+        [filterArray addObjectsFromArray:[userArray filteredArrayUsingPredicate:predicate]];
+    
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
@@ -117,19 +119,21 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if (searchText.length !=0) {
-        [self.userTableView setHidden:false];
-        [self loadFilterArray];
-        [self.userTableView reloadData];
-   }else{
-        [self.userTableView setHidden:true];
-    }
+    [filterArray removeAllObjects];
     
+    if (searchText.length !=0) {
+        [self.tableView setHidden:false];
+        [self loadFilterArray];
+   }else{
+        [self.tableView setHidden:true];
+    }
+    [self.tableView reloadData];
+
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [searchBar setText:@""];
-    [self.userTableView setHidden:true];
+    [self.tableView setHidden:true];
     [searchBar setShowsCancelButton:false animated:true];
     [searchBar resignFirstResponder];
 }
@@ -138,8 +142,8 @@
     [searchBar setShowsCancelButton:false animated:true];
     [searchBar resignFirstResponder];
     
-    self.userTableView.allowsSelection = true;
-    self.userTableView.scrollEnabled = true;
+    self.tableView.allowsSelection = true;
+    self.tableView.scrollEnabled = true;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -167,19 +171,54 @@
     userToProcess = [filterArray objectAtIndex:indexPath.row];
     [self.searchUserBar setText:[self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName]];
     
-    [self.userTableView setHidden:true];
     [self.searchUserBar resignFirstResponder];
-    [self.searchUserBar setShowsCancelButton:false animated:true];
-    [self setClearButtonMode:searchUserBar];
+    [self.searchUserBar setShowsCancelButton:false animated:false];
+#warning not sure why but there are two table views showing up here...
+    [tableView setHidden:true];
+    [self.tableView setHidden:true];
+    //[self setClearButtonMode:searchUserBar];
+    
+    [self displayRequestForUser:userToProcess];
 }
 
 - (NSString *) getFormatedNameWithFirst:(NSString *) firstName andLast: (NSString *) lastName{
     return [NSString stringWithFormat:@"%@, %@", lastName, firstName];
 }
 
--(void) setClearButtonMode:(UISearchBar *)mySearchBar{
+- (void) displayRequestForUser:(User *) aUser{
+    NSSet * requestSet = [aUser.requests filteredSetUsingPredicate:[self getCurrentItems]];
+    Request * request = [requestSet allObjects][0];
+    
+    if (request) {
+        Cart * cart = request.cart;
+        
+        self.requestID.text = request.reqID.stringValue;
+        self.requestCart.text = cart.cartName;
+        self.requestUser.text = aUser.empID;
+     //   self.requestStatus.text = request.reqStatus;
+     //   self.requestDate.text = request.schedStartTime;
+        
+        self.detailView.hidden = false;
+    }
+}
+
+- (NSPredicate *) getCurrentItems{
+    NSDate * now = [NSDate date];
+    now = [now dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
+    now = [now dateByAddingTimeInterval:-MAX_REQUEST_TIME_VARIANCE];
+    NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
+        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: now];
+        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:now];
+        
+        return  (start != NSOrderedDescending && end!=NSOrderedAscending);
+    }];
+    return currentItemsOnly;
+}
+
+
+/*-(void) setClearButtonMode:(UISearchBar *)mySearchBar{
     UITextField *textField = [mySearchBar valueForKey:@"_searchField"];
     textField.clearButtonMode = UITextFieldViewModeNever;
-}
+}*/
 @end
 

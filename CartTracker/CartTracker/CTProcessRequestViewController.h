@@ -16,8 +16,15 @@
 
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchUserBar;
-@property (strong, nonatomic) IBOutlet UITableView *userTableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchBarController;
+
+@property (strong, nonatomic) IBOutlet UITextField *requestID;
+@property (strong, nonatomic) IBOutlet UITextField *requestCart;
+@property (strong, nonatomic) IBOutlet UITextField *requestDate;
+@property (strong, nonatomic) IBOutlet UITextField *requestStatus;
+@property (strong, nonatomic) IBOutlet UITextField *requestUser;
+
 
 
 - (IBAction)toggleView:(UISegmentedControl *)sender;
