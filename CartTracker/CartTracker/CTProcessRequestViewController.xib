@@ -10,6 +10,7 @@
                 <outlet property="detailView" destination="wme-2N-rsF" id="6ep-fx-jhW"/>
                 <outlet property="loanView" destination="LDv-gq-z2I" id="qyX-c9-GbO"/>
                 <outlet property="returnView" destination="rBC-KS-UVG" id="BbI-QT-gHL"/>
+                <outlet property="searchBarController" destination="NXg-4u-ad6" id="kHD-q0-qi1"/>
                 <outlet property="searchDisplayController" destination="NXg-4u-ad6" id="GaT-kI-Jmr"/>
                 <outlet property="searchUserBar" destination="x57-zK-7oM" id="ouz-fx-Psj"/>
                 <outlet property="userTableView" destination="N35-SY-7Gj" id="QBh-yv-FLy"/>

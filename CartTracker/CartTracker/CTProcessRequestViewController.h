@@ -13,10 +13,16 @@
 @property (strong, nonatomic) IBOutlet UIView *returnView;
 @property (strong, nonatomic) IBOutlet UIView *detailView;
 @property (strong, nonatomic) IBOutlet UIButton *actionButton;
+
+
 @property (strong, nonatomic) IBOutlet UISearchBar *searchUserBar;
 @property (strong, nonatomic) IBOutlet UITableView *userTableView;
+@property (strong, nonatomic) IBOutlet UISearchDisplayController *searchBarController;
+
+
 - (IBAction)toggleView:(UISegmentedControl *)sender;
 
 - (IBAction)actionButtonPressed:(id)sender;
 - (IBAction)scanButtonPressed:(id)sender;
+
 @end
