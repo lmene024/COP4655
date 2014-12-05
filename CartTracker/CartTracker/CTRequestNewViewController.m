@@ -231,6 +231,7 @@
 -(void) searchTableList{
     //NSLog(@"Searching Table List...");
     
+    [self setViewHidden:YES];
     [self.tableView setHidden:NO];
     
     // Searching users
@@ -360,6 +361,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [self setViewHidden:NO];
     
     //[self.searchBar setText:[userArray objectAtIndex:[indexPath row]]];
     //[self.cartSearchBar setText:[cartArray objectAtIndex:[indexPath row]]];
@@ -484,6 +486,8 @@
  */
 
 -(void) setViewHidden:(BOOL)value{
+    [self.intervalLabel setHidden:value];
+    [self.intervalStepper setHidden:value];
     [requestDateLabel setHidden:value];
     [requestDatePicker setHidden:value];
     [notesLabel setHidden:value];
@@ -615,7 +619,7 @@
  @return
  
  */
-
+/*
 -(id) searchArray:(NSArray *)array withCriteria:(NSString*)criteria theClass:(id)element{
     if ([element class] == [Cart class]) {
         NSLog(@"CLASS CART");
@@ -631,7 +635,6 @@
             NSLog(@"aUser name: %@ element name: %@",aUser.firstName,criteria);
             if ([aUser.lastName isEqualToString:criteria]) {
                 NSLog(@"FOUND USER %@",aUser);
-#warning Remember to modify user search criteria in array
                 return aUser;
             }
         }
@@ -639,5 +642,6 @@
     
     return nil;
 }
+ */
 
 @end

@@ -23,9 +23,15 @@
     NSArray * userArray;
     NSMutableArray * filterArray;
     User * userToProcess;
+    Request *requestToProcess;
+    Cart * cartToProcess;
 }
 
-@synthesize manager, searchUserBar, tableView;
+#pragma mark - Properties
+
+@synthesize manager, searchUserBar, tableView,actionButton;
+
+#pragma mark - UIViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,11 +53,9 @@
     self.loanView.hidden = true;
     self.returnView.hidden = true;
     self.actionButton.hidden = true;
-    self.actionButton.enabled = false;
     //[self.loanView setHidden:FALSE];
     
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -59,57 +63,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)toggleView:(UISegmentedControl *)sender {
-    self.actionButton.hidden = false;
-
-    if(sender.selectedSegmentIndex == 0){
-        //show loan view
-        self.loanView.hidden = false;
-        
-        //hide return view
-        self.returnView.hidden = true;
-
-        //reset dependent views
-        self.tableView.hidden = true;
-        self.detailView.hidden = true;
-        
-        //change button text
-        [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
-
-        NSError * error = nil;
-        userArray = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
-        [self loadFilterArray];
-
-    }else{
-        //show return view
-        self.returnView.hidden = false;
-        [self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
-        
-        //hide loan view
-        self.loanView.hidden = true;
-    }
-}
-
-- (IBAction)actionButtonPressed:(id)sender {
-}
-
-- (IBAction)scanButtonPressed:(id)sender {
-}
-
-- (void) loadFilterArray{
-        NSString * searchString = self.searchUserBar.text;
-        NSPredicate * predicate = [NSPredicate predicateWithBlock:^BOOL(User* aUser, NSDictionary *bindings) {
-            NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
-            NSComparisonResult result2 = [aUser.lastName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
-            return (result == NSOrderedSame) || (result2 == NSOrderedSame);
-        }];
-    
-    if (filterArray == nil) {
-        filterArray = [NSMutableArray arrayWithArray:[userArray filteredArrayUsingPredicate:predicate]];
-    }else
-        [filterArray addObjectsFromArray:[userArray filteredArrayUsingPredicate:predicate]];
-    
-}
+#pragma mark - Delegates
+#pragma mark UISearchBar
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [searchUserBar setText:[searchUserBar text]];
@@ -148,6 +103,24 @@
     self.tableView.scrollEnabled = true;
 }
 
+- (void) loadFilterArray{
+    NSString * searchString = self.searchUserBar.text;
+    NSPredicate * predicate = [NSPredicate predicateWithBlock:^BOOL(User* aUser, NSDictionary *bindings) {
+        NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
+        NSComparisonResult result2 = [aUser.lastName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
+        return (result == NSOrderedSame) || (result2 == NSOrderedSame);
+    }];
+    
+    if (filterArray == nil) {
+        filterArray = [NSMutableArray arrayWithArray:[userArray filteredArrayUsingPredicate:predicate]];
+    }else
+        [filterArray addObjectsFromArray:[userArray filteredArrayUsingPredicate:predicate]];
+    
+}
+
+
+#pragma mark UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -169,6 +142,8 @@
     return cell;
 }
 
+#pragma mark UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     userToProcess = [filterArray objectAtIndex:indexPath.row];
@@ -184,6 +159,8 @@
     
     [self displayRequestForUser:userToProcess];
 }
+
+#pragma mark Methods for UITableView
 
 - (NSString *) getFormatedNameWithFirst:(NSString *) firstName andLast: (NSString *) lastName{
     return [NSString stringWithFormat:@"%@, %@", lastName, firstName];
@@ -209,13 +186,16 @@
     
     if (request) {
         Cart * cart = request.cart;
+        requestToProcess = request;
+        cartToProcess = cart;
+        userToProcess = aUser;
         
         self.requestID.text = request.reqID.stringValue;
         self.requestCart.text = cart.cartName;
         self.requestUser.text = aUser.empID;
-     //   self.requestStatus.text = request.reqStatus;
-     //   self.requestDate.text = request.schedStartTime;
-        
+        self.requestStatus.text = [request.reqStatus stringValue];
+        //self.requestDate.text = request.schedStartTime;
+        NSLog(@"button enabled");
         self.detailView.hidden = false;
     }
 }
@@ -241,6 +221,96 @@
 }*/
 
 
+
+#pragma mark - Save Request Methods
+
+-(NSNumber*)formatStringToNSNumber:(NSString*)string{
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber * number = [f numberFromString:string];
+    
+    return number;
+}
+
+-(BOOL) fieldsAreEmpty{
+    
+    if ( FIELD_ISEMPTY(self.requestID.text)
+        || FIELD_ISEMPTY(self.requestCart.text)
+        || FIELD_ISEMPTY(self.requestUser.text)
+        || FIELD_ISEMPTY(self.requestStatus.text)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) saveRequestDataForRequest{
+    if (![self fieldsAreEmpty]) {
+        
+        NSNumber *requestId = [self formatStringToNSNumber:self.requestID.text];
+        NSNumber *requestStatus = [self formatStringToNSNumber:self.requestStatus.text];
+        
+        [requestToProcess setReqID:requestId];
+        [requestToProcess setReqStatus:requestStatus];
+        [requestToProcess setCart:cartToProcess];
+        [requestToProcess setUser:userToProcess];
+        
+        [self.manager save];
+        return true;
+    } else {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Some Fields are Empty"
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    return false;
+}
+
+#pragma mark - IBAction
+
+- (IBAction)actionButtonPressed:(id)sender {
+    NSLog(@"Action button pressed");
+    [self saveRequestDataForRequest];
+    // Implement the ability to edit a request to add a different status
+}
+
+- (IBAction)scanButtonPressed:(id)sender {
+}
+
+- (IBAction)toggleView:(UISegmentedControl *)sender {
+    self.actionButton.hidden = false;
+    
+    if(sender.selectedSegmentIndex == 0){
+        //show loan view
+        self.loanView.hidden = false;
+        
+        //hide return view
+        self.returnView.hidden = true;
+        
+        //reset dependent views
+        self.tableView.hidden = true;
+        self.detailView.hidden = true;
+        
+        //change button text
+        [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
+        
+        NSError * error = nil;
+        userArray = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
+        [self loadFilterArray];
+        
+    }else{
+        //show return view
+        self.returnView.hidden = false;
+        [self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
+        
+        //hide loan view
+        self.loanView.hidden = true;
+    }
+}
 
 @end
 
