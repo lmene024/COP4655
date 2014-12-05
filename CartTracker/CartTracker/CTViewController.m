@@ -10,6 +10,7 @@
 #import "CTAdminNavigationViewController.h"
 #import "CTRequestNavigationViewController.h"
 #import "CTCalendarViewController.h"
+#import "CTProcessRequestViewController.h"
 
 @interface CTViewController ()
 
@@ -23,11 +24,14 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     CTAdminNavigationViewController * adminController = [[CTAdminNavigationViewController alloc] init];
+    
     CTRequestNavigationViewController *requestController = [[CTRequestNavigationViewController alloc] init];
     
     CTCalendarViewController * calendarController = [[CTCalendarViewController alloc] init];
     
-    self.viewControllers = @[adminController,requestController, calendarController];
+    CTProcessRequestViewController * processController = [[CTProcessRequestViewController alloc]init];
+    
+    self.viewControllers = @[processController, adminController,requestController, calendarController];
 }
 
 - (void)didReceiveMemoryWarning
