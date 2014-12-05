@@ -48,6 +48,8 @@
     self.returnView.hidden = true;
     self.actionButton.hidden = true;
     self.actionButton.enabled = false;
+    //[self.loanView setHidden:FALSE];
+    
 }
 
 
@@ -168,7 +170,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     userToProcess = [filterArray objectAtIndex:indexPath.row];
+    NSLog(@"userToProcess:%@ %@",userToProcess.firstName,userToProcess.lastName);
     [self.searchUserBar setText:[self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName]];
     
     [self.searchUserBar resignFirstResponder];
@@ -186,7 +190,15 @@
 }
 
 - (void) displayRequestForUser:(User *) aUser{
+    
     NSSet * requestSet = [aUser.requests filteredSetUsingPredicate:[self getCurrentItems]];
+    
+    NSLog(@"User: %@ #ofrequests %d",aUser.firstName,[aUser.requests count]);
+    
+    NSLog(@"getCurrentIterms: %@",[self getCurrentItems]);
+    
+    NSLog(@"requestSet: %@",requestSet);
+    
     Request * request = [requestSet allObjects][0];
     
     if (request) {
@@ -203,9 +215,17 @@
 }
 
 - (NSPredicate *) getCurrentItems{
-    NSDate * now = [NSDate date];
-    now = [now dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
-    now = [now dateByAddingTimeInterval:-MAX_REQUEST_TIME_VARIANCE];
+    
+    NSDate * now = [[NSDate alloc] initWithTimeInterval:-30000 sinceDate:[NSDate date]];
+    
+    //NSDate * now2 = [[NSDate alloc] initWithTimeInterval:30000 sinceDate:[NSDate date]];
+    
+    //NSLog(@"Current date date:%@",[NSDate date]);
+    //NSLog(@"Current Date Now:%@",now);
+    /*now = [now dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];*/
+    
+    //NSLog(@"now:%@", now);
+    
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
         NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: now];
         NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:now];
@@ -220,5 +240,8 @@
     UITextField *textField = [mySearchBar valueForKey:@"_searchField"];
     textField.clearButtonMode = UITextFieldViewModeNever;
 }*/
+
+
+
 @end
 

@@ -135,14 +135,12 @@
         }
     }
     
-    
-    
     if (requestSet.count>0) {
         //show the request detail
         Request * request = [requestSet allObjects][0];
         CTRequestDetailViewController * requestDetails = [[CTRequestDetailViewController alloc] init];
         [requestDetails setRequest:request];
-        
+        NSLog(@"From: %@ To: %@",request.schedStartTime,request.schedEndTime);
         [reqNav pushViewController:requestDetails animated:true];
         tabController.selectedViewController = reqNav;
     }else{

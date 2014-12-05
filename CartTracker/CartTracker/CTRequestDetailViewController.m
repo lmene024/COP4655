@@ -67,6 +67,7 @@
         
         [self.reqIdTextField setText:[self.request.reqID stringValue]];
         [self.reqDateTextField setText:date];
+        NSLog(@"From: %@ To: %@",[self.request schedStartTime],[self.request schedEndTime]);
         [self.reqStTextField setText:[self.request.reqStatus stringValue]];
         [self.userTextField setText:self.request.user.firstName];
         [self.cartTextField setText:self.request.cart.cartID];

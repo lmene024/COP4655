@@ -32,11 +32,14 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *requestDatePicker;
 @property (strong, nonatomic) IBOutlet UILabel *notesLabel;
 @property (strong, nonatomic) IBOutlet UITextView *notesTextView;
+@property (strong, nonatomic) IBOutlet UILabel *intervalLabel;
+
 
 @property (nonatomic, retain) MFMailComposeViewController *confirmationComposer;
+@property (strong, nonatomic) IBOutlet UIStepper *intervalStepper;
 
 @property (strong, nonatomic) User *userForRequest;
 @property (strong, nonatomic) Cart *cartForRequest;
-
+- (IBAction)intervalStepperPressed:(id)sender;
 
 @end

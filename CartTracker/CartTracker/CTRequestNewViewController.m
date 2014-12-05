@@ -44,6 +44,8 @@
 @synthesize notesTextView;
 @synthesize confirmationComposer;
 @synthesize cartForRequest, userForRequest;
+@synthesize intervalStepper;
+@synthesize intervalLabel;
 
 #pragma mark - UIViewController
 
@@ -56,23 +58,13 @@
     return self;
 }
 
--(void) initArrays{
-    filteredContentList = [[NSMutableArray alloc] init];
-    NSError *error = nil;
-    NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
-    userArray = [[NSArray alloc] initWithArray:array];
-    
-    filteredCartArray = [[NSMutableArray alloc] init];
-    NSError *error2 = nil;
-    NSArray *arrayCart = [manager.context executeFetchRequest:[manager getAllCarts] error:&error2];
-    cartArray = [[NSArray alloc] initWithArray:arrayCart];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self initArrays];
+    
+    [self initIntervalStepper];
     
     [self.searchBar setBarTintColor:[UIColor whiteColor]];
     
@@ -83,6 +75,9 @@
     [self setTitle:@"New Request"];
     
     [self.requestDatePicker setMinimumDate:[NSDate date]];
+    [self.requestDatePicker setDatePickerMode:UIDatePickerModeDateAndTime];
+    [self.requestDatePicker setDate:[NSDate date]];
+    
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemSave
@@ -107,6 +102,44 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Init methods
+
+
+/*! Init the cart array and filtered cart array. These are used to set up the UISearchBar
+ 
+ @param
+ @return
+ 
+ */
+-(void) initArrays{
+    filteredContentList = [[NSMutableArray alloc] init];
+    NSError *error = nil;
+    NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
+    userArray = [[NSArray alloc] initWithArray:array];
+    
+    filteredCartArray = [[NSMutableArray alloc] init];
+    NSError *error2 = nil;
+    NSArray *arrayCart = [manager.context executeFetchRequest:[manager getAllCarts] error:&error2];
+    cartArray = [[NSArray alloc] initWithArray:arrayCart];
+}
+
+/*! Method that initializes the UIStepper
+ 
+ @param
+ @return
+ 
+ */
+
+-(void) initIntervalStepper{
+    [self.intervalStepper setValue:1];
+    [self.intervalStepper setMaximumValue:4];
+    [self.intervalStepper setMinimumValue:0];
+    [self.intervalStepper setWraps:YES];
+    [self.intervalStepper setAutorepeat:YES];
+    NSUInteger value = self.intervalStepper.value;
+    self.intervalLabel.text = [NSString stringWithFormat:@"%d", value];
 }
 
 #pragma mark - Delegates
@@ -493,13 +526,16 @@
             
             [req setUser:userForRequest];
             [req setCart:cartForRequest];
-            [req setSchedStartTime:requestDatePicker.date];
-            [req setSchedEndTime:[requestDatePicker.date dateByAddingTimeInterval:36000]];
+            [req setSchedStartTime:self.requestDatePicker.date];
+            NSLog(@"Request Date Picker: %@",[self.requestDatePicker date]);
+            [req setSchedEndTime:[self.requestDatePicker.date dateByAddingTimeInterval:LOAN_INTERVAL]];
             NSNumber *number = [NSNumber numberWithInt: REQUEST_STATUS_SCHEDULED];
             [req setReqStatus:number];
-            [req setReqDate:requestDatePicker.date];
+            [req setReqDate:self.requestDatePicker.date];
             
             [manager save];
+            
+            NSLog(@"%@ Has a request from %@ to %@",userForRequest.firstName,[req schedStartTime],[req schedEndTime]);
             
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Email Confirmation"
@@ -519,6 +555,16 @@
                               otherButtonTitles:nil, nil];
         [alert show];
     }
+}
+
+- (IBAction)intervalStepperPressed:(id)sender {
+    
+    double intervalStepperValue = [intervalStepper value];
+    
+    NSString *labelText = [[NSString alloc] initWithFormat:@"%d",(int)intervalStepperValue];
+    
+    self.intervalLabel.text = labelText;
+    
 }
 
 #pragma mark - Validation Methods
