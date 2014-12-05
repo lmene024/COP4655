@@ -619,7 +619,7 @@
  @return
  
  */
-
+/*
 -(id) searchArray:(NSArray *)array withCriteria:(NSString*)criteria theClass:(id)element{
     if ([element class] == [Cart class]) {
         NSLog(@"CLASS CART");
@@ -635,7 +635,6 @@
             NSLog(@"aUser name: %@ element name: %@",aUser.firstName,criteria);
             if ([aUser.lastName isEqualToString:criteria]) {
                 NSLog(@"FOUND USER %@",aUser);
-#warning Remember to modify user search criteria in array
                 return aUser;
             }
         }
@@ -643,5 +642,6 @@
     
     return nil;
 }
+ */
 
 @end
