@@ -13,6 +13,7 @@
 #import "Cart.h"
 #import "Request.h"
 #import <MessageUI/MessageUI.h>
+#import "Constants.h"
 
 @interface CTRequestNewViewController ()
 
@@ -25,8 +26,8 @@
     NSArray *cartArray;
     NSMutableArray *filteredCartArray;
     Boolean isSecondSearchBar;
-    User *userForRequest;
-    Cart *cartForRequest;
+ //   User *userForRequest;
+ //   Cart *cartForRequest;
 }
 
 #pragma mark - Properties
@@ -42,6 +43,7 @@
 @synthesize notesLabel;
 @synthesize notesTextView;
 @synthesize confirmationComposer;
+@synthesize cartForRequest, userForRequest;
 
 #pragma mark - UIViewController
 
@@ -381,14 +383,17 @@
     NSArray *toRecipents = [NSArray arrayWithObject:email];
     
     confirmationComposer = [[MFMailComposeViewController alloc] init];
-    [confirmationComposer setMailComposeDelegate:self];
-    [confirmationComposer setSubject:emailTitle];
-    [confirmationComposer setMessageBody:messageBody isHTML:YES];
-    [confirmationComposer setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    [self presentViewController:confirmationComposer animated:YES completion:NULL];
-    
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        [confirmationComposer setDelegate:self];
+        [confirmationComposer setMailComposeDelegate:self];
+        [confirmationComposer setSubject:emailTitle];
+        [confirmationComposer setMessageBody:messageBody isHTML:YES];
+        [confirmationComposer setToRecipients:toRecipents];
+        
+        // Present mail view controller on screen
+        [self presentViewController:confirmationComposer animated:YES completion:NULL];
+    }
 }
 
 #pragma mark UIAlertViewDelegate
@@ -463,7 +468,7 @@
             [req setCart:cartForRequest];
             [req setSchedStartTime:requestDatePicker.date];
             [req setSchedEndTime:[requestDatePicker.date dateByAddingTimeInterval:36000]];
-            NSNumber *number = [NSNumber numberWithInt:1];
+            NSNumber *number = [NSNumber numberWithInt: REQUEST_STATUS_SCHEDULED];
             [req setReqStatus:number];
             [req setReqDate:requestDatePicker.date];
             
