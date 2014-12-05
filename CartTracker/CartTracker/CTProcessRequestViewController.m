@@ -191,7 +191,9 @@
 
 - (void) displayRequestForUser:(User *) aUser{
     
-    NSSet * requestSet = [aUser.requests filteredSetUsingPredicate:[self getCurrentItems]];
+    NSSet * allRequests = aUser.requests;
+    
+    NSSet * requestSet = [allRequests filteredSetUsingPredicate:[self getCurrentItems]];
     
     NSLog(@"User: %@ #ofrequests %d",aUser.firstName,[aUser.requests count]);
     
@@ -199,7 +201,11 @@
     
     NSLog(@"requestSet: %@",requestSet);
     
-    Request * request = [requestSet allObjects][0];
+    Request * request;
+    
+    if (requestSet.count>0) {
+        request = [requestSet allObjects][0];
+    }
     
     if (request) {
         Cart * cart = request.cart;
@@ -215,16 +221,9 @@
 }
 
 - (NSPredicate *) getCurrentItems{
-    
-    NSDate * now = [[NSDate alloc] initWithTimeInterval:-30000 sinceDate:[NSDate date]];
-    
-    //NSDate * now2 = [[NSDate alloc] initWithTimeInterval:30000 sinceDate:[NSDate date]];
-    
-    //NSLog(@"Current date date:%@",[NSDate date]);
-    //NSLog(@"Current Date Now:%@",now);
-    /*now = [now dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];*/
-    
-    //NSLog(@"now:%@", now);
+    NSDate * now = [NSDate date];
+    now = [now dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
+    now = [now dateByAddingTimeInterval:-(MAX_REQUEST_TIME_VARIANCE)];
     
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
         NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: now];
