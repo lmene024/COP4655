@@ -22,4 +22,6 @@
 #define REQUEST_STATUS_COMPLETED 2
 
 #define MAX_REQUEST_TIME_VARIANCE 60*30
+
+#define LOAN_INTERVAL [self.intervalStepper value] * 3600
 #endif

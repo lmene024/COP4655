@@ -216,10 +216,10 @@
         
         Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
         
-        // Show open requests only
-        if (aRequest.reqStatus == [NSNumber numberWithInt:1]) {
+        
+        //if (aRequest.reqStatus == [NSNumber numberWithInt:1]) {
             cellInformation = [NSString stringWithFormat:@"%@  %@  %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
-        }
+        //}
         
         cell.textLabel.text = cellInformation;
         
@@ -424,8 +424,6 @@
         [self.navigationController
          pushViewController:requestDetailViewController
          animated:YES];
-        
-        
         
     } else if (USERS_VIEW){
         
