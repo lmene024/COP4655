@@ -5,6 +5,8 @@
 //  Created by Andres Ruggiero on 12/2/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: This view controller handles the creation of a new request in the application.
+// It contains two UISearchBar objects that provide the capability to search for a valid user and available cart.
 
 #import <MessageUI/MessageUI.h>
 #import "CTRequestNewViewController.h"
@@ -12,7 +14,6 @@
 #import "User.h"
 #import "Cart.h"
 #import "Request.h"
-#import <MessageUI/MessageUI.h>
 #import "Constants.h"
 
 @interface CTRequestNewViewController ()
@@ -355,6 +356,13 @@
     return cell;
 }
 
+/*! Method that formats a NSString firstName & NSString lastName together (e.g. Ruggiero, Andres)
+ 
+ @param NSString firstName & NSString lastName
+ @return NSString
+ 
+ */
+
 - (NSString *) getFormatedNameWithFirst:(NSString *) firstName andLast: (NSString *) lastName{
     return [NSString stringWithFormat:@"%@, %@", lastName, firstName];
 }
@@ -366,7 +374,7 @@
     //[self.searchBar setText:[userArray objectAtIndex:[indexPath row]]];
     //[self.cartSearchBar setText:[cartArray objectAtIndex:[indexPath row]]];
     
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     if (!isSecondSearchBar){
         
@@ -586,7 +594,7 @@
         NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: requestDatePicker.date];
         NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:requestDatePicker.date];
         
-        return  (start != NSOrderedDescending && end!=NSOrderedAscending);
+        return  (start != NSOrderedDescending && end != NSOrderedAscending);
     }];
     
     NSSet * requestSet = [cart.requests filteredSetUsingPredicate:currentItemsOnly];

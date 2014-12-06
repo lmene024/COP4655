@@ -5,6 +5,9 @@
 //  Created by Andres Ruggiero on 12/1/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: This class handles the detail view of a cart.
+// It contains the ability to edit & save changes to an existing cart.
+// This view controller is also used to create a new Cart in the application.
 
 #import "CTCartDetailViewController.h"
 #import "Cart.h"

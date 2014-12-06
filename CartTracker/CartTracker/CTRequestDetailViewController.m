@@ -5,6 +5,8 @@
 //  Created by Andres Ruggiero on 12/2/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: The CTRequestDetailViewController is in charge of handling the detail view
+// of an existing request. It offers the capability to edit & save changes to an existing request
 
 #import "CTRequestDetailViewController.h"
 #import "Request.h"
