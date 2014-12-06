@@ -5,6 +5,9 @@
 //  Created by Andres Ruggiero on 12/1/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: The CTUserDetailViewController handles the detail view of a user.
+// It contains the ability to edit & save changes to an existing user.
+// This view controller is also used to create a new User in the application.
 
 #import "CTUserDetailViewController.h"
 #import "CTCameraViewController.h"

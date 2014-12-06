@@ -224,6 +224,14 @@
 
 #pragma mark - Save Request Methods
 
+/*! Method that takes an NSString string and formats the value into an
+    NSNumber object.
+ 
+ @param NSString string
+ @return NSNumber
+ 
+ */
+
 -(NSNumber*)formatStringToNSNumber:(NSString*)string{
     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -231,6 +239,13 @@
     
     return number;
 }
+
+/*! MEethod that validates if the fields are empty or not
+ 
+ @param
+ @return
+ 
+ */
 
 -(BOOL) fieldsAreEmpty{
     
@@ -243,6 +258,13 @@
     
     return NO;
 }
+
+/*! Method that updates a request's status
+ 
+ @param
+ @return
+ 
+ */
 
 - (BOOL) saveRequestDataForRequest{
     if (![self fieldsAreEmpty]) {
