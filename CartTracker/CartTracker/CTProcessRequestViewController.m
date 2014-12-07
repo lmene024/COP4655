@@ -193,6 +193,8 @@
         cartToProcess = cart;
         userToProcess = aUser;
         
+        NSLog(@"Display Request");
+        
         self.requestID.text = request.reqID.stringValue;
         self.requestCart.text = cart.cartName;
         self.requestUser.text = aUser.empID;

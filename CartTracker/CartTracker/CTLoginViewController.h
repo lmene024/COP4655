@@ -12,6 +12,7 @@
 
 @interface CTLoginViewController : CTADetailViewController <NSFetchedResultsControllerDelegate,UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *signInButton;
+@property (strong, nonatomic) IBOutlet UIView *loginView;
 
 @property (nonatomic, strong) CTcartManager * manager;
 @property (nonatomic, strong) NSFetchedResultsController * dataController;

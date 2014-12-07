@@ -23,6 +23,7 @@
 @synthesize manager;
 @synthesize usernameTextField;
 @synthesize passwordTextField;
+@synthesize loginView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
