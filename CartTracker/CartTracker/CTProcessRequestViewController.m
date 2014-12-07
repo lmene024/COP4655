@@ -29,7 +29,7 @@
 
 #pragma mark - Properties
 
-@synthesize manager, searchUserBar, tableView,actionButton;
+@synthesize manager, searchUserBar, /*tableView,*/actionButton;
 
 #pragma mark - UIViewController
 
@@ -53,8 +53,12 @@
     self.loanView.hidden = true;
     self.returnView.hidden = true;
     self.actionButton.hidden = true;
-    //[self.loanView setHidden:FALSE];
     
+    [self.tableView setHidden:true];
+}
+
+- (void) searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView{
+    tableView.frame = self.tableView.frame;
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +89,6 @@
         [self.tableView setHidden:true];
     }
     [self.tableView reloadData];
-
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -132,7 +135,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellID = @"cell";
     
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
@@ -197,6 +200,8 @@
         //self.requestDate.text = request.schedStartTime;
         NSLog(@"button enabled");
         self.detailView.hidden = false;
+        //[self.view bringSubviewToFront:self.actionButton];
+        [self.actionButton setEnabled:true];
     }
 }
 
@@ -314,12 +319,12 @@
         self.returnView.hidden = true;
         
         //reset dependent views
-        self.tableView.hidden = true;
+       // self.tableView.hidden = true;
         self.detailView.hidden = true;
         
         //change button text
-        [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
-        
+        //[self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
+        //[self.actionButton setTitle:@"Loan Cart" forState:UIControlStateNormal];
         NSError * error = nil;
         userArray = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
         [self loadFilterArray];
