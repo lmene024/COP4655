@@ -61,14 +61,6 @@
     /*if ([self validateCredentials]) {
         CTViewController *controller = [[CTViewController alloc] init];
         [self presentViewController:controller animated:YES completion:nil];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"Check username or password"
-                              delegate:self
-                              cancelButtonTitle:@"Ok"
-                              otherButtonTitles:nil, nil];
-        [alert show];
     }*/
     
     CTViewController *controller = [[CTViewController alloc] init];
@@ -78,8 +70,21 @@
 
 -(BOOL) validateCredentials{
     
-    return [self compareUser:self.usernameTextField.text
-         withPassword:self.passwordTextField.text];
+    if ([self compareUser:self.usernameTextField.text
+             withPassword:self.passwordTextField.text]) {
+        CTViewController *controller = [[CTViewController alloc] init];
+        [self presentViewController:controller animated:YES completion:nil];
+        return YES;
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Check username or password"
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
 }
 
 -(BOOL) compareUser:(NSString*)user withPassword:(NSString*) password{
@@ -138,6 +143,12 @@
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
+    
+    if ([self validateCredentials]) {
+        CTViewController *controller = [[CTViewController alloc] init];
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+    
     textField.text = @"";
     
     return YES;
