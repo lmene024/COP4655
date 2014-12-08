@@ -8,6 +8,7 @@
 
 #import "CTAdminTableViewController.h"
 #import "CTDataListViewController.h"
+#import "CTLoginViewController.h"
 #import "User.h"
 
 @interface CTAdminTableViewController ()
@@ -30,7 +31,7 @@
     tableRect.origin.y = startingPoint;
     tableRect.size.height -= startingPoint;
     
-    adminOptions = [[NSArray alloc] initWithObjects:@"Users",@"Carts",@"Statistics", nil];
+    adminOptions = [[NSArray alloc] initWithObjects:@"Users",@"Carts",@"Statistics",@"Log Out", nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:tableRect style:UITableViewStyleGrouped]; // or plain, whichever you need
     
@@ -139,9 +140,30 @@
     } else if ([option isEqualToString:@"Carts"]){
         CTDataListViewController *cartsController = [[CTDataListViewController alloc] initWithData:@"Carts"];
         [self.navigationController pushViewController:cartsController animated:YES];
+    } else if ([option isEqualToString:@"Log Out"]) {
+        UIAlertView *alert = [[UIAlertView alloc]
+    initWithTitle:@"Confirmation"
+    message:@"Are you sure you want to log out"
+    delegate:self
+    cancelButtonTitle:@"Yes"
+    otherButtonTitles:@"No", nil];
+        
+        [alert show];
     }
 
 }
 
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Yes"])
+    {
+        CTLoginViewController *loginController = [[CTLoginViewController alloc] init];
+        [[[UIApplication sharedApplication] keyWindow] setRootViewController:loginController];
+    }
+}
 
 @end

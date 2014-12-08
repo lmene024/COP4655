@@ -438,6 +438,8 @@
     
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
+    //[self reservationSucessful];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark Email Method
@@ -480,6 +482,7 @@
     else if([title isEqualToString:@"No"])
     {
         NSLog(@"Button 2 was selected.");
+        //[self reservationSucessful];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -620,6 +623,16 @@
         
         return NO;
     }
+}
+
+-(void) reservationSucessful{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Notification"
+                          message:@"Reservation Sucessful"
+                          delegate:self
+                          cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 /*! Method that iterates and lookds for an Element in Array with a determined Criteria

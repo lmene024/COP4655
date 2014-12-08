@@ -24,6 +24,7 @@
 @implementation CTCartDetailViewController
 {
     bool didAddQR;
+    NSArray *cartArray;
 }
 
 #pragma mark - Properties
@@ -46,6 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initArray];
     // Do any additional setup after loading the view from its nib.
     
     if (self.cart != nil) {
@@ -53,6 +55,7 @@
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         [self loadDataToView];
         [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
+        
     } else {
         
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
@@ -62,10 +65,28 @@
         
         self.navigationItem.rightBarButtonItem = saveButton;
         [self enableFields:YES andSetBorderStyle:UITextBorderStyleRoundedRect];
-        
+        [self setIdValueForTextField];
+        [self setCartNameWithMaxValue:[self getMaxCartId]+1];
     }
     
     didAddQR = false;
+}
+
+-(void)initArray{
+    NSError *error = nil;
+    NSArray *array = [manager.context executeFetchRequest:[manager getAllCarts] error:&error];
+    cartArray = [[NSArray alloc] initWithArray:array];
+}
+
+-(int) getMaxCartId{
+    int maxCartId = 0;
+    for (Cart *aCart in cartArray) {
+        if ([aCart.cartID intValue] > maxCartId) {
+            maxCartId = [aCart.cartID intValue];
+        }
+    }
+    
+    return maxCartId;
 }
 
 /*! Description Method that loads the item selected in
@@ -146,8 +167,10 @@
 
 -(void) setBorderStyleToUITextFields:(UITextBorderStyle) borderStyle{
     
-    [self.cartIdTextField setBorderStyle:borderStyle];
-    [self.cartNameTextField setBorderStyle:borderStyle];
+    if (borderStyle == UITextBorderStyleNone) {
+        [self.cartIdTextField setBorderStyle:borderStyle];
+        [self.cartNameTextField setBorderStyle:borderStyle];
+    }
     [self.tagTextField setBorderStyle:borderStyle];
 }
 
@@ -160,9 +183,13 @@
 
 -(void) fieldsAreEnabled:(BOOL)booleanValue{
     
-    [self.cartIdTextField setEnabled:booleanValue];
-    [self.cartNameTextField setEnabled:booleanValue];
+    
+    if (!booleanValue) {
+        [self.cartIdTextField setEnabled:booleanValue];
+        [self.cartNameTextField setEnabled:booleanValue];
+    }
     [self.tagTextField setEnabled:booleanValue];
+    
 }
 
 /*! Description Method that enables/disables and sets the border style
@@ -173,6 +200,7 @@
  */
 
 -(void) enableFields:(BOOL)enableValue andSetBorderStyle:(UITextBorderStyle)borderStyle{
+    
     [self fieldsAreEnabled:enableValue];
     [self setBorderStyleToUITextFields:borderStyle];
 }
@@ -186,6 +214,19 @@
     }
     
     return NO;
+}
+
+-(void) setIdValueForTextField{
+    int maxCartId = [self getMaxCartId];
+    NSString *max = [[NSString alloc] initWithFormat:@"%d",maxCartId+1];
+    [self.cartIdTextField setText:max];
+    [self.cartIdTextField setEnabled:NO];
+}
+
+-(void) setCartNameWithMaxValue:(int)maxValue{
+    NSString *cartName = [[NSString alloc] initWithFormat:@"Cart #%d",maxValue];
+    [self.cartNameTextField setText:cartName];
+    [self.cartNameTextField setEnabled:NO];
 }
 
 #pragma mark - IBAction
@@ -318,5 +359,35 @@
     return flippedImage;
 }
 
+
+- (NSFetchedResultsController *) dataController{
+    
+    if (_dataController != nil) {
+        return _dataController;
+    }
+    
+    NSFetchRequest * fetchRequest;
+    
+    if (CART_VIEW) {
+        fetchRequest = [manager getAllCarts];
+    } else if (REQUEST_VIEW){
+        fetchRequest = [manager getAllRequests];
+    } else if (USERS_VIEW){
+        fetchRequest = [manager getAllUsers];
+    }
+    
+    NSFetchedResultsController * fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[manager context] sectionNameKeyPath:nil cacheName:@"test"];
+    
+    fetchedResultsController.delegate = self;
+    self.dataController = fetchedResultsController;
+    
+    NSError * error = nil;
+    
+    if (![self.dataController performFetch:&error]) {
+	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    
+    return _dataController;
+}
 
 @end
