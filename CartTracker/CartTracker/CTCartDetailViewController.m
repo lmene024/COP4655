@@ -229,6 +229,18 @@
     [self.cartNameTextField setEnabled:NO];
 }
 
+#pragma mark UIAlertView
+
+-(void) showEmptyFieldAlertView{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Error"
+                          message:@"Some Fields are Empty"
+                          delegate:self
+                          cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 #pragma mark - IBAction
 
 /*! Description Cancel Button selector
@@ -268,23 +280,19 @@
         
     } else {
         
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"Some Fields are Empty"
-                              delegate:self
-                              cancelButtonTitle:@"Ok"
-                              otherButtonTitles:nil, nil];
-        [alert show];
+        [self showEmptyFieldAlertView];
     }
     return false;
 }
 
 -(IBAction)saveButton:(id)sender{
     
-    Cart *aCart = [self.manager newCart];
-    
-    if ([self saveDataForCart:aCart]) {
+    if (![self fieldsAreEmpty]) {
+        Cart *aCart = [self.manager newCart];
+        [self saveDataForCart:aCart];
         [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self showEmptyFieldAlertView];
     }
     
 }

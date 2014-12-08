@@ -184,7 +184,12 @@
         self.requestCart.text = cart.cartName;
         self.requestUser.text = aUser.empID;
         self.requestStatus.text = [request.reqStatus stringValue];
-        //self.requestDate.text = request.schedStartTime;
+        NSString *date = [NSDateFormatter
+                          localizedStringFromDate:request.schedStartTime
+                          dateStyle:NSDateFormatterShortStyle
+                          timeStyle:NSDateFormatterNoStyle];
+        
+        self.requestDate.text = date;
         NSLog(@"button enabled");
         self.detailView.hidden = false;
 
