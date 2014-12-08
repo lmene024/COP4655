@@ -29,7 +29,7 @@
 
 #pragma mark - Properties
 
-@synthesize manager, searchUserBar, /*tableView,*/actionButton;
+@synthesize manager, searchUserBar, actionButton;
 
 #pragma mark - UIViewController
 
@@ -53,13 +53,8 @@
     self.loanView.hidden = true;
     self.returnView.hidden = true;
     self.actionButton.hidden = true;
-    
-    [self.tableView setHidden:true];
 }
 
-- (void) searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView{
-    tableView.frame = self.tableView.frame;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -83,17 +78,13 @@
     [filterArray removeAllObjects];
     
     if (searchText.length !=0) {
-        [self.tableView setHidden:false];
         [self loadFilterArray];
-   }else{
-        [self.tableView setHidden:true];
     }
-    [self.tableView reloadData];
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [searchBar setText:@""];
-    [self.tableView setHidden:true];
+
     [searchBar setShowsCancelButton:false animated:true];
     [searchBar resignFirstResponder];
 }
@@ -101,9 +92,6 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar setShowsCancelButton:false animated:true];
     [searchBar resignFirstResponder];
-    
-    self.tableView.allowsSelection = true;
-    self.tableView.scrollEnabled = true;
 }
 
 - (void) loadFilterArray{
@@ -135,7 +123,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellID = @"cell";
     
-    UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
@@ -156,10 +144,7 @@
     [self.searchUserBar resignFirstResponder];
     [self.searchUserBar setShowsCancelButton:false animated:false];
 #warning not sure why but there are two table views showing up here...
-    [tableView setHidden:true];
-    [self.tableView setHidden:true];
-    //[self setClearButtonMode:searchUserBar];
-    
+    [self.searchDisplayController setActive:false animated:true];
     [self displayRequestForUser:userToProcess];
 }
 
@@ -202,31 +187,28 @@
         //self.requestDate.text = request.schedStartTime;
         NSLog(@"button enabled");
         self.detailView.hidden = false;
-        //[self.view bringSubviewToFront:self.actionButton];
+
+        //enable action button
         [self.actionButton setEnabled:true];
+        
+        requestToProcess = request;
     }
 }
 
 - (NSPredicate *) getCurrentItems{
-    NSDate * now = [NSDate date];
-    now = [now dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
-    now = [now dateByAddingTimeInterval:-(MAX_REQUEST_TIME_VARIANCE)];
+    NSDate * startTime, * endTime = [NSDate date];
+    endTime = [endTime dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
+    
+    startTime = [startTime dateByAddingTimeInterval:-(MAX_REQUEST_TIME_VARIANCE)];
     
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
-        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: now];
-        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:now];
+        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: startTime];
+        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:endTime];
         
-        return  (start != NSOrderedDescending && end!=NSOrderedAscending);
+        return  (start != NSOrderedDescending && end!=NSOrderedAscending) && request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED;
     }];
     return currentItemsOnly;
 }
-
-
-/*-(void) setClearButtonMode:(UISearchBar *)mySearchBar{
-    UITextField *textField = [mySearchBar valueForKey:@"_searchField"];
-    textField.clearButtonMode = UITextFieldViewModeNever;
-}*/
-
 
 
 #pragma mark - Save Request Methods
@@ -303,16 +285,42 @@
 
 - (IBAction)actionButtonPressed:(id)sender {
     NSLog(@"Action button pressed");
-    [self saveRequestDataForRequest];
-    // Implement the ability to edit a request to add a different status
+    //Check which function we are performing
+    if (self.chooserView.selectedSegmentIndex == 0) {
+        if (requestToProcess.cart.qrCode!=nil) {
+            //Start QR scanner
+            [self scanQrCode:nil];
+        }else{
+            //process manually
+            
+        }
+    }else{
+        if (requestToProcess != nil) {
+            //check if request is open
+            if (requestToProcess.reqStatus.intValue == REQUEST_STATUS_INPROCESS) {
+                //set it to completed
+                requestToProcess.reqStatus = [NSNumber numberWithInt:REQUEST_STATUS_COMPLETED];
+                [manager save];
+                
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Request Complete"
+                                                                 message:@"Your Request has been closed"
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }
+    }
 }
 
+
 - (IBAction)scanButtonPressed:(id)sender {
+    [self scanQrCode:nil];
 }
 
 - (IBAction)toggleView:(UISegmentedControl *)sender {
     self.actionButton.hidden = false;
-    
+    self.actionButton.enabled = false;
     if(sender.selectedSegmentIndex == 0){
         //show loan view
         self.loanView.hidden = false;
@@ -321,12 +329,13 @@
         self.returnView.hidden = true;
         
         //reset dependent views
-       // self.tableView.hidden = true;
         self.detailView.hidden = true;
         
         //change button text
-        //[self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
-        //[self.actionButton setTitle:@"Loan Cart" forState:UIControlStateNormal];
+        [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
+        [self.actionButton setTitle:@"Loan Cart" forState:UIControlStateNormal];
+        
+        //load user data to search by user
         NSError * error = nil;
         userArray = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
         [self loadFilterArray];
@@ -334,12 +343,85 @@
     }else{
         //show return view
         self.returnView.hidden = false;
-        [self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
-        
+
         //hide loan view
         self.loanView.hidden = true;
+
+        [self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
+        [self.actionButton setTitle:@"Return Cart" forState:UIControlStateNormal];
+       
     }
 }
+
+#pragma qr scanning
+- (void)scanQrCode:(id)sender {
+    ZBarReaderViewController * scannerController = [ZBarReaderViewController new];
+    scannerController.readerDelegate = self;
+    scannerController.supportedOrientationsMask = ZBarOrientationMaskAll;
+    
+    ZBarImageScanner * scanner = scannerController.scanner;
+    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
+    
+    [self presentViewController:scannerController animated:true completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
+    ZBarSymbol * symbol = nil;
+    for (symbol in results) {
+        //already set first barcode to symbol
+        break;
+    }
+    
+    //check for process action
+    if (self.chooserView.selectedSegmentIndex == 0) {
+     
+    //check if cart is correct
+    if ([symbol.data compare:requestToProcess.cart.qrCode]==NSOrderedSame) {
+        requestToProcess.reqStatus = [NSNumber numberWithInt:REQUEST_STATUS_INPROCESS];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Request Processed"
+                                                         message:@"Your Request has been processed"
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Request Error"
+                                                         message:@"Your Cart Keys do not match your selected cart"
+                                                        delegate:nil
+                                               cancelButtonTitle:@"Cancel"
+                                               otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    }else{
+        NSString * qrCode = symbol.data;
+        //find request by cart QR code
+        NSPredicate * cartPredicate = [NSPredicate predicateWithBlock:^BOOL(Cart * checkCart, NSDictionary *bindings) {
+            return [checkCart.qrCode compare:qrCode] == NSOrderedSame;
+        }];
+        NSError * error = nil;
+        NSArray * carts = [manager.context executeFetchRequest:[manager getAllCarts] error:&error];
+        Cart * cart = [carts filteredArrayUsingPredicate:cartPredicate][0];
+        if (cart != nil) {
+            //find open request for this cart
+            NSPredicate * predicate = [NSPredicate predicateWithBlock:^BOOL(Request * checkRequest, NSDictionary *bindings) {
+                return checkRequest.reqStatus.intValue == REQUEST_STATUS_INPROCESS;
+            }];
+            NSSet * requestSet = [cart.requests filteredSetUsingPredicate:predicate];
+            Request * request;
+            
+            if (requestSet != nil && requestSet.count>0) {
+                request = [requestSet allObjects][0];
+            }
+            
+            if (request != nil) {
+                requestToProcess = request;
+            }
+        }
+    }
+    [picker dismissViewControllerAnimated:true completion:nil];
+}
+
 
 @end
 
