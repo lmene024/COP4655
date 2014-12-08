@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CTProcessRequestViewController">
             <connections>
                 <outlet property="actionButton" destination="bNt-1p-qgS" id="hhh-cU-tzg"/>
+                <outlet property="chooserView" destination="DGz-wZ-1C7" id="mTS-bE-n3j"/>
                 <outlet property="detailView" destination="wme-2N-rsF" id="6ep-fx-jhW"/>
                 <outlet property="loanView" destination="LDv-gq-z2I" id="qyX-c9-GbO"/>
                 <outlet property="requestCart" destination="aFk-4f-4w6" id="Xot-St-85x"/>
@@ -18,7 +19,6 @@
                 <outlet property="searchBarController" destination="NXg-4u-ad6" id="kHD-q0-qi1"/>
                 <outlet property="searchDisplayController" destination="NXg-4u-ad6" id="GaT-kI-Jmr"/>
                 <outlet property="searchUserBar" destination="x57-zK-7oM" id="ouz-fx-Psj"/>
-                <outlet property="tableView" destination="1Hf-HI-bFu" id="YVQ-aD-Jtz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -53,7 +53,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.40000000596046448" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" id="LDv-gq-z2I" userLabel="Loan View">
                     <rect key="frame" x="20" y="56" width="280" height="331"/>
@@ -129,7 +128,6 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <searchBar contentMode="redraw" placeholder="User" id="x57-zK-7oM">
                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
@@ -139,17 +137,7 @@
                                 <outlet property="delegate" destination="-1" id="4ci-RX-hTD"/>
                             </connections>
                         </searchBar>
-                        <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1Hf-HI-bFu">
-                            <rect key="frame" x="0.0" y="44" width="280" height="287"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="ILu-HQ-sd9"/>
-                                <outlet property="delegate" destination="-1" id="jWc-RA-jwv"/>
-                            </connections>
-                        </tableView>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bNt-1p-qgS">
                     <rect key="frame" x="40" y="395" width="240" height="30"/>
@@ -162,7 +150,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
