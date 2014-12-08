@@ -544,6 +544,7 @@
             NSNumber *number = [NSNumber numberWithInt: REQUEST_STATUS_SCHEDULED];
             [req setReqStatus:number];
             [req setReqDate:self.requestDatePicker.date];
+            [req setNote:self.notesTextView.text];
             
             [manager save];
             
