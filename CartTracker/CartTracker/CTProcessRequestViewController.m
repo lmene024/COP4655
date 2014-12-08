@@ -59,6 +59,11 @@
 
 - (void) searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView{
     tableView.frame = self.tableView.frame;
+    [tableView setHidden:false];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView{
+    [tableView setHidden:true];
 }
 
 - (void)didReceiveMemoryWarning
@@ -200,21 +205,23 @@
         //self.requestDate.text = request.schedStartTime;
         NSLog(@"button enabled");
         self.detailView.hidden = false;
-        //[self.view bringSubviewToFront:self.actionButton];
+
         [self.actionButton setEnabled:true];
+        self.actionButton.layer.zPosition = 10;
     }
 }
 
 - (NSPredicate *) getCurrentItems{
-    NSDate * now = [NSDate date];
-    now = [now dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
-    now = [now dateByAddingTimeInterval:-(MAX_REQUEST_TIME_VARIANCE)];
+    NSDate * startTime, * endTime = [NSDate date];
+    endTime = [endTime dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
+    
+    startTime = [startTime dateByAddingTimeInterval:-(MAX_REQUEST_TIME_VARIANCE)];
     
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
-        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: now];
-        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:now];
+        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: startTime];
+        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:endTime];
         
-        return  (start != NSOrderedDescending && end!=NSOrderedAscending);
+        return  (start != NSOrderedDescending && end!=NSOrderedAscending) && request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED;
     }];
     return currentItemsOnly;
 }
