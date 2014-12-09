@@ -248,11 +248,20 @@
         // Delete the row from the data source
         if (USERS_VIEW) {
             
-            User *aUser = [self.dataController objectAtIndexPath:indexPath];
+             User *aUser = [self.dataController objectAtIndexPath:indexPath];
             
-            NSLog(@"User deleted: %@",aUser.firstName);
-            
-            [manager deleteUser:aUser];
+            if ([self validateUserDeletion:aUser]) {
+                NSLog(@"User deleted: %@",aUser.firstName);
+                [manager deleteUser:aUser];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Error"
+                                      message:@"Can't delete a user with pending requests"
+                                      delegate:self
+                                      cancelButtonTitle:@"Ok"
+                                      otherButtonTitles:nil, nil];
+                [alert show];
+            }
             
         } else if (CART_VIEW) {
             
@@ -261,6 +270,7 @@
             NSLog(@"User deleted: %@",aCart.cartName);
             
             [manager deleteCart:aCart];
+            
         } else if (REQUEST_VIEW){
             Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
             NSLog(@"Reques Deleted: %@",aRequest.reqID);
@@ -421,6 +431,7 @@
         Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
         CTRequestDetailViewController *requestDetailViewController = [[CTRequestDetailViewController alloc] init];
         requestDetailViewController.request = aRequest;
+        requestDetailViewController.manager = self.manager;
         [self.navigationController
          pushViewController:requestDetailViewController
          animated:YES];
@@ -431,6 +442,8 @@
         CTUserDetailViewController *userDetailViewController = [[CTUserDetailViewController alloc] init];
         userDetailViewController.user = aUser;
         userDetailViewController.manager = self.manager;
+        NSLog(@"User %@ has #requests: %lu",aUser.firstName,(unsigned long)[aUser.requests count]);
+        [self validateUserDeletion:aUser];
         [self.navigationController
          pushViewController:userDetailViewController
          animated:YES];
@@ -474,5 +487,29 @@
     //[manager save];
 }
 
+#pragma mark - Validation
+
+/*! Validates if a user has any pending or active requests. It he/she has any, then the method
+ return YES. Otherwise NO
+ 
+ @param User
+ @return Boolean
+ 
+ */
+
+-(BOOL) validateUserDeletion:(User*)aUser{
+    
+    NSSet * requestSet = aUser.requests;
+    if (requestSet.count > 0) {
+        for (Request *req in requestSet) {
+            if ((req.reqStatus.intValue == REQUEST_STATUS_SCHEDULED) ||
+                (req.reqStatus.intValue == REQUEST_STATUS_INPROCESS) ){
+                NSLog(@"Has an Active Request");
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
 
 @end

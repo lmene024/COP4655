@@ -10,8 +10,9 @@
 #import "CTDetailViewDelegate.h"
 
 @class Request;
+@class CTcartManager;
 
-@interface CTRequestDetailViewController : UIViewController <CTDetailViewDelegate>
+@interface CTRequestDetailViewController : UIViewController <CTDetailViewDelegate,UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *reqIdTextField;
 @property (strong, nonatomic) IBOutlet UITextField *userTextField;
@@ -20,5 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *reqDateTextField;
 
 @property (strong, nonatomic) Request *request;
+
+@property (strong, nonatomic) CTcartManager *manager;
 
 @end

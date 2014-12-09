@@ -11,9 +11,11 @@
 #import "CTADetailViewController.h"
 
 
+
 @class CTcartManager;
 @class Cart;
 @class User;
+@class Request;
 
 @interface CTRequestNewViewController : CTADetailViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,MFMailComposeViewControllerDelegate, UINavigationControllerDelegate>
 
@@ -40,6 +42,8 @@
 
 @property (strong, nonatomic) User *userForRequest;
 @property (strong, nonatomic) Cart *cartForRequest;
+@property (strong, nonatomic) Request *existingRequest;
+
 - (IBAction)intervalStepperPressed:(id)sender;
 
 @end

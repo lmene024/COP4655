@@ -14,14 +14,16 @@
 
 @class Cart,CTcartManager;
 
-@interface CTCartDetailViewController : CTADetailViewController <CTDetailViewDelegate, ZBarReaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CTCartDetailViewController : CTADetailViewController <CTDetailViewDelegate, ZBarReaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *cartIdTextField;
 @property (strong, nonatomic) IBOutlet UITextField *cartNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *tagTextField;
 @property (strong, nonatomic) IBOutlet UIImageView *barCodeImage;
 @property (strong, nonatomic) IBOutlet UIButton *scanButton;
+
 @property (strong, nonatomic) CTcartManager * manager;
+@property (nonatomic, strong) NSFetchedResultsController * dataController;
 
 @property (nonatomic, retain) Cart *cart;
 

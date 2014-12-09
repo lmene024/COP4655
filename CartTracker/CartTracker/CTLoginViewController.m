@@ -5,6 +5,7 @@
 //  Created by Andres Ruggiero on 12/1/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: CTLoginViewController is in charge of validating the login process of a user
 
 #import "CTLoginViewController.h"
 #import "CTViewController.h"
@@ -20,10 +21,14 @@
     NSArray *userArray;
 }
 
+#pragma mark - Properties
+
 @synthesize manager;
 @synthesize usernameTextField;
 @synthesize passwordTextField;
 @synthesize loginView;
+
+#pragma mark - UIViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +59,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - IBAction
+
 - (IBAction)buttonPressed:(id)sender {
     
     NSLog(@"Button Pressed");
@@ -67,6 +74,8 @@
     [self presentViewController:controller animated:YES completion:nil];
     
 }
+
+#pragma mark - Validation
 
 -(BOOL) validateCredentials{
     

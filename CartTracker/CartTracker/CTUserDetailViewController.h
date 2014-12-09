@@ -14,6 +14,7 @@
 
 @interface CTUserDetailViewController : CTADetailViewController <CTDetailViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *contactView;
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet UITextField *licenseTextField;
 @property (strong, nonatomic) IBOutlet UITextField *firstNameTextField;

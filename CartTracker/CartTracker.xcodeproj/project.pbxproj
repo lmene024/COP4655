@@ -21,6 +21,10 @@
 		4CE4733F1A34BEB6006CE1B4 /* CTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4733E1A34BEB6006CE1B4 /* CTLoginViewController.xib */; };
 		4CE473411A34C103006CE1B4 /* campus-gl-gc-night-close.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */; };
 		4CE473431A34E62B006CE1B4 /* fiu-ps-logo11-trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */; };
+		4CE473461A35FE1B006CE1B4 /* circle-outline-xxl.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473451A35FE1B006CE1B4 /* circle-outline-xxl.png */; };
+		4CE473491A360095006CE1B4 /* CTContactUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE473481A360095006CE1B4 /* CTContactUI.m */; };
+		4CE4734F1A360201006CE1B4 /* CTLoginViewUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4734E1A360201006CE1B4 /* CTLoginViewUI.m */; };
+		4CE473511A360235006CE1B4 /* CTUserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473501A360235006CE1B4 /* CTUserDetailViewController.xib */; };
 		4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */; };
 		4CF895A21A30E9A3003C6809 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF895A11A30E9A3003C6809 /* MessageUI.framework */; };
 		B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B30C56EB1A2D80A200F79E60 /* CTScrollView.m */; };
@@ -45,7 +49,6 @@
 		B34ADA481A2EDB9600D3A29A /* CTCartDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34ADA471A2EDB9600D3A29A /* CTCartDetailViewController.m */; };
 		B34ADA4C1A2EDC4E00D3A29A /* CTRequestNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34ADA4B1A2EDC4E00D3A29A /* CTRequestNewViewController.xib */; };
 		B34ADA521A2EDD5F00D3A29A /* CTCartDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34ADA511A2EDD5F00D3A29A /* CTCartDetailViewController.xib */; };
-		B34ADA541A2EDD8A00D3A29A /* CTUserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34ADA531A2EDD8A00D3A29A /* CTUserDetailViewController.xib */; };
 		B3B05FC11A196CEC00B32944 /* CTimageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B05FC01A196CEC00B32944 /* CTimageTransformer.m */; };
 		B3BFE9DA1A2586EB00B86E9B /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9D91A2586EB00B86E9B /* Cart.m */; };
 		B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BFE9DC1A25870A00B86E9B /* Request.m */; };
@@ -105,11 +108,17 @@
 		4C8376711A2D097E003108BB /* CTAdminTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminTableViewController.xib; sourceTree = "<group>"; };
 		4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestNavigationViewController.xib; sourceTree = "<group>"; };
 		4CE4733E1A34BEB6006CE1B4 /* CTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTLoginViewController.xib; sourceTree = "<group>"; };
-		4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "campus-gl-gc-night-close.jpg"; sourceTree = "<group>"; };
-		4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fiu-ps-logo11-trans.png"; sourceTree = "<group>"; };
+		4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "campus-gl-gc-night-close.jpg"; path = "../campus-gl-gc-night-close.jpg"; sourceTree = "<group>"; };
+		4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fiu-ps-logo11-trans.png"; path = "../fiu-ps-logo11-trans.png"; sourceTree = "<group>"; };
+		4CE473451A35FE1B006CE1B4 /* circle-outline-xxl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-outline-xxl.png"; sourceTree = "<group>"; };
+		4CE473471A360095006CE1B4 /* CTContactUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTContactUI.h; sourceTree = "<group>"; };
+		4CE473481A360095006CE1B4 /* CTContactUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTContactUI.m; sourceTree = "<group>"; };
+		4CE4734D1A360201006CE1B4 /* CTLoginViewUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLoginViewUI.h; sourceTree = "<group>"; };
+		4CE4734E1A360201006CE1B4 /* CTLoginViewUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewUI.m; sourceTree = "<group>"; };
+		4CE473501A360235006CE1B4 /* CTUserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTUserDetailViewController.xib; sourceTree = "<group>"; };
 		4CE4AF1C1A2D2DFB00C3C8A3 /* CTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLoginViewController.h; sourceTree = "<group>"; };
 		4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewController.m; sourceTree = "<group>"; };
-		4CE4AF2D1A2D409900C3C8A3 /* CTDetailViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CTDetailViewDelegate.h; path = CartTracker/CTDetailViewDelegate.h; sourceTree = "<group>"; };
+		4CE4AF2D1A2D409900C3C8A3 /* CTDetailViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTDetailViewDelegate.h; sourceTree = "<group>"; };
 		4CF895A11A30E9A3003C6809 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B30C56EA1A2D80A200F79E60 /* CTScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTScrollView.h; sourceTree = "<group>"; };
 		B30C56EB1A2D80A200F79E60 /* CTScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTScrollView.m; sourceTree = "<group>"; };
@@ -162,7 +171,6 @@
 		B34ADA471A2EDB9600D3A29A /* CTCartDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCartDetailViewController.m; sourceTree = "<group>"; };
 		B34ADA4B1A2EDC4E00D3A29A /* CTRequestNewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestNewViewController.xib; sourceTree = "<group>"; };
 		B34ADA511A2EDD5F00D3A29A /* CTCartDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCartDetailViewController.xib; sourceTree = "<group>"; };
-		B34ADA531A2EDD8A00D3A29A /* CTUserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTUserDetailViewController.xib; sourceTree = "<group>"; };
 		B375F82C1A309C8B007D45DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		B375F82E1A309C8B007D45DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		B375F82F1A309C8B007D45DE /* CTADetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTADetailViewController.h; sourceTree = "<group>"; };
@@ -346,9 +354,9 @@
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4CE473501A360235006CE1B4 /* CTUserDetailViewController.xib */,
 				B32BC9071A3169EC00DB3E51 /* CTProcessRequestViewController.xib */,
 				4CE4733E1A34BEB6006CE1B4 /* CTLoginViewController.xib */,
-				B34ADA531A2EDD8A00D3A29A /* CTUserDetailViewController.xib */,
 				B34ADA511A2EDD5F00D3A29A /* CTCartDetailViewController.xib */,
 				4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */,
 				B34ADA4B1A2EDC4E00D3A29A /* CTRequestNewViewController.xib */,
@@ -408,6 +416,9 @@
 		B3232DCB1A2FE85F00F98CF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4CE473451A35FE1B006CE1B4 /* circle-outline-xxl.png */,
+				4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */,
+				4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */,
 				B3232DC91A2FE85500F98CF4 /* contactIcon.png */,
 			);
 			name = Resources;
@@ -652,9 +663,10 @@
 		B3CAF5831A14E69A00274EEF = {
 			isa = PBXGroup;
 			children = (
-				4CE4AF2D1A2D409900C3C8A3 /* CTDetailViewDelegate.h */,
-				4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */,
-				4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */,
+				4CE4734D1A360201006CE1B4 /* CTLoginViewUI.h */,
+				4CE4734E1A360201006CE1B4 /* CTLoginViewUI.m */,
+				4CE473471A360095006CE1B4 /* CTContactUI.h */,
+				4CE473481A360095006CE1B4 /* CTContactUI.m */,
 				B3CAF5951A14E69A00274EEF /* CartTracker */,
 				B3CAF5B71A14E69B00274EEF /* CartTrackerTests */,
 				B3CAF58E1A14E69A00274EEF /* Frameworks */,
@@ -715,6 +727,7 @@
 		B3CAF5961A14E69A00274EEF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CE4AF2D1A2D409900C3C8A3 /* CTDetailViewDelegate.h */,
 				4C8376691A2D0118003108BB /* Constants.h */,
 				B3CAF5971A14E69A00274EEF /* CartTracker-Info.plist */,
 				B3CAF5981A14E69A00274EEF /* InfoPlist.strings */,
@@ -829,12 +842,13 @@
 				4CE4733F1A34BEB6006CE1B4 /* CTLoginViewController.xib in Resources */,
 				B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */,
 				B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */,
-				B34ADA541A2EDD8A00D3A29A /* CTUserDetailViewController.xib in Resources */,
+				4CE473461A35FE1B006CE1B4 /* circle-outline-xxl.png in Resources */,
 				B3232DEC1A2FF34700F98CF4 /* zbar-help.html in Resources */,
 				B3232DED1A2FF34700F98CF4 /* zbar-helpicons.png in Resources */,
 				4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */,
 				B32BC9091A3169EC00DB3E51 /* CTProcessRequestViewController.xib in Resources */,
 				B3CE64CB1A2ECFE5004470A7 /* CTCalendarViewController.xib in Resources */,
+				4CE473511A360235006CE1B4 /* CTUserDetailViewController.xib in Resources */,
 				B34ADA4C1A2EDC4E00D3A29A /* CTRequestNewViewController.xib in Resources */,
 				B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */,
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
@@ -878,6 +892,8 @@
 				B34ADA421A2ED79000D3A29A /* CTRequestNavigationViewController.m in Sources */,
 				B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */,
 				B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */,
+				4CE4734F1A360201006CE1B4 /* CTLoginViewUI.m in Sources */,
+				4CE473491A360095006CE1B4 /* CTContactUI.m in Sources */,
 				B32BC9081A3169EC00DB3E51 /* CTProcessRequestViewController.m in Sources */,
 				B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */,
 				B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */,

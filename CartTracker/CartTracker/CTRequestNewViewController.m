@@ -27,6 +27,7 @@
     NSArray *cartArray;
     NSMutableArray *filteredCartArray;
     Boolean isSecondSearchBar;
+    NSArray *requestArray;
  //   User *userForRequest;
  //   Cart *cartForRequest;
 }
@@ -47,6 +48,7 @@
 @synthesize cartForRequest, userForRequest;
 @synthesize intervalStepper;
 @synthesize intervalLabel;
+@synthesize existingRequest;
 
 #pragma mark - UIViewController
 
@@ -93,6 +95,12 @@
        // [self searchBar:cartSearchBar textDidChange:cartForRequest.cartName];
        // [self searchBarTextDidEndEditing:self.cartSearchBar];
     }
+    
+    if (existingRequest) {
+        NSString *name = [self getFormatedNameWithFirst:self.existingRequest.user.firstName andLast:self.existingRequest.user.lastName];
+        [self.searchBar setText:name];
+        [self.cartSearchBar setText:self.existingRequest.cart.cartID];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -124,6 +132,22 @@
     NSError *error2 = nil;
     NSArray *arrayCart = [manager.context executeFetchRequest:[manager getAllCarts] error:&error2];
     cartArray = [[NSArray alloc] initWithArray:arrayCart];
+    
+    NSError *error3 = nil;
+    NSArray *arrayRequest = [manager.context executeFetchRequest:[manager getAllRequests] error:&error3];
+    requestArray = [[NSArray alloc] initWithArray:arrayRequest];
+}
+
+-(NSNumber*) getMaxRequestId{
+    NSNumber *maxRequestId = [[NSNumber alloc] initWithInt:0];
+    NSLog(@"count # requests: %d",[requestArray count]);
+    for (Request *req in requestArray) {
+        if (req.reqID >= maxRequestId) {
+            maxRequestId = req.reqID;
+        }
+    }
+    
+    return maxRequestId;
 }
 
 /*! Method that initializes the UIStepper
@@ -239,12 +263,11 @@
     if (!isSecondSearchBar) {
         for (User *aUser in userArray) {
             NSString *searchString = self.searchBar.text;
-            NSLog(@"SearchBarText: %@",self.searchBar.text);
+            //NSLog(@"SearchBarText: %@",self.searchBar.text);
             NSComparisonResult result = [aUser.firstName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
             NSComparisonResult result2 = [aUser.lastName compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
             
             if ((result == NSOrderedSame) || (result2 == NSOrderedSame)) {
-                NSLog(@"Testing result");
                 [filteredContentList addObject:aUser];
             }
         }
@@ -438,6 +461,8 @@
     
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
+    //[self reservationSucessful];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark Email Method
@@ -480,6 +505,7 @@
     else if([title isEqualToString:@"No"])
     {
         NSLog(@"Button 2 was selected.");
+        //[self reservationSucessful];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -535,7 +561,15 @@
             Request *req = [self.manager newRequest];
             
             NSLog(@"User: %@ Cart %@",userForRequest.firstName,cartForRequest.cartName);
+
+            // Increment MaxRequestID
+            NSNumber *maxRequestNumber = [self getMaxRequestId];
+            int value = [maxRequestNumber intValue];
+            maxRequestNumber = [NSNumber numberWithInt:value + 1];
             
+            NSLog(@"MaxRequest: %@",maxRequestNumber);
+            
+            [req setReqID:maxRequestNumber];
             [req setUser:userForRequest];
             [req setCart:cartForRequest];
             [req setSchedStartTime:self.requestDatePicker.date];
@@ -559,6 +593,7 @@
             [alert show];
             
         }
+        
     } else {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error"
@@ -620,6 +655,16 @@
         
         return NO;
     }
+}
+
+-(void) reservationSucessful{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Notification"
+                          message:@"Reservation Sucessful"
+                          delegate:self
+                          cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 /*! Method that iterates and lookds for an Element in Array with a determined Criteria

@@ -14,6 +14,7 @@
 #import "User.h"
 #import "CTcartManager.h"
 #import "Constants.h"
+#import "CTContactUI.h"
 
 @interface CTUserDetailViewController ()
 
