@@ -52,6 +52,7 @@
     self.loanView.hidden = true;
     self.returnView.hidden = true;
     self.actionButton.hidden = true;
+    
 }
 
 
