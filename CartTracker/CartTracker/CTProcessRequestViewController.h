@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ZBarSDK.h"
 
+@class Request, User, Cart;
+
+
 @interface CTProcessRequestViewController : UIViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate, UISearchDisplayDelegate, ZBarReaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 
 @property (strong, nonatomic) IBOutlet UIView *loanView;
 @property (strong, nonatomic) IBOutlet UIView *returnView;
@@ -36,5 +40,10 @@
 
 - (IBAction)actionButtonPressed:(id)sender;
 - (IBAction)scanButtonPressed:(id)sender;
+
+@property (strong, nonatomic) User * userToProcess;
+@property (strong, nonatomic) Request *requestToProcess;
+@property (strong, nonatomic) Cart * cartToProcess;
+
 
 @end

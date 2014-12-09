@@ -22,9 +22,6 @@
 {
     NSArray * userArray;
     NSMutableArray * filterArray;
-    User * userToProcess;
-    Request *requestToProcess;
-    Cart * cartToProcess;
 }
 
 #pragma mark - Properties
