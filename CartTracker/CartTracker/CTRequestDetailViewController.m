@@ -82,39 +82,20 @@
     }
 }
 
-/*-(void) setEditing:(BOOL)editing animated:(BOOL)animated{
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated{
     
     [super setEditing:editing animated:animated];
     
     if (editing) {
         
-        // Enabling UITextFields
-        [self enableFields:YES andSetBorderStyle:UITextBorderStyleRoundedRect];
-        
-        self.navigationItem.hidesBackButton = YES;
-        
-        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
-        
-        self.navigationItem.leftBarButtonItem = cancelButton;
-        
-        CTRequestNewViewController *editRequestController = [[CTRequestNewViewController alloc] init];
+        CTRequestNewViewController * editRequestController = [[CTRequestNewViewController alloc] init];
         editRequestController.existingRequest = request;
         editRequestController.manager = self.manager;
         [self.navigationController pushViewController:editRequestController animated:YES];
-        
-    } else {
-        if([self saveDataForCart:cart]){
-            // Disabling UITextFields
-            [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
-            
-            self.navigationItem.hidesBackButton = NO;
-            
-            self.navigationItem.leftBarButtonItem = nil;
-            
-            NSLog(@"Done Button Pressed");
-        }
+        self.editing = false;
     }
-}*/
+    
+}
 
 #pragma mark - User Interface
 
@@ -164,17 +145,17 @@
 }
 
 /*-(BOOL) fieldsAreEmpty{
-    
-    if ( FIELD_ISEMPTY(self.reqIdTextField.text)
-        || FIELD_ISEMPTY(self.reqDateTextField.text)
-        || FIELD_ISEMPTY(self.reqStTextField.text)
-        || FIELD_ISEMPTY(self.userTextField.text)
-        || FIELD_ISEMPTY(self.cartTextField.text)) {
-        return YES;
-    }
-    
-    return NO;
-}*/
+ 
+ if ( FIELD_ISEMPTY(self.reqIdTextField.text)
+ || FIELD_ISEMPTY(self.reqDateTextField.text)
+ || FIELD_ISEMPTY(self.reqStTextField.text)
+ || FIELD_ISEMPTY(self.userTextField.text)
+ || FIELD_ISEMPTY(self.cartTextField.text)) {
+ return YES;
+ }
+ 
+ return NO;
+ }*/
 
 #pragma mark UIAlertView
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -10,13 +10,18 @@
                 <outlet property="chooserView" destination="DGz-wZ-1C7" id="mTS-bE-n3j"/>
                 <outlet property="detailView" destination="wme-2N-rsF" id="6ep-fx-jhW"/>
                 <outlet property="loanView" destination="LDv-gq-z2I" id="qyX-c9-GbO"/>
+                <outlet property="notFoundLabel" destination="PFW-SA-42N" id="sG6-iE-64e"/>
+                <outlet property="notFoundView" destination="0XU-OB-MKI" id="4M4-bj-9bX"/>
                 <outlet property="requestCart" destination="aFk-4f-4w6" id="Xot-St-85x"/>
                 <outlet property="requestDate" destination="wSi-lT-cLb" id="deZ-fQ-UEc"/>
+                <outlet property="requestEnd" destination="csm-M9-hdE" id="d87-gV-g6j"/>
                 <outlet property="requestID" destination="hh6-HJ-gRV" id="mAo-D1-Xem"/>
+                <outlet property="requestStart" destination="LrH-4R-egN" id="zH5-Pc-AgR"/>
                 <outlet property="requestStatus" destination="fZE-BY-2Ze" id="M0S-Zy-mp9"/>
                 <outlet property="requestUser" destination="h6e-Sc-Z5A" id="Rme-mj-7bv"/>
                 <outlet property="returnView" destination="rBC-KS-UVG" id="BbI-QT-gHL"/>
                 <outlet property="searchBarController" destination="NXg-4u-ad6" id="kHD-q0-qi1"/>
+                <outlet property="searchContentsController" destination="jAr-Q9-FdL" id="J7X-x5-5YQ"/>
                 <outlet property="searchDisplayController" destination="NXg-4u-ad6" id="GaT-kI-Jmr"/>
                 <outlet property="searchUserBar" destination="x57-zK-7oM" id="ouz-fx-Psj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -90,8 +95,22 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cMG-4M-cRA">
+                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cMG-4M-cRA">
                                     <rect key="frame" x="20" y="204" width="65" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ley-Un-S3v">
+                                    <rect key="frame" x="165" y="203" width="22" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wWz-99-BYq">
+                                    <rect key="frame" x="20" y="242" width="65" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -121,12 +140,38 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="LrH-4R-egN">
+                                    <rect key="frame" x="92" y="200" width="65" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="csm-M9-hdE">
+                                    <rect key="frame" x="195" y="200" width="65" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="fZE-BY-2Ze">
-                                    <rect key="frame" x="93" y="200" width="167" height="30"/>
+                                    <rect key="frame" x="92" y="238" width="168" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <view contentMode="scaleToFill" id="0XU-OB-MKI" userLabel="Not Found">
+                                    <rect key="frame" x="0.0" y="-5" width="280" height="287"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Not Found" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PFW-SA-42N">
+                                            <rect key="frame" x="20" y="92" width="240" height="103"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                         </view>
                         <searchBar contentMode="redraw" placeholder="User" id="x57-zK-7oM">
@@ -159,10 +204,20 @@
             <connections>
                 <outlet property="delegate" destination="-1" id="h3q-Cs-tzc"/>
                 <outlet property="searchBar" destination="x57-zK-7oM" id="fq9-hW-NTC"/>
-                <outlet property="searchContentsController" destination="-1" id="wrP-FT-pFM"/>
+                <outlet property="searchContentsController" destination="jAr-Q9-FdL" id="fXt-MK-cXB"/>
                 <outlet property="searchResultsDataSource" destination="-1" id="0pS-fW-7v0"/>
                 <outlet property="searchResultsDelegate" destination="-1" id="m2q-Li-aHL"/>
             </connections>
         </searchDisplayController>
+        <viewController id="jAr-Q9-FdL">
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="view" destination="LDv-gq-z2I" id="OQU-dw-q59"/>
+            </connections>
+        </viewController>
     </objects>
 </document>
