@@ -15,6 +15,7 @@
 #import "User.h"
 #import "Cart.h"
 #import "Constants.h"
+#import "CTProcessNavigationViewController.h"
 
 @interface CTRequestDetailViewController ()
 
@@ -185,6 +186,11 @@
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil, nil];
     [alert show];
+}
+
+- (IBAction)processRequest:(id)sender {
+    //[self.navigationController]
+    //UITabBarController *tabController = self.tabBarController;
 }
 
 @end

@@ -23,5 +23,6 @@
 @property (strong, nonatomic) Request *request;
 
 @property (strong, nonatomic) CTcartManager *manager;
+- (IBAction)processRequest:(id)sender;
 
 @end
