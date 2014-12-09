@@ -14,5 +14,4 @@
 @property (strong, nonatomic) IBOutlet UIButton *statisticsButton;
 @property (strong, nonatomic) IBOutlet UIButton *logOutButton;
 - (IBAction)buttonPressed:(id)sender;
-
 @end

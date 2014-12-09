@@ -13,7 +13,6 @@
 		4C0735391A367ED700AE56E8 /* CTCalendarNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0735371A367ED700AE56E8 /* CTCalendarNavigationViewController.m */; };
 		4C07353A1A367ED700AE56E8 /* CTCalendarNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735381A367ED700AE56E8 /* CTCalendarNavigationViewController.xib */; };
 		4C07357F1A36832E00AE56E8 /* CTAdminIconsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */; };
-		4C0735801A36832E00AE56E8 /* CTAdminIconsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C07357E1A36832E00AE56E8 /* CTAdminIconsViewController.xib */; };
 		4C07358A1A369C7E00AE56E8 /* calendarUnselectedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735891A369C7E00AE56E8 /* calendarUnselectedIcon.png */; };
 		4C07358C1A369CBA00AE56E8 /* calendarSelectedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07358B1A369CBA00AE56E8 /* calendarSelectedIcon.png */; };
 		4C07358F1A369E8B00AE56E8 /* administrator-25-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07358D1A369E8B00AE56E8 /* administrator-25-2.png */; };
@@ -22,6 +21,16 @@
 		4C0735951A36A28E00AE56E8 /* list_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735921A36A28E00AE56E8 /* list_unselected.png */; };
 		4C0735961A36A28E00AE56E8 /* process_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735931A36A28E00AE56E8 /* process_unselected.png */; };
 		4C0735981A36A2EE00AE56E8 /* process_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735971A36A2EE00AE56E8 /* process_selected.png */; };
+		4C07359C1A36A79700AE56E8 /* userSelectedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07359B1A36A79700AE56E8 /* userSelectedIcon.png */; };
+		4C07359E1A36A96D00AE56E8 /* userEnteredIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07359D1A36A96D00AE56E8 /* userEnteredIcon.png */; };
+		4C0735A01A36AC2600AE56E8 /* find_user-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07359F1A36AC2600AE56E8 /* find_user-100.png */; };
+		4C0735A31A36AEA700AE56E8 /* cartEnteredIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735A11A36AEA700AE56E8 /* cartEnteredIcon.png */; };
+		4C0735A41A36AEA700AE56E8 /* cartSelectedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735A21A36AEA700AE56E8 /* cartSelectedIcon.png */; };
+		4C0735AB1A36B0D600AE56E8 /* exit-100-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735A91A36B0D600AE56E8 /* exit-100-3.png */; };
+		4C0735AC1A36B0D600AE56E8 /* exit-100-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735AA1A36B0D600AE56E8 /* exit-100-4.png */; };
+		4C0735AE1A36B0E900AE56E8 /* CTAdminIconsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735AD1A36B0E900AE56E8 /* CTAdminIconsViewController.xib */; };
+		4C0735B11A36B19300AE56E8 /* area_chart-100-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735AF1A36B19300AE56E8 /* area_chart-100-2.png */; };
+		4C0735B21A36B19300AE56E8 /* area_chart-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735B01A36B19300AE56E8 /* area_chart-100.png */; };
 		4C576AE11A2E4F04000E9053 /* CTRequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */; };
 		4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */; };
 		4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376591A2CB751003108BB /* CTUserDetailViewController.m */; };
@@ -116,7 +125,6 @@
 		4C0735381A367ED700AE56E8 /* CTCalendarNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCalendarNavigationViewController.xib; sourceTree = "<group>"; };
 		4C07357C1A36832E00AE56E8 /* CTAdminIconsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAdminIconsViewController.h; sourceTree = "<group>"; };
 		4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAdminIconsViewController.m; sourceTree = "<group>"; };
-		4C07357E1A36832E00AE56E8 /* CTAdminIconsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminIconsViewController.xib; sourceTree = "<group>"; };
 		4C0735891A369C7E00AE56E8 /* calendarUnselectedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarUnselectedIcon.png; sourceTree = "<group>"; };
 		4C07358B1A369CBA00AE56E8 /* calendarSelectedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSelectedIcon.png; sourceTree = "<group>"; };
 		4C07358D1A369E8B00AE56E8 /* administrator-25-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "administrator-25-2.png"; sourceTree = "<group>"; };
@@ -125,6 +133,16 @@
 		4C0735921A36A28E00AE56E8 /* list_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_unselected.png; sourceTree = "<group>"; };
 		4C0735931A36A28E00AE56E8 /* process_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = process_unselected.png; sourceTree = "<group>"; };
 		4C0735971A36A2EE00AE56E8 /* process_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = process_selected.png; sourceTree = "<group>"; };
+		4C07359B1A36A79700AE56E8 /* userSelectedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSelectedIcon.png; sourceTree = "<group>"; };
+		4C07359D1A36A96D00AE56E8 /* userEnteredIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userEnteredIcon.png; sourceTree = "<group>"; };
+		4C07359F1A36AC2600AE56E8 /* find_user-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find_user-100.png"; sourceTree = "<group>"; };
+		4C0735A11A36AEA700AE56E8 /* cartEnteredIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartEnteredIcon.png; sourceTree = "<group>"; };
+		4C0735A21A36AEA700AE56E8 /* cartSelectedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartSelectedIcon.png; sourceTree = "<group>"; };
+		4C0735A91A36B0D600AE56E8 /* exit-100-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit-100-3.png"; sourceTree = "<group>"; };
+		4C0735AA1A36B0D600AE56E8 /* exit-100-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit-100-4.png"; sourceTree = "<group>"; };
+		4C0735AD1A36B0E900AE56E8 /* CTAdminIconsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminIconsViewController.xib; sourceTree = "<group>"; };
+		4C0735AF1A36B19300AE56E8 /* area_chart-100-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "area_chart-100-2.png"; sourceTree = "<group>"; };
+		4C0735B01A36B19300AE56E8 /* area_chart-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "area_chart-100.png"; sourceTree = "<group>"; };
 		4C576ADE1A2E4F03000E9053 /* CTRequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestDetailViewController.h; sourceTree = "<group>"; };
 		4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestDetailViewController.m; sourceTree = "<group>"; };
 		4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestDetailViewController.xib; sourceTree = "<group>"; };
@@ -387,7 +405,7 @@
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C07357E1A36832E00AE56E8 /* CTAdminIconsViewController.xib */,
+				4C0735AD1A36B0E900AE56E8 /* CTAdminIconsViewController.xib */,
 				4C0735381A367ED700AE56E8 /* CTCalendarNavigationViewController.xib */,
 				4C0735331A367D4100AE56E8 /* CTProcessNavigationViewController.xib */,
 				4CE473501A360235006CE1B4 /* CTUserDetailViewController.xib */,
@@ -414,8 +432,6 @@
 		4C8376571A2CB719003108BB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4C07357C1A36832E00AE56E8 /* CTAdminIconsViewController.h */,
-				4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */,
 				4C0735361A367ED700AE56E8 /* CTCalendarNavigationViewController.h */,
 				4C0735371A367ED700AE56E8 /* CTCalendarNavigationViewController.m */,
 				4C0735311A367D4100AE56E8 /* CTProcessNavigationViewController.h */,
@@ -451,6 +467,8 @@
 				B3CE64CD1A2ED033004470A7 /* CTCameraViewController.h */,
 				B32BC9051A3169EC00DB3E51 /* CTProcessRequestViewController.h */,
 				B32BC9061A3169EC00DB3E51 /* CTProcessRequestViewController.m */,
+				4C07357C1A36832E00AE56E8 /* CTAdminIconsViewController.h */,
+				4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -458,7 +476,16 @@
 		B3232DCB1A2FE85F00F98CF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C0735AF1A36B19300AE56E8 /* area_chart-100-2.png */,
+				4C0735B01A36B19300AE56E8 /* area_chart-100.png */,
+				4C0735A11A36AEA700AE56E8 /* cartEnteredIcon.png */,
+				4C0735A91A36B0D600AE56E8 /* exit-100-3.png */,
+				4C0735AA1A36B0D600AE56E8 /* exit-100-4.png */,
+				4C0735A21A36AEA700AE56E8 /* cartSelectedIcon.png */,
+				4C07359F1A36AC2600AE56E8 /* find_user-100.png */,
+				4C07359D1A36A96D00AE56E8 /* userEnteredIcon.png */,
 				4C0735971A36A2EE00AE56E8 /* process_selected.png */,
+				4C07359B1A36A79700AE56E8 /* userSelectedIcon.png */,
 				4C0735911A36A28E00AE56E8 /* list_selected.png */,
 				4C0735921A36A28E00AE56E8 /* list_unselected.png */,
 				4C0735931A36A28E00AE56E8 /* process_unselected.png */,
@@ -883,11 +910,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0735801A36832E00AE56E8 /* CTAdminIconsViewController.xib in Resources */,
+				4C0735A31A36AEA700AE56E8 /* cartEnteredIcon.png in Resources */,
 				B3CAF5A61A14E69A00274EEF /* Main_iPad.storyboard in Resources */,
 				B3232DEB1A2FF34700F98CF4 /* zbar-back.png in Resources */,
 				B3232DEE1A2FF34700F98CF4 /* zbar-samples.png in Resources */,
+				4C07359E1A36A96D00AE56E8 /* userEnteredIcon.png in Resources */,
 				4C0735951A36A28E00AE56E8 /* list_unselected.png in Resources */,
+				4C0735B11A36B19300AE56E8 /* area_chart-100-2.png in Resources */,
 				4C0735981A36A2EE00AE56E8 /* process_selected.png in Resources */,
 				4C8376731A2D097E003108BB /* CTAdminTableViewController.xib in Resources */,
 				B34ADA521A2EDD5F00D3A29A /* CTCartDetailViewController.xib in Resources */,
@@ -905,6 +934,8 @@
 				4C07353A1A367ED700AE56E8 /* CTCalendarNavigationViewController.xib in Resources */,
 				4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */,
 				B32BC9091A3169EC00DB3E51 /* CTProcessRequestViewController.xib in Resources */,
+				4C0735AC1A36B0D600AE56E8 /* exit-100-4.png in Resources */,
+				4C0735AB1A36B0D600AE56E8 /* exit-100-3.png in Resources */,
 				4C0735901A369E8B00AE56E8 /* administrator-25.png in Resources */,
 				B3CE64CB1A2ECFE5004470A7 /* CTCalendarViewController.xib in Resources */,
 				4C0735961A36A28E00AE56E8 /* process_unselected.png in Resources */,
@@ -913,9 +944,14 @@
 				B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */,
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
 				4CE473431A34E62B006CE1B4 /* fiu-ps-logo11-trans.png in Resources */,
+				4C07359C1A36A79700AE56E8 /* userSelectedIcon.png in Resources */,
+				4C0735AE1A36B0E900AE56E8 /* CTAdminIconsViewController.xib in Resources */,
+				4C0735A41A36AEA700AE56E8 /* cartSelectedIcon.png in Resources */,
 				4CE473411A34C103006CE1B4 /* campus-gl-gc-night-close.jpg in Resources */,
+				4C0735A01A36AC2600AE56E8 /* find_user-100.png in Resources */,
 				4C0735941A36A28E00AE56E8 /* list_selected.png in Resources */,
 				4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */,
+				4C0735B21A36B19300AE56E8 /* area_chart-100.png in Resources */,
 				B3232DCA1A2FE85500F98CF4 /* contactIcon.png in Resources */,
 				4C07358F1A369E8B00AE56E8 /* administrator-25-2.png in Resources */,
 				4C07358C1A369CBA00AE56E8 /* calendarSelectedIcon.png in Resources */,

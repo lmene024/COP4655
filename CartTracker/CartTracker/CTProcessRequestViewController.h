@@ -11,6 +11,7 @@
 
 @interface CTProcessRequestViewController : UIViewController <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate, UISearchDisplayDelegate, ZBarReaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+
 @property (strong, nonatomic) IBOutlet UIView *loanView;
 @property (strong, nonatomic) IBOutlet UIView *returnView;
 @property (strong, nonatomic) IBOutlet UIView *detailView;
