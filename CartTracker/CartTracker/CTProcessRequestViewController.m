@@ -27,6 +27,7 @@
 #pragma mark - Properties
 
 @synthesize manager, searchUserBar, actionButton, chooserView;
+@synthesize requestToProcess, userToProcess, cartToProcess;
 
 #pragma mark - UIViewController
 
