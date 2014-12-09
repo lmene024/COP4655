@@ -41,8 +41,10 @@
     self.viewControllers = @[processController, adminController,requestController, calendarController];
     //UITabBarItem *item = [self.tabBar.items objectAtIndex:0];
     
-    [[UITabBar appearance] setTintColor:[UIColor redColor]];
-    
+    [self initTabBar];
+}
+
+-(void) initTabBar{
     // set color of unselected text to green
     [[UITabBarItem appearance]
      setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]
@@ -53,22 +55,41 @@
      setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, nil]
      
      forState:UIControlStateSelected];
-    
-    UITabBarItem *item1 = [self.tabBar.items objectAtIndex:3];
-    UIImage *selectedImage = [UIImage imageNamed:@"calendarSelectedIcon.png"];
-    UIImage *unselectedImage = [UIImage imageNamed:@"calendarUnselectedIcon.png"];
+    [self setIconForTabBarItems];
+}
+
+-(void) setIconForTabBarItems{
+    UITabBarItem *calendarItem = [self.tabBar.items objectAtIndex:3];
+    UIImage *selectedImageCalendar = [UIImage imageNamed:@"calendarSelectedIcon.png"];
+    UIImage *unselectedImageCalendar = [UIImage imageNamed:@"calendarUnselectedIcon.png"];
     //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
     
-    //NSArray *tabBarItems = [[NSArray alloc] initWithArray:self.tabBar.items];
-    //UITabBarItem *item = [tabBarItems objectAtIndex:3];
+    calendarItem = [calendarItem initWithTitle:@"Calendar" image:unselectedImageCalendar selectedImage:selectedImageCalendar];
+    [calendarItem setImage: [unselectedImageCalendar imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    //item1 = [item1 initWithTitle:@"Calendar" image:selectedImage selectedImage:selectedImage];
-    [self.tabBar setTintColor:[UIColor blackColor]];
+    UITabBarItem *adminItem = [self.tabBar.items objectAtIndex:1];
+    UIImage *selectedImageAdmin = [UIImage imageNamed:@"administrator-25.png"];
+    UIImage *unselectedImageAdmin = [UIImage imageNamed:@"administrator-25-2.png"];
+    //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
     
-    [item1 setImage: [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [item1 setSelectedImage: selectedImage];
+    adminItem = [adminItem initWithTitle:@"Admin" image:unselectedImageAdmin selectedImage:selectedImageAdmin];
+    [adminItem setImage: [unselectedImageAdmin imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    //[item1 initWithTitle:@"Calendar" image:selectedImage selectedImage:selectedImage];
+    UITabBarItem *processItem = [self.tabBar.items objectAtIndex:0];
+    UIImage *selectedImageProcess = [UIImage imageNamed:@"process_selected.png"];
+    UIImage *unselectedImageProcess = [UIImage imageNamed:@"process_unselected.png"];
+    //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
+    
+    processItem = [processItem initWithTitle:@"Process" image:unselectedImageProcess selectedImage:selectedImageProcess];
+    [processItem setImage: [unselectedImageProcess imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
+    UITabBarItem *requestItem = [self.tabBar.items objectAtIndex:2];
+    UIImage *selectedImageRequest = [UIImage imageNamed:@"list_selected.png"];
+    UIImage *unselectedImageRequest = [UIImage imageNamed:@"list_unselected.png"];
+    //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
+    
+    requestItem = [requestItem initWithTitle:@"Request" image:unselectedImageRequest selectedImage:selectedImageRequest];
+    [requestItem setImage: [unselectedImageRequest imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 }
 
 - (void)didReceiveMemoryWarning
