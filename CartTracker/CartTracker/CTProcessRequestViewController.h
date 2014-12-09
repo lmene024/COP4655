@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIView *returnView;
 @property (strong, nonatomic) IBOutlet UIView *detailView;
 @property (strong, nonatomic) IBOutlet UIButton *actionButton;
+@property (strong, nonatomic) IBOutlet UIView *notFoundView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *chooserView;
 
 
@@ -26,7 +27,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *requestDate;
 @property (strong, nonatomic) IBOutlet UITextField *requestStatus;
 @property (strong, nonatomic) IBOutlet UITextField *requestUser;
+@property (strong, nonatomic) IBOutlet UITextField *requestStart;
+@property (strong, nonatomic) IBOutlet UITextField *requestEnd;
 
+@property (strong, nonatomic) IBOutlet UILabel *notFoundLabel;
 
 - (IBAction)toggleView:(UISegmentedControl *)sender;
 

@@ -84,7 +84,7 @@
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [searchBar setText:@""];
-
+    
     [searchBar setShowsCancelButton:false animated:true];
     [searchBar resignFirstResponder];
 }
@@ -183,20 +183,48 @@
         self.requestID.text = request.reqID.stringValue;
         self.requestCart.text = cart.cartName;
         self.requestUser.text = aUser.empID;
-        self.requestStatus.text = [request.reqStatus stringValue];
+        self.requestStatus.text = [self displayStatusFor:request.reqStatus.intValue];
         NSString *date = [NSDateFormatter
                           localizedStringFromDate:request.schedStartTime
                           dateStyle:NSDateFormatterShortStyle
                           timeStyle:NSDateFormatterNoStyle];
-        
         self.requestDate.text = date;
+        
+        NSString * start = [NSDateFormatter localizedStringFromDate:request.schedStartTime dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+        NSString * end = [NSDateFormatter localizedStringFromDate:request.schedEndTime dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+        self.requestStart.text = start;
+        self.requestEnd.text = end;
+        
         NSLog(@"button enabled");
         self.detailView.hidden = false;
-
+        self.notFoundView.hidden = true;
+        
         //enable action button
-        [self.actionButton setEnabled:true];
+        if (request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED) {
+            [self.actionButton setEnabled:true];
+        }
         
         requestToProcess = request;
+    }else{
+        //remove detail view if it was shown
+        self.detailView.hidden = true;
+        [self.actionButton setEnabled:false];
+        //load not found details
+        self.notFoundLabel.text = [NSString stringWithFormat:@"No current Request was found\rfor User: %@\rPlease check at a later time!", [self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName]];
+        self.notFoundView.hidden = false;
+    }
+}
+
+- (NSString *) displayStatusFor:(int) requestStatus{
+    switch (requestStatus){
+        case REQUEST_STATUS_COMPLETED:
+            return @"Closed";
+        case REQUEST_STATUS_INPROCESS:
+            return @"In Process";
+        case REQUEST_STATUS_SCHEDULED:
+            return @"Ready";
+        default:
+            return @"";
     }
 }
 
@@ -210,7 +238,7 @@
         NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: startTime];
         NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:endTime];
         
-        return  (start != NSOrderedDescending && end!=NSOrderedAscending) && request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED;
+        return  (start != NSOrderedDescending && end!=NSOrderedAscending);
     }];
     return currentItemsOnly;
 }
@@ -219,7 +247,7 @@
 #pragma mark - Save Request Methods
 
 /*! Method that takes an NSString string and formats the value into an
-    NSNumber object.
+ NSNumber object.
  
  @param NSString string
  @return NSNumber
@@ -296,8 +324,13 @@
             //Start QR scanner
             [self scanQrCode:nil];
         }else{
-            //process manually
-            
+            //cannot process without assigning a QR code
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Cart Error"
+                                                             message:[NSString stringWithFormat:@"There is no QR code associated with %@.\rPlease add a QR code in the Admin section for this cart.", requestToProcess.cart.cartName]
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"Cancel"
+                                                   otherButtonTitles:nil, nil];
+            [alert show];
         }
     }else{
         if (requestToProcess != nil) {
@@ -335,6 +368,7 @@
         
         //reset dependent views
         self.detailView.hidden = true;
+        self.notFoundView.hidden = true;
         
         //change button text
         [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
@@ -348,13 +382,13 @@
     }else{
         //show return view
         self.returnView.hidden = false;
-
+        
         //hide loan view
         self.loanView.hidden = true;
-
+        
         [self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
         [self.actionButton setTitle:@"Return Cart" forState:UIControlStateNormal];
-       
+        
     }
 }
 
@@ -380,51 +414,118 @@
     
     //check for process action
     if (self.chooserView.selectedSegmentIndex == 0) {
-     
-    //check if cart is correct
-    if ([symbol.data compare:requestToProcess.cart.qrCode]==NSOrderedSame) {
-        requestToProcess.reqStatus = [NSNumber numberWithInt:REQUEST_STATUS_INPROCESS];
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Request Processed"
-                                                         message:@"Your Request has been processed"
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil, nil];
-        [alert show];
-    } else {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Request Error"
-                                                         message:@"Your Cart Keys do not match your selected cart"
-                                                        delegate:nil
-                                               cancelButtonTitle:@"Cancel"
-                                               otherButtonTitles:nil, nil];
-        [alert show];
-    }
+        [self processRequestWithQRData:symbol.data];
     }else{
-        NSString * qrCode = symbol.data;
-        //find request by cart QR code
-        NSPredicate * cartPredicate = [NSPredicate predicateWithBlock:^BOOL(Cart * checkCart, NSDictionary *bindings) {
-            return [checkCart.qrCode compare:qrCode] == NSOrderedSame;
-        }];
-        NSError * error = nil;
-        NSArray * carts = [manager.context executeFetchRequest:[manager getAllCarts] error:&error];
-        Cart * cart = [carts filteredArrayUsingPredicate:cartPredicate][0];
-        if (cart != nil) {
-            //find open request for this cart
-            NSPredicate * predicate = [NSPredicate predicateWithBlock:^BOOL(Request * checkRequest, NSDictionary *bindings) {
-                return checkRequest.reqStatus.intValue == REQUEST_STATUS_INPROCESS;
-            }];
-            NSSet * requestSet = [cart.requests filteredSetUsingPredicate:predicate];
-            Request * request;
-            
-            if (requestSet != nil && requestSet.count>0) {
-                request = [requestSet allObjects][0];
-            }
-            
-            if (request != nil) {
-                requestToProcess = request;
-            }
-        }
+        [self processReturnForQRData:symbol.data];
     }
     [picker dismissViewControllerAnimated:true completion:nil];
+}
+
+-(void) processRequestWithQRData:(NSString *) qrData{
+    //check if cart is correct
+    UIAlertView * alert = [UIAlertView alloc];
+    if ([qrData compare:requestToProcess.cart.qrCode]==NSOrderedSame) {
+        //Cart is correct
+        int status = requestToProcess.reqStatus.intValue;
+        if (status == REQUEST_STATUS_SCHEDULED) {
+            //This request is ready to process
+            requestToProcess.reqStatus = [NSNumber numberWithInt:REQUEST_STATUS_INPROCESS];
+            requestToProcess.realStartTime = [NSDate date];
+            [manager save];
+            alert = [[UIAlertView alloc] initWithTitle:@"Request Processed"
+                                               message:@"Your Request has been processed\rCart is ready to lend"
+                                              delegate:nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil, nil];
+        }else if(status == REQUEST_STATUS_INPROCESS){
+            //This request has already been processed
+            alert = [alert initWithTitle:@"Request Already Processed"
+                                 message:@"This Request has already been processed!"
+                                delegate:nil
+                       cancelButtonTitle:@"Cancel"
+                       otherButtonTitles:nil, nil];
+        }else{
+            //This request has ben closed
+            alert = [alert initWithTitle:@"Request Closed"
+                                 message:@"This Request has already been completed\rPlease cereate a new request"
+                                delegate:nil
+                       cancelButtonTitle:@"Cancel"
+                       otherButtonTitles:nil, nil];
+        }
+        //clear out request details
+        requestToProcess = nil;
+        userToProcess = nil;
+        
+        self.detailView.hidden = true;
+        self.actionButton.enabled =false;
+        
+        self.searchUserBar.text = @"";
+        
+    } else {
+        //Wrong cart has been selected
+        alert = [alert initWithTitle:@"Request Error"
+                             message:@"Your Cart Keys do not match your selected cart"
+                            delegate:nil
+                   cancelButtonTitle:@"Cancel"
+                   otherButtonTitles:nil, nil];
+    }
+    [alert show];
+}
+
+- (void) processReturnForQRData:(NSString *) qrData{
+    //find request by cart QR code
+    NSPredicate * cartPredicate = [NSPredicate predicateWithBlock:^BOOL(Cart * checkCart, NSDictionary *bindings) {
+        return [checkCart.qrCode compare:qrData] == NSOrderedSame;
+    }];
+    UIAlertView * alert = [UIAlertView alloc];
+    NSError * error = nil;
+    NSArray * carts = [[manager.context executeFetchRequest:[manager getAllCarts] error:&error] filteredArrayUsingPredicate:cartPredicate];
+    Cart * cart;
+    if (carts!=nil && carts.count>0) {
+        cart = carts[0];
+    }
+    if (cart != nil) {
+        //find all requests for this cart that have not been closed out
+        NSPredicate * predicate = [NSPredicate predicateWithBlock:^BOOL(Request * checkRequest, NSDictionary *bindings) {
+            return checkRequest.reqStatus.intValue == REQUEST_STATUS_INPROCESS;
+        }];
+        NSSet * requestSet = [cart.requests filteredSetUsingPredicate:predicate];
+        
+        if (requestSet != nil && requestSet.count>0) {
+            NSMutableArray * requestsToClose = [NSMutableArray arrayWithCapacity:requestSet.count];
+            for (Request * request in requestSet) {
+                if (request) {
+                    request.reqStatus = [NSNumber numberWithInt:REQUEST_STATUS_COMPLETED];
+                    request.realEndTime = [NSDate date];
+                    [requestsToClose addObject:request.reqID];
+                }
+                //save
+                [manager save];
+            }
+            alert = [alert initWithTitle:@"Requests Closed"
+                                 message:[NSString stringWithFormat:@"You have successfully closed the following requests:\r %@ for Cart: %@", requestsToClose, cart.cartName]
+                                delegate:nil
+                       cancelButtonTitle:@"OK"
+                       otherButtonTitles:nil, nil];
+        }else{
+            //no cart matching this QR code
+            alert = [alert initWithTitle:@"Cart Error"
+                                 message:@"No Pending Requests to Close for this Cart!"
+                                delegate:nil
+                       cancelButtonTitle:@"Cancel"
+                       otherButtonTitles:nil, nil];
+        }
+        
+    } else{
+        //no cart matching this QR code
+        alert = [alert initWithTitle:@"Cart Error"
+                             message:@"No Pending Requests to Close for this Cart!"
+                            delegate:nil
+                   cancelButtonTitle:@"Cancel"
+                   otherButtonTitles:nil, nil];
+
+    }
+    [alert show];
 }
 
 
