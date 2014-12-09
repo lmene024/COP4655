@@ -53,11 +53,15 @@
     if (self.request != nil) {
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        [self loadDataToView];
         [self enableFields:NO andSetBorderStyle:UITextBorderStyleNone];
         
     }
     
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadDataToView];
 }
 
 - (void)didReceiveMemoryWarning

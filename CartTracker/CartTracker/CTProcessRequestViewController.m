@@ -65,6 +65,17 @@
     
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    if (requestToProcess) {
+        self.userToProcess = requestToProcess.user;
+        self.searchUserBar.text = [self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName];
+        [self displayRequest:requestToProcess];
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -97,6 +108,9 @@
     
     [searchBar setShowsCancelButton:false animated:true];
     [searchBar resignFirstResponder];
+    
+    //hide any previously loaded values
+    self.detailView.hidden = true;
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -155,6 +169,7 @@
     [self.searchUserBar setShowsCancelButton:false animated:false];
 #warning not sure why but there are two table views showing up here...
     [self.searchDisplayController setActive:false animated:true];
+    self.searchUserBar.text = [self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName];
     [self displayRequestForUser:userToProcess];
 }
 
@@ -179,42 +194,12 @@
     Request * request;
     
     if (requestSet.count>0) {
+        userToProcess = aUser;
         request = [requestSet allObjects][0];
     }
     
     if (request) {
-        Cart * cart = request.cart;
-        requestToProcess = request;
-        cartToProcess = cart;
-        userToProcess = aUser;
-        
-        NSLog(@"Display Request");
-        
-        self.requestID.text = request.reqID.stringValue;
-        self.requestCart.text = cart.cartName;
-        self.requestUser.text = aUser.empID;
-        self.requestStatus.text = [self displayStatusFor:request.reqStatus.intValue];
-        NSString *date = [NSDateFormatter
-                          localizedStringFromDate:request.schedStartTime
-                          dateStyle:NSDateFormatterShortStyle
-                          timeStyle:NSDateFormatterNoStyle];
-        self.requestDate.text = date;
-        
-        NSString * start = [NSDateFormatter localizedStringFromDate:request.schedStartTime dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
-        NSString * end = [NSDateFormatter localizedStringFromDate:request.schedEndTime dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
-        self.requestStart.text = start;
-        self.requestEnd.text = end;
-        
-        NSLog(@"button enabled");
-        self.detailView.hidden = false;
-        self.notFoundView.hidden = true;
-        
-        //enable action button
-        if (request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED) {
-            [self.actionButton setEnabled:true];
-        }
-        
-        requestToProcess = request;
+        [self displayRequest:request];
     }else{
         //remove detail view if it was shown
         self.detailView.hidden = true;
@@ -223,6 +208,41 @@
         self.notFoundLabel.text = [NSString stringWithFormat:@"No current Request was found\rfor User: %@\rPlease check at a later time!", [self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName]];
         self.notFoundView.hidden = false;
     }
+}
+
+- (void) displayRequest:(Request *) request{
+    Cart * cart = request.cart;
+    requestToProcess = request;
+    cartToProcess = cart;
+    
+    NSLog(@"Display Request");
+    
+    self.requestID.text = request.reqID.stringValue;
+    self.requestCart.text = cart.cartName;
+    self.requestUser.text = userToProcess.empID;
+    self.requestStatus.text = [self displayStatusFor:request.reqStatus.intValue];
+    NSString *date = [NSDateFormatter
+                      localizedStringFromDate:request.schedStartTime
+                      dateStyle:NSDateFormatterShortStyle
+                      timeStyle:NSDateFormatterNoStyle];
+    self.requestDate.text = date;
+    
+    NSString * start = [NSDateFormatter localizedStringFromDate:request.schedStartTime dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+    NSString * end = [NSDateFormatter localizedStringFromDate:request.schedEndTime dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+    self.requestStart.text = start;
+    self.requestEnd.text = end;
+    
+    NSLog(@"button enabled");
+    self.detailView.hidden = false;
+    self.notFoundView.hidden = true;
+    
+    //enable action button
+    if (request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED) {
+        [self.actionButton setEnabled:true];
+    }
+    
+    requestToProcess = request;
+
 }
 
 - (NSString *) displayStatusFor:(int) requestStatus{

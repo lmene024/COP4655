@@ -56,7 +56,7 @@
     
     //searchBarFilteredArray = [[NSMutableArray alloc] init];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:self.title];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CTCartStatusTableViewCell" bundle:nil] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
     
@@ -186,14 +186,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
     CTCartStatusTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell ==nil) {
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.title];
-        //cell.accessoryType = UITableViewCellAccessoryDetailButton;
-        
         cell = [[CTCartStatusTableViewCell alloc] init];
     }
     
@@ -201,8 +197,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
-- (void) setupCell:(UITableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
+- (void) setupCell:(CTCartStatusTableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
     
     NSString *cellInformation;
     
@@ -218,10 +217,22 @@
         
         Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
         
+        NSString *name = [self getFormatedNameWithFirst:aRequest.user.firstName andLast:aRequest.user.lastName];
+        NSString *date = [NSDateFormatter localizedStringFromDate:aRequest.schedStartTime
+                                                        dateStyle:NSDateFormatterShortStyle
+                                                        timeStyle:NSDateFormatterShortStyle];
+        cellInformation = [NSString stringWithFormat:@"%@  %@  Cart: %@", name, date, aRequest.cart.cartName];
+        switch (aRequest.reqStatus.intValue) {
+            case REQUEST_STATUS_INPROCESS:
+                cell.cartStatus.backgroundColor = [UIColor yellowColor];
+                break;
+            case REQUEST_STATUS_COMPLETED:
+                cell.cartStatus.backgroundColor = [UIColor redColor];
+            default:
+                cell.cartStatus.backgroundColor = [UIColor greenColor];
+                break;
+        }
         
-        //if (aRequest.reqStatus == [NSNumber numberWithInt:1]) {
-            cellInformation = [NSString stringWithFormat:@"%@  %@  %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
-        //}
         
         cell.textLabel.text = cellInformation;
         
@@ -229,10 +240,16 @@
         
         User *aUser = [self.dataController objectAtIndexPath:indexPath];
         
-        cellInformation = [NSString stringWithFormat:@"%@,  %@",aUser.lastName,aUser.firstName];
+        cellInformation = [self getFormatedNameWithFirst:aUser.firstName andLast:aUser.lastName];
         
         cell.textLabel.text = cellInformation;
     }
+    
+    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+}
+
+- (NSString *) getFormatedNameWithFirst:(NSString *) firstName andLast: (NSString *) lastName{
+    return [NSString stringWithFormat:@"%@, %@", lastName, firstName];
 }
 
 // Override to support conditional editing of the table view.
@@ -276,7 +293,16 @@
         } else if (REQUEST_VIEW){
             Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
             NSLog(@"Reques Deleted: %@",aRequest.reqID);
-            [manager deleteRequest:aRequest];
+            if ([self validateRequestDeletion:aRequest]) {
+                [manager deleteRequest:aRequest];
+            }else{
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                 message:@"Can't delete a request once it has been processed"
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil, nil];
+                [alert show];
+            }
         }
         
         [manager save];
@@ -512,6 +538,10 @@
         }
     }
     return YES;
+}
+
+- (bool) validateRequestDeletion:(Request *) request{
+    return request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED;
 }
 
 @end

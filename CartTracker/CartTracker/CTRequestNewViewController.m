@@ -89,18 +89,21 @@
     
     self.navigationItem.rightBarButtonItem = saveButton;
 
-    if (cartForRequest) {
-        [self.cartSearchBar setText:cartForRequest.cartName];
-       // [self searchBarTextDidBeginEditing:self.cartSearchBar];
-       // [self searchBar:cartSearchBar textDidChange:cartForRequest.cartName];
-       // [self searchBarTextDidEndEditing:self.cartSearchBar];
-    }
     
     if (existingRequest) {
+        cartForRequest = existingRequest.cart;
+        userForRequest = existingRequest.user;
+    }
+    
+    if (cartForRequest) {
+        [self.cartSearchBar setText:cartForRequest.cartName];
+    }
+    
+    if (userForRequest) {
         NSString *name = [self getFormatedNameWithFirst:self.existingRequest.user.firstName andLast:self.existingRequest.user.lastName];
         [self.searchBar setText:name];
-        [self.cartSearchBar setText:self.existingRequest.cart.cartID];
     }
+
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -160,7 +163,7 @@
 -(void) initIntervalStepper{
     [self.intervalStepper setValue:1];
     [self.intervalStepper setMaximumValue:4];
-    [self.intervalStepper setMinimumValue:0];
+    [self.intervalStepper setMinimumValue:1];
     [self.intervalStepper setWraps:YES];
     [self.intervalStepper setAutorepeat:YES];
     NSUInteger value = self.intervalStepper.value;
@@ -557,7 +560,10 @@
         
         if (cartIsValid) {
             
-            Request *req = [self.manager newRequest];
+            Request *req = existingRequest;
+            if (req == nil) {
+                req = [self.manager newRequest];
+            }
             
             NSLog(@"User: %@ Cart %@",userForRequest.firstName,cartForRequest.cartName);
 
