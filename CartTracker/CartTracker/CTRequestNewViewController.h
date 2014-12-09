@@ -34,7 +34,7 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *requestDatePicker;
 @property (strong, nonatomic) IBOutlet UILabel *notesLabel;
 @property (strong, nonatomic) IBOutlet UITextView *notesTextView;
-@property (strong, nonatomic) IBOutlet UILabel *intervalLabel;
+@property (strong, nonatomic) IBOutlet UITextField *intervalLabel;
 
 
 @property (nonatomic, retain) MFMailComposeViewController *confirmationComposer;
