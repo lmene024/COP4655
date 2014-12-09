@@ -9,6 +9,7 @@
 #import "CTAdminIconsViewController.h"
 #import "Constants.h"
 #import "CTDataListViewController.h"
+#import "CTLoginViewController.h"
 
 @interface CTAdminIconsViewController ()
 
@@ -68,6 +69,19 @@
             [alert show];
         }
             break;
+    }
+}
+
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Yes"])
+    {
+        CTLoginViewController *loginController = [[CTLoginViewController alloc] init];
+        [[[UIApplication sharedApplication] keyWindow] setRootViewController:loginController];
     }
 }
 

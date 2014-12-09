@@ -47,11 +47,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //self.chooserView.selectedSegmentIndex = 0;
-    
+    /*
     //initially hide all views
     self.loanView.hidden = true;
     self.returnView.hidden = true;
-    self.actionButton.hidden = true;
+    self.actionButton.hidden = true;*/
+    
+    if (self.requestToProcess != nil) {
+        NSLog(@"RequestToProcess not nil %@",self.requestToProcess.user.firstName);
+        [self displayRequestForUser:self.requestToProcess.user];
+    } else {
+        //initially hide all views
+        self.loanView.hidden = true;
+        self.returnView.hidden = true;
+        self.actionButton.hidden = true;
+    }
     
 }
 

@@ -16,6 +16,7 @@
 #import "Cart.h"
 #import "Constants.h"
 #import "CTProcessRequestViewController.h"
+#import "CTProcessNavigationViewController.h"
 
 @interface CTRequestDetailViewController ()
 
@@ -174,19 +175,22 @@
 }
 
 - (IBAction)processRequest:(id)sender {
-    //[self.navigationController]
-    /*UITabBarController * tabController = self.tabBarController;
-    CTProcessRequestViewController * reqNav;
+    
+    UITabBarController * tabController = self.tabBarController;
+    CTProcessNavigationViewController *reqNav;
     
     for (UIViewController * controller in tabController.viewControllers) {
-        if ([controller isKindOfClass:[CTProcessRequestViewController class]]) {
-            reqNav = (CTProcessRequestViewController *)controller;
+        if ([controller isKindOfClass:[CTProcessNavigationViewController class]]) {
+            reqNav = (CTProcessNavigationViewController *)controller;
             break;
         }
     }
     
-    CTProcessRequestViewController *newProcess = [[CTProcessRequestViewController alloc] init];
-    [reqNav pushViewController:newProcess animated:YES];*/
+    CTProcessRequestViewController *processViewController = [[CTProcessRequestViewController alloc] init];
+    [processViewController setRequestToProcess:self.request];
+    [reqNav pushViewController:processViewController animated:YES];
+    tabController.selectedViewController = reqNav;
+    
 }
 
 @end
