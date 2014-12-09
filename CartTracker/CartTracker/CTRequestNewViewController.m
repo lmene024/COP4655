@@ -178,8 +178,7 @@
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    
-    
+
     isSearching = YES;
     
     //[self setViewHidden:YES];

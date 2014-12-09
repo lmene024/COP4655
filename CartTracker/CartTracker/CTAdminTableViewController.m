@@ -10,6 +10,7 @@
 #import "CTDataListViewController.h"
 #import "CTLoginViewController.h"
 #import "User.h"
+#import "Constants.h"
 
 @interface CTAdminTableViewController ()
 
@@ -37,6 +38,10 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine; // do this if grouped, looks better!
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    //UIColor* color = [UIColor colorWithRed: 0.09 green: 0.2 blue: 0.357 alpha: 1];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

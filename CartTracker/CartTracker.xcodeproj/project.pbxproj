@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0735301A36738900AE56E8 /* FIU-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C07352F1A36738900AE56E8 /* FIU-logo.jpg */; };
+		4C0735341A367D4100AE56E8 /* CTProcessNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0735321A367D4100AE56E8 /* CTProcessNavigationViewController.m */; };
+		4C0735351A367D4100AE56E8 /* CTProcessNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735331A367D4100AE56E8 /* CTProcessNavigationViewController.xib */; };
+		4C0735391A367ED700AE56E8 /* CTCalendarNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0735371A367ED700AE56E8 /* CTCalendarNavigationViewController.m */; };
+		4C07353A1A367ED700AE56E8 /* CTCalendarNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735381A367ED700AE56E8 /* CTCalendarNavigationViewController.xib */; };
+		4C07357F1A36832E00AE56E8 /* CTAdminIconsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */; };
+		4C0735801A36832E00AE56E8 /* CTAdminIconsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C07357E1A36832E00AE56E8 /* CTAdminIconsViewController.xib */; };
+		4C07358A1A369C7E00AE56E8 /* calendarUnselectedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735891A369C7E00AE56E8 /* calendarUnselectedIcon.png */; };
+		4C07358C1A369CBA00AE56E8 /* calendarSelectedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07358B1A369CBA00AE56E8 /* calendarSelectedIcon.png */; };
+		4C07358F1A369E8B00AE56E8 /* administrator-25-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07358D1A369E8B00AE56E8 /* administrator-25-2.png */; };
+		4C0735901A369E8B00AE56E8 /* administrator-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C07358E1A369E8B00AE56E8 /* administrator-25.png */; };
+		4C0735941A36A28E00AE56E8 /* list_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735911A36A28E00AE56E8 /* list_selected.png */; };
+		4C0735951A36A28E00AE56E8 /* list_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735921A36A28E00AE56E8 /* list_unselected.png */; };
+		4C0735961A36A28E00AE56E8 /* process_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735931A36A28E00AE56E8 /* process_unselected.png */; };
+		4C0735981A36A2EE00AE56E8 /* process_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735971A36A2EE00AE56E8 /* process_selected.png */; };
 		4C576AE11A2E4F04000E9053 /* CTRequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */; };
 		4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */; };
 		4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376591A2CB751003108BB /* CTUserDetailViewController.m */; };
@@ -92,6 +107,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C07352F1A36738900AE56E8 /* FIU-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "FIU-logo.jpg"; sourceTree = "<group>"; };
+		4C0735311A367D4100AE56E8 /* CTProcessNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTProcessNavigationViewController.h; sourceTree = "<group>"; };
+		4C0735321A367D4100AE56E8 /* CTProcessNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTProcessNavigationViewController.m; sourceTree = "<group>"; };
+		4C0735331A367D4100AE56E8 /* CTProcessNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTProcessNavigationViewController.xib; sourceTree = "<group>"; };
+		4C0735361A367ED700AE56E8 /* CTCalendarNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCalendarNavigationViewController.h; sourceTree = "<group>"; };
+		4C0735371A367ED700AE56E8 /* CTCalendarNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCalendarNavigationViewController.m; sourceTree = "<group>"; };
+		4C0735381A367ED700AE56E8 /* CTCalendarNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCalendarNavigationViewController.xib; sourceTree = "<group>"; };
+		4C07357C1A36832E00AE56E8 /* CTAdminIconsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAdminIconsViewController.h; sourceTree = "<group>"; };
+		4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAdminIconsViewController.m; sourceTree = "<group>"; };
+		4C07357E1A36832E00AE56E8 /* CTAdminIconsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminIconsViewController.xib; sourceTree = "<group>"; };
+		4C0735891A369C7E00AE56E8 /* calendarUnselectedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarUnselectedIcon.png; sourceTree = "<group>"; };
+		4C07358B1A369CBA00AE56E8 /* calendarSelectedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSelectedIcon.png; sourceTree = "<group>"; };
+		4C07358D1A369E8B00AE56E8 /* administrator-25-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "administrator-25-2.png"; sourceTree = "<group>"; };
+		4C07358E1A369E8B00AE56E8 /* administrator-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "administrator-25.png"; sourceTree = "<group>"; };
+		4C0735911A36A28E00AE56E8 /* list_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_selected.png; sourceTree = "<group>"; };
+		4C0735921A36A28E00AE56E8 /* list_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_unselected.png; sourceTree = "<group>"; };
+		4C0735931A36A28E00AE56E8 /* process_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = process_unselected.png; sourceTree = "<group>"; };
+		4C0735971A36A2EE00AE56E8 /* process_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = process_selected.png; sourceTree = "<group>"; };
 		4C576ADE1A2E4F03000E9053 /* CTRequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestDetailViewController.h; sourceTree = "<group>"; };
 		4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestDetailViewController.m; sourceTree = "<group>"; };
 		4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestDetailViewController.xib; sourceTree = "<group>"; };
@@ -354,6 +387,9 @@
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C07357E1A36832E00AE56E8 /* CTAdminIconsViewController.xib */,
+				4C0735381A367ED700AE56E8 /* CTCalendarNavigationViewController.xib */,
+				4C0735331A367D4100AE56E8 /* CTProcessNavigationViewController.xib */,
 				4CE473501A360235006CE1B4 /* CTUserDetailViewController.xib */,
 				B32BC9071A3169EC00DB3E51 /* CTProcessRequestViewController.xib */,
 				4CE4733E1A34BEB6006CE1B4 /* CTLoginViewController.xib */,
@@ -378,6 +414,12 @@
 		4C8376571A2CB719003108BB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4C07357C1A36832E00AE56E8 /* CTAdminIconsViewController.h */,
+				4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */,
+				4C0735361A367ED700AE56E8 /* CTCalendarNavigationViewController.h */,
+				4C0735371A367ED700AE56E8 /* CTCalendarNavigationViewController.m */,
+				4C0735311A367D4100AE56E8 /* CTProcessNavigationViewController.h */,
+				4C0735321A367D4100AE56E8 /* CTProcessNavigationViewController.m */,
 				B34ADA461A2EDB9600D3A29A /* CTCartDetailViewController.h */,
 				B34ADA471A2EDB9600D3A29A /* CTCartDetailViewController.m */,
 				B34ADA431A2EDB6B00D3A29A /* CTRequestNewViewController.h */,
@@ -416,7 +458,16 @@
 		B3232DCB1A2FE85F00F98CF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C0735971A36A2EE00AE56E8 /* process_selected.png */,
+				4C0735911A36A28E00AE56E8 /* list_selected.png */,
+				4C0735921A36A28E00AE56E8 /* list_unselected.png */,
+				4C0735931A36A28E00AE56E8 /* process_unselected.png */,
+				4C07358D1A369E8B00AE56E8 /* administrator-25-2.png */,
+				4C07358E1A369E8B00AE56E8 /* administrator-25.png */,
+				4C07358B1A369CBA00AE56E8 /* calendarSelectedIcon.png */,
+				4C0735891A369C7E00AE56E8 /* calendarUnselectedIcon.png */,
 				4CE473451A35FE1B006CE1B4 /* circle-outline-xxl.png */,
+				4C07352F1A36738900AE56E8 /* FIU-logo.jpg */,
 				4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */,
 				4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */,
 				B3232DC91A2FE85500F98CF4 /* contactIcon.png */,
@@ -832,30 +883,42 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0735801A36832E00AE56E8 /* CTAdminIconsViewController.xib in Resources */,
 				B3CAF5A61A14E69A00274EEF /* Main_iPad.storyboard in Resources */,
 				B3232DEB1A2FF34700F98CF4 /* zbar-back.png in Resources */,
 				B3232DEE1A2FF34700F98CF4 /* zbar-samples.png in Resources */,
+				4C0735951A36A28E00AE56E8 /* list_unselected.png in Resources */,
+				4C0735981A36A2EE00AE56E8 /* process_selected.png in Resources */,
 				4C8376731A2D097E003108BB /* CTAdminTableViewController.xib in Resources */,
 				B34ADA521A2EDD5F00D3A29A /* CTCartDetailViewController.xib in Resources */,
 				B3D6674C1A2E8FF900A91C9A /* CTCartStatusTableViewCell.xib in Resources */,
 				B3CAF5AB1A14E69B00274EEF /* Images.xcassets in Resources */,
 				4CE4733F1A34BEB6006CE1B4 /* CTLoginViewController.xib in Resources */,
+				4C0735351A367D4100AE56E8 /* CTProcessNavigationViewController.xib in Resources */,
+				4C07358A1A369C7E00AE56E8 /* calendarUnselectedIcon.png in Resources */,
 				B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */,
 				B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */,
 				4CE473461A35FE1B006CE1B4 /* circle-outline-xxl.png in Resources */,
+				4C0735301A36738900AE56E8 /* FIU-logo.jpg in Resources */,
 				B3232DEC1A2FF34700F98CF4 /* zbar-help.html in Resources */,
 				B3232DED1A2FF34700F98CF4 /* zbar-helpicons.png in Resources */,
+				4C07353A1A367ED700AE56E8 /* CTCalendarNavigationViewController.xib in Resources */,
 				4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */,
 				B32BC9091A3169EC00DB3E51 /* CTProcessRequestViewController.xib in Resources */,
+				4C0735901A369E8B00AE56E8 /* administrator-25.png in Resources */,
 				B3CE64CB1A2ECFE5004470A7 /* CTCalendarViewController.xib in Resources */,
+				4C0735961A36A28E00AE56E8 /* process_unselected.png in Resources */,
 				4CE473511A360235006CE1B4 /* CTUserDetailViewController.xib in Resources */,
 				B34ADA4C1A2EDC4E00D3A29A /* CTRequestNewViewController.xib in Resources */,
 				B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */,
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
 				4CE473431A34E62B006CE1B4 /* fiu-ps-logo11-trans.png in Resources */,
 				4CE473411A34C103006CE1B4 /* campus-gl-gc-night-close.jpg in Resources */,
+				4C0735941A36A28E00AE56E8 /* list_selected.png in Resources */,
 				4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */,
 				B3232DCA1A2FE85500F98CF4 /* contactIcon.png in Resources */,
+				4C07358F1A369E8B00AE56E8 /* administrator-25-2.png in Resources */,
+				4C07358C1A369CBA00AE56E8 /* calendarSelectedIcon.png in Resources */,
 				4C8376661A2CF402003108BB /* CTCameraViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -891,10 +954,13 @@
 				B3BFE9E61A25876E00B86E9B /* CTViewController.m in Sources */,
 				B34ADA421A2ED79000D3A29A /* CTRequestNavigationViewController.m in Sources */,
 				B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */,
+				4C07357F1A36832E00AE56E8 /* CTAdminIconsViewController.m in Sources */,
 				B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */,
 				4CE4734F1A360201006CE1B4 /* CTLoginViewUI.m in Sources */,
 				4CE473491A360095006CE1B4 /* CTContactUI.m in Sources */,
+				4C0735341A367D4100AE56E8 /* CTProcessNavigationViewController.m in Sources */,
 				B32BC9081A3169EC00DB3E51 /* CTProcessRequestViewController.m in Sources */,
+				4C0735391A367ED700AE56E8 /* CTCalendarNavigationViewController.m in Sources */,
 				B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */,
 				B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */,
 				4C8376651A2CF402003108BB /* CTCameraViewController.m in Sources */,
@@ -1118,6 +1184,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/CartTracker/CartTracker/External",
+					"libraries/CorePlot_1.4/Source/framework/\"",
+				);
 				INFOPLIST_FILE = "CartTrackerTests/CartTrackerTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1136,6 +1206,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CartTracker/CartTracker-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/CartTracker/CartTracker/External",
+					"libraries/CorePlot_1.4/Source/framework/\"",
+				);
 				INFOPLIST_FILE = "CartTrackerTests/CartTrackerTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

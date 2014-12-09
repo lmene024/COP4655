@@ -27,6 +27,8 @@
 @synthesize usernameTextField;
 @synthesize passwordTextField;
 @synthesize loginView;
+@synthesize backgroundImage;
+@synthesize backgroundLogo;
 
 #pragma mark - UIViewController
 
@@ -48,9 +50,8 @@
     NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
     userArray = [[NSArray alloc] initWithArray:array];
     
-    //NSLog(@"%@",userArray);
-    
     // Do any additional setup after loading the view from its nib.
+    //[self popupImage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -170,6 +171,27 @@
     [self.usernameTextField resignFirstResponder];
     [self.passwordTextField resignFirstResponder];
     [super touchesBegan:touches withEvent:event];
+}
+
+#pragma mark - User Interface
+
+-(void)popupImage
+{
+    self.backgroundImage.hidden = NO;
+    self.backgroundLogo.hidden = NO;
+    [self.loginView setHidden:YES];
+    self.backgroundImage.alpha = 1.0f;
+    self.backgroundLogo.alpha = 1.0f;
+    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
+    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
+        // Animate the alpha value of your imageView from 1.0 to 0.0 here
+        self.backgroundImage.alpha = 0.0f;
+        self.backgroundLogo.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
+        self.backgroundImage.hidden = YES;
+    }];
+    [self.loginView setHidden:NO];
 }
 
 @end

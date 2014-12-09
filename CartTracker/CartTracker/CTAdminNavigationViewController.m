@@ -9,6 +9,7 @@
 #import "CTAdminNavigationViewController.h"
 #import "CTDataListViewController.h"
 #import "CTAdminTableViewController.h"
+#import "CTAdminIconsViewController.h"
 
 @interface CTAdminNavigationViewController ()
 
@@ -34,7 +35,17 @@
     
     CTAdminTableViewController * tableViewController = [[CTAdminTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    self.viewControllers = @[tableViewController];
+    CTAdminIconsViewController *adminViewController = [[CTAdminIconsViewController alloc] init];
+    
+    
+    UIColor* color3 = [UIColor colorWithRed: 0.769 green: 0.584 blue: 0.145 alpha: 1];
+    
+    // Changing navigation bar appearance
+    [[UINavigationBar appearance] setBarTintColor:color3];
+    
+    //self.viewControllers = @[tableViewController];
+    self.viewControllers = @[adminViewController];
+
     
     //CTDataListViewController * cartController = [[CTDataListViewController alloc] initWithData:@"Carts"];
     //self.viewControllers = @[cartController];

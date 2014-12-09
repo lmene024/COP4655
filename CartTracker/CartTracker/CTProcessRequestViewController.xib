@@ -32,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="DGz-wZ-1C7">
-                    <rect key="frame" x="71" y="20" width="178" height="29"/>
+                    <rect key="frame" x="71" y="77" width="178" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Loan"/>
@@ -43,7 +43,7 @@
                     </connections>
                 </segmentedControl>
                 <view opaque="NO" contentMode="scaleToFill" id="rBC-KS-UVG" userLabel="Return View">
-                    <rect key="frame" x="20" y="97" width="280" height="287"/>
+                    <rect key="frame" x="20" y="135" width="280" height="268"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lVZ-2J-atx">
@@ -59,11 +59,11 @@
                     </subviews>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" id="LDv-gq-z2I" userLabel="Loan View">
-                    <rect key="frame" x="20" y="56" width="280" height="331"/>
+                    <rect key="frame" x="20" y="118" width="280" height="264"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="wme-2N-rsF" userLabel="Request Detail">
-                            <rect key="frame" x="0.0" y="44" width="280" height="287"/>
+                            <rect key="frame" x="0.0" y="20" width="280" height="287"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jdC-jt-wHh">
@@ -174,7 +174,7 @@
                             </subviews>
                         </view>
                         <searchBar contentMode="redraw" placeholder="User" id="x57-zK-7oM">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                            <rect key="frame" x="0.0" y="6" width="280" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -184,7 +184,7 @@
                     </subviews>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bNt-1p-qgS">
-                    <rect key="frame" x="40" y="392" width="240" height="30"/>
+                    <rect key="frame" x="40" y="377" width="240" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <state key="normal" title=" Loan Cart">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
