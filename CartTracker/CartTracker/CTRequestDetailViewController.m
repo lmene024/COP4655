@@ -15,6 +15,7 @@
 #import "User.h"
 #import "Cart.h"
 #import "Constants.h"
+#import "CTProcessRequestViewController.h"
 
 @interface CTRequestDetailViewController ()
 
@@ -166,6 +167,22 @@
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil, nil];
     [alert show];
+}
+
+- (IBAction)processRequest:(id)sender {
+    //[self.navigationController]
+    /*UITabBarController * tabController = self.tabBarController;
+    CTProcessRequestViewController * reqNav;
+    
+    for (UIViewController * controller in tabController.viewControllers) {
+        if ([controller isKindOfClass:[CTProcessRequestViewController class]]) {
+            reqNav = (CTProcessRequestViewController *)controller;
+            break;
+        }
+    }
+    
+    CTProcessRequestViewController *newProcess = [[CTProcessRequestViewController alloc] init];
+    [reqNav pushViewController:newProcess animated:YES];*/
 }
 
 @end
