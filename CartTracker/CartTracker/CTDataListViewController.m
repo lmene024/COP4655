@@ -56,7 +56,7 @@
     
     //searchBarFilteredArray = [[NSMutableArray alloc] init];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:self.title];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CTCartStatusTableViewCell" bundle:nil] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
     
@@ -186,14 +186,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
     CTCartStatusTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.title forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell ==nil) {
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.title];
-        //cell.accessoryType = UITableViewCellAccessoryDetailButton;
-        
         cell = [[CTCartStatusTableViewCell alloc] init];
     }
     
@@ -205,7 +201,7 @@
     [self tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
-- (void) setupCell:(UITableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
+- (void) setupCell:(CTCartStatusTableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
     
     NSString *cellInformation;
     
@@ -222,10 +218,21 @@
         Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
         
         NSString *name = [self getFormatedNameWithFirst:aRequest.user.firstName andLast:aRequest.user.lastName];
-        NSString *date = [NSDateFormatter localizedStringFromDate:aRequest.schedStartTime dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-        //if (aRequest.reqStatus == [NSNumber numberWithInt:1]) {
-            cellInformation = [NSString stringWithFormat:@"%@  %@  Cart: %@", name, date, aRequest.cart.cartName];
-        //}
+        NSString *date = [NSDateFormatter localizedStringFromDate:aRequest.schedStartTime
+                                                        dateStyle:NSDateFormatterShortStyle
+                                                        timeStyle:NSDateFormatterShortStyle];
+        cellInformation = [NSString stringWithFormat:@"%@  %@  Cart: %@", name, date, aRequest.cart.cartName];
+        switch (aRequest.reqStatus.intValue) {
+            case REQUEST_STATUS_INPROCESS:
+                cell.cartStatus.backgroundColor = [UIColor yellowColor];
+                break;
+            case REQUEST_STATUS_COMPLETED:
+                cell.cartStatus.backgroundColor = [UIColor redColor];
+            default:
+                cell.cartStatus.backgroundColor = [UIColor greenColor];
+                break;
+        }
+        
         
         cell.textLabel.text = cellInformation;
         
@@ -233,7 +240,7 @@
         
         User *aUser = [self.dataController objectAtIndexPath:indexPath];
         
-        cellInformation = [NSString stringWithFormat:@"%@,  %@",aUser.lastName,aUser.firstName];
+        cellInformation = [self getFormatedNameWithFirst:aUser.firstName andLast:aUser.lastName];
         
         cell.textLabel.text = cellInformation;
     }
