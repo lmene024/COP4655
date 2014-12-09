@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CTLoginViewController">
             <connections>
+                <outlet property="backgroundImage" destination="GYt-QS-Ry2" id="Lbd-RC-RoJ"/>
+                <outlet property="backgroundLogo" destination="wxg-vm-9Vv" id="j75-a5-Lhq"/>
                 <outlet property="loginView" destination="36y-IB-8YJ" id="oh6-BT-5CR"/>
                 <outlet property="passwordTextField" destination="4G9-7A-th4" id="OTE-hb-ff4"/>
                 <outlet property="signInButton" destination="s0W-W0-Y09" id="Ahb-Cz-SNJ"/>
@@ -72,6 +74,14 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <imageView hidden="YES" appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GYt-QS-Ry2">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <imageView hidden="YES" appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FIU-logo.jpg" id="wxg-vm-9Vv">
+                    <rect key="frame" x="6" y="148" width="308" height="225"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -79,6 +89,7 @@
         </view>
     </objects>
     <resources>
+        <image name="FIU-logo.jpg" width="396" height="297"/>
         <image name="campus-gl-gc-night-close.jpg" width="937" height="669"/>
         <image name="fiu-ps-logo11-trans.png" width="275" height="100"/>
     </resources>

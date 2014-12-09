@@ -59,6 +59,8 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
+    
+    
     /*NSError *error = nil;
     NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
     searchBarDataArray = [[NSArray alloc] initWithArray:array];*/

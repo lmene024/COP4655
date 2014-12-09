@@ -23,5 +23,10 @@
 
 #define MAX_REQUEST_TIME_VARIANCE 60*30
 
+#define USERS 0
+#define CARTS 1
+#define STATISTICS 2
+#define LOG_OUT 3
+
 #define LOAN_INTERVAL [self.intervalStepper value] * 3600
 #endif

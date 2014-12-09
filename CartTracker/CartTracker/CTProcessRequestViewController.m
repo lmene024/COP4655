@@ -29,7 +29,7 @@
 
 #pragma mark - Properties
 
-@synthesize manager, searchUserBar, actionButton;
+@synthesize manager, searchUserBar, actionButton, chooserView;
 
 #pragma mark - UIViewController
 
@@ -48,6 +48,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //self.chooserView.selectedSegmentIndex = 0;
     
     //initially hide all views
     self.loanView.hidden = true;
