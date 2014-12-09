@@ -42,6 +42,8 @@
 		4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */; };
 		4C8E4A291A30C8E300E46C74 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3232DF91A2FF3D000F98CF4 /* libiconv.dylib */; };
 		4C8E4A2A1A30C90100E46C74 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B375F8851A309C8B007D45DE /* libzbar.a */; };
+		4C9CCCC11A3745E300420FB7 /* barcode_scanner-100-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CCCBF1A3745E300420FB7 /* barcode_scanner-100-2.png */; };
+		4C9CCCC21A3745E300420FB7 /* barcode_scanner-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9CCCC01A3745E300420FB7 /* barcode_scanner-100.png */; };
 		4CE4733F1A34BEB6006CE1B4 /* CTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE4733E1A34BEB6006CE1B4 /* CTLoginViewController.xib */; };
 		4CE473411A34C103006CE1B4 /* campus-gl-gc-night-close.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */; };
 		4CE473431A34E62B006CE1B4 /* fiu-ps-logo11-trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */; };
@@ -158,6 +160,8 @@
 		4C8376701A2D097E003108BB /* CTAdminTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAdminTableViewController.m; sourceTree = "<group>"; };
 		4C8376711A2D097E003108BB /* CTAdminTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminTableViewController.xib; sourceTree = "<group>"; };
 		4C8376761A2D1EB2003108BB /* CTRequestNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestNavigationViewController.xib; sourceTree = "<group>"; };
+		4C9CCCBF1A3745E300420FB7 /* barcode_scanner-100-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barcode_scanner-100-2.png"; sourceTree = "<group>"; };
+		4C9CCCC01A3745E300420FB7 /* barcode_scanner-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barcode_scanner-100.png"; sourceTree = "<group>"; };
 		4CE4733E1A34BEB6006CE1B4 /* CTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTLoginViewController.xib; sourceTree = "<group>"; };
 		4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "campus-gl-gc-night-close.jpg"; path = "../campus-gl-gc-night-close.jpg"; sourceTree = "<group>"; };
 		4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fiu-ps-logo11-trans.png"; path = "../fiu-ps-logo11-trans.png"; sourceTree = "<group>"; };
@@ -436,12 +440,14 @@
 				4C0735371A367ED700AE56E8 /* CTCalendarNavigationViewController.m */,
 				4C0735311A367D4100AE56E8 /* CTProcessNavigationViewController.h */,
 				4C0735321A367D4100AE56E8 /* CTProcessNavigationViewController.m */,
+				B34ADA401A2ED79000D3A29A /* CTRequestNavigationViewController.h */,
+				B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */,
+				B3BFE9F21A25890600B86E9B /* CTAdminNavigationViewController.h */,
+				B3BFE9F31A25890600B86E9B /* CTAdminNavigationViewController.m */,
 				B34ADA461A2EDB9600D3A29A /* CTCartDetailViewController.h */,
 				B34ADA471A2EDB9600D3A29A /* CTCartDetailViewController.m */,
 				B34ADA431A2EDB6B00D3A29A /* CTRequestNewViewController.h */,
 				B34ADA441A2EDB6B00D3A29A /* CTRequestNewViewController.m */,
-				B34ADA401A2ED79000D3A29A /* CTRequestNavigationViewController.h */,
-				B34ADA411A2ED79000D3A29A /* CTRequestNavigationViewController.m */,
 				4C576AED1A2E61F8000E9053 /* CTRequestNewViewController.h */,
 				4C576AEE1A2E61F8000E9053 /* CTRequestNewViewController.m */,
 				4C576ADE1A2E4F03000E9053 /* CTRequestDetailViewController.h */,
@@ -452,8 +458,6 @@
 				4C8376701A2D097E003108BB /* CTAdminTableViewController.m */,
 				B3BFE9E71A25884900B86E9B /* CTDataListViewController.h */,
 				B3BFE9E81A25884900B86E9B /* CTDataListViewController.m */,
-				B3BFE9F21A25890600B86E9B /* CTAdminNavigationViewController.h */,
-				B3BFE9F31A25890600B86E9B /* CTAdminNavigationViewController.m */,
 				B3BFE9E41A25876E00B86E9B /* CTViewController.h */,
 				B3BFE9E51A25876E00B86E9B /* CTViewController.m */,
 				4CE4AF1C1A2D2DFB00C3C8A3 /* CTLoginViewController.h */,
@@ -476,6 +480,8 @@
 		B3232DCB1A2FE85F00F98CF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C9CCCBF1A3745E300420FB7 /* barcode_scanner-100-2.png */,
+				4C9CCCC01A3745E300420FB7 /* barcode_scanner-100.png */,
 				4C0735AF1A36B19300AE56E8 /* area_chart-100-2.png */,
 				4C0735B01A36B19300AE56E8 /* area_chart-100.png */,
 				4C0735A11A36AEA700AE56E8 /* cartEnteredIcon.png */,
@@ -927,6 +933,7 @@
 				4C07358A1A369C7E00AE56E8 /* calendarUnselectedIcon.png in Resources */,
 				B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */,
 				B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */,
+				4C9CCCC21A3745E300420FB7 /* barcode_scanner-100.png in Resources */,
 				4CE473461A35FE1B006CE1B4 /* circle-outline-xxl.png in Resources */,
 				4C0735301A36738900AE56E8 /* FIU-logo.jpg in Resources */,
 				B3232DEC1A2FF34700F98CF4 /* zbar-help.html in Resources */,
@@ -956,6 +963,7 @@
 				4C07358F1A369E8B00AE56E8 /* administrator-25-2.png in Resources */,
 				4C07358C1A369CBA00AE56E8 /* calendarSelectedIcon.png in Resources */,
 				4C8376661A2CF402003108BB /* CTCameraViewController.xib in Resources */,
+				4C9CCCC11A3745E300420FB7 /* barcode_scanner-100-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
