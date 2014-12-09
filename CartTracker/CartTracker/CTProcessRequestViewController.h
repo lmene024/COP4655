@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIView *notFoundView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *chooserView;
 
+@property (strong, nonatomic) IBOutlet UIViewController *searchContentsController;
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchUserBar;
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchBarController;

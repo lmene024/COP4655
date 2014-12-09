@@ -21,6 +21,7 @@
                 <outlet property="requestUser" destination="h6e-Sc-Z5A" id="Rme-mj-7bv"/>
                 <outlet property="returnView" destination="rBC-KS-UVG" id="BbI-QT-gHL"/>
                 <outlet property="searchBarController" destination="NXg-4u-ad6" id="kHD-q0-qi1"/>
+                <outlet property="searchContentsController" destination="jAr-Q9-FdL" id="J7X-x5-5YQ"/>
                 <outlet property="searchDisplayController" destination="NXg-4u-ad6" id="GaT-kI-Jmr"/>
                 <outlet property="searchUserBar" destination="x57-zK-7oM" id="ouz-fx-Psj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -203,10 +204,20 @@
             <connections>
                 <outlet property="delegate" destination="-1" id="h3q-Cs-tzc"/>
                 <outlet property="searchBar" destination="x57-zK-7oM" id="fq9-hW-NTC"/>
-                <outlet property="searchContentsController" destination="-1" id="wrP-FT-pFM"/>
+                <outlet property="searchContentsController" destination="jAr-Q9-FdL" id="fXt-MK-cXB"/>
                 <outlet property="searchResultsDataSource" destination="-1" id="0pS-fW-7v0"/>
                 <outlet property="searchResultsDelegate" destination="-1" id="m2q-Li-aHL"/>
             </connections>
         </searchDisplayController>
+        <viewController id="jAr-Q9-FdL">
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="view" destination="LDv-gq-z2I" id="OQU-dw-q59"/>
+            </connections>
+        </viewController>
     </objects>
 </document>
