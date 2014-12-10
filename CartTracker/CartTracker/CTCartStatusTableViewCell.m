@@ -9,7 +9,7 @@
 #import "CTCartStatusTableViewCell.h"
 
 @implementation CTCartStatusTableViewCell
-@synthesize cartName, cartID, cartStatus;
+@synthesize mainText, subText, statusView;
 
 - (void)awakeFromNib
 {

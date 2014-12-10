@@ -10,7 +10,8 @@
 
 @interface CTCartStatusTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *cartName;
-@property (weak, nonatomic) IBOutlet UILabel *cartID;
-@property (weak, nonatomic) IBOutlet UIView *cartStatus;
+@property (weak, nonatomic) IBOutlet UILabel *mainText;
+@property (weak, nonatomic) IBOutlet UILabel *subText;
+@property (weak, nonatomic) IBOutlet UIView *statusView;
+@property (strong, nonatomic) IBOutlet UILabel *centerText;
 @end
