@@ -16,8 +16,9 @@
 @implementation CTStatisticsTableViewController
 {
     NSArray * statistics;
-    NSArray * cartStatistics ;
-    NSArray * userStatistics ;
+    NSArray * cartStatistics;
+    NSArray * userStatistics;
+    NSArray * requestStatistics;
 }
 
 - (void)viewDidLoad
@@ -26,11 +27,12 @@
     self.title = @"Statistics";
     
     //load underlying arrays first
-    cartStatistics = @[STAT_CART_CURR_AVAIL, STAT_CART_CURR_INUSE];
-    userStatistics = @[STAT_USER_OPEN_REQ, STAT_USER_LATE_RET];
+    cartStatistics = @[STAT_CART_CURR_AVAIL, STAT_CART_CURR_INUSE, STAT_CART_OPEN_REQ, STAT_CART_CLOSE_REQ, STAT_CART_USE_TIME, STAT_CART_LAST_USE];
+    userStatistics = @[STAT_USER_OPEN_REQ, STAT_USER_LATE_RET, STAT_USER_EXP_REQ, STAT_USER_LAST_CART, STAT_USER_TOTAL_REQ];
+    requestStatistics = @[STAT_REQ_COUNT_HOURLY, STAT_REQ_COUNT_WEEKLY];
     
     //load these arrays into main array
-    statistics = @[cartStatistics, userStatistics];
+    statistics = @[cartStatistics, userStatistics, requestStatistics];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +61,8 @@
             return @"Statistics by Cart";
         case 1:
             return @"Statistics by User";
+        case 2:
+            return @"Statistics by Request";
         default:
             return nil;
     }

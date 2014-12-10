@@ -32,9 +32,19 @@
 
 #define STAT_CART_CURR_AVAIL @"Currently Available"
 #define STAT_CART_CURR_INUSE @"Currently Unavailable"
+#define STAT_CART_OPEN_REQ  @"Open Requests per Cart"
+#define STAT_CART_CLOSE_REQ @"Closed Requests per Cart"
+#define STAT_CART_USE_TIME  @"Use Time per Cart"
+#define STAT_CART_LAST_USE @"Last Cart Use"
 
-#define STAT_USER_OPEN_REQ @"Open Requests Per User"
-#define STAT_USER_LATE_RET @"Late Returns Per User"
+#define STAT_USER_OPEN_REQ @"Open Requests per User"
+#define STAT_USER_LATE_RET @"Late Returns per User"
+#define STAT_USER_EXP_REQ @"Expired Requests per User"
+#define STAT_USER_LAST_CART @"Last Cart by User"
+#define STAT_USER_TOTAL_REQ @"Total Requests by User"
+
+#define STAT_REQ_COUNT_HOURLY @"Number of Requests per Hour"
+#define STAT_REQ_COUNT_WEEKLY @"Number of Requests per Week"
 
 
 #endif
