@@ -67,6 +67,8 @@
 		B3232DF81A2FF3B500F98CF4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3232DF71A2FF3B500F98CF4 /* QuartzCore.framework */; };
 		B32344E11A300D9D00F98CF4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B32344E01A300D9D00F98CF4 /* ImageIO.framework */; };
 		B3235BD01A30239700F98CF4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3235BCF1A30239700F98CF4 /* AudioToolbox.framework */; };
+		B328A0FB1A380A1B00961849 /* CTStatisticsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B328A0F91A380A1B00961849 /* CTStatisticsTableViewController.m */; };
+		B328A0FC1A380A1B00961849 /* CTStatisticsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B328A0FA1A380A1B00961849 /* CTStatisticsTableViewController.xib */; };
 		B32BC9081A3169EC00DB3E51 /* CTProcessRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32BC9061A3169EC00DB3E51 /* CTProcessRequestViewController.m */; };
 		B32BC9091A3169EC00DB3E51 /* CTProcessRequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B32BC9071A3169EC00DB3E51 /* CTProcessRequestViewController.xib */; };
 		B348A0661A159433007C342B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B348A0651A159433007C342B /* CoreData.framework */; };
@@ -213,6 +215,9 @@
 		B3232DF91A2FF3D000F98CF4 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		B32344E01A300D9D00F98CF4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		B3235BCF1A30239700F98CF4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B328A0F81A380A1B00961849 /* CTStatisticsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTStatisticsTableViewController.h; sourceTree = "<group>"; };
+		B328A0F91A380A1B00961849 /* CTStatisticsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTStatisticsTableViewController.m; sourceTree = "<group>"; };
+		B328A0FA1A380A1B00961849 /* CTStatisticsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTStatisticsTableViewController.xib; sourceTree = "<group>"; };
 		B32BC9051A3169EC00DB3E51 /* CTProcessRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTProcessRequestViewController.h; sourceTree = "<group>"; };
 		B32BC9061A3169EC00DB3E51 /* CTProcessRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTProcessRequestViewController.m; sourceTree = "<group>"; };
 		B32BC9071A3169EC00DB3E51 /* CTProcessRequestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTProcessRequestViewController.xib; sourceTree = "<group>"; };
@@ -409,6 +414,7 @@
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B328A0FA1A380A1B00961849 /* CTStatisticsTableViewController.xib */,
 				4C0735AD1A36B0E900AE56E8 /* CTAdminIconsViewController.xib */,
 				4C0735381A367ED700AE56E8 /* CTCalendarNavigationViewController.xib */,
 				4C0735331A367D4100AE56E8 /* CTProcessNavigationViewController.xib */,
@@ -473,6 +479,8 @@
 				B32BC9061A3169EC00DB3E51 /* CTProcessRequestViewController.m */,
 				4C07357C1A36832E00AE56E8 /* CTAdminIconsViewController.h */,
 				4C07357D1A36832E00AE56E8 /* CTAdminIconsViewController.m */,
+				B328A0F81A380A1B00961849 /* CTStatisticsTableViewController.h */,
+				B328A0F91A380A1B00961849 /* CTStatisticsTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -937,6 +945,7 @@
 				4CE473461A35FE1B006CE1B4 /* circle-outline-xxl.png in Resources */,
 				4C0735301A36738900AE56E8 /* FIU-logo.jpg in Resources */,
 				B3232DEC1A2FF34700F98CF4 /* zbar-help.html in Resources */,
+				B328A0FC1A380A1B00961849 /* CTStatisticsTableViewController.xib in Resources */,
 				B3232DED1A2FF34700F98CF4 /* zbar-helpicons.png in Resources */,
 				4C07353A1A367ED700AE56E8 /* CTCalendarNavigationViewController.xib in Resources */,
 				4C8376781A2D1EB2003108BB /* CTRequestNavigationViewController.xib in Resources */,
@@ -1012,6 +1021,7 @@
 				B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */,
 				B3D6674B1A2E8FF900A91C9A /* CTCartStatusTableViewCell.m in Sources */,
 				4C8376721A2D097E003108BB /* CTAdminTableViewController.m in Sources */,
+				B328A0FB1A380A1B00961849 /* CTStatisticsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
