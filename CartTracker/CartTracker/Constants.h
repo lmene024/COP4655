@@ -29,4 +29,12 @@
 #define LOG_OUT 3
 
 #define LOAN_INTERVAL [self.intervalStepper value] * 3600
+
+#define STAT_CART_CURR_AVAIL @"Currently Available"
+#define STAT_CART_CURR_INUSE @"Currently Unavailable"
+
+#define STAT_USER_OPEN_REQ @"Open Requests Per User"
+#define STAT_USER_LATE_RET @"Late Returns Per User"
+
+
 #endif

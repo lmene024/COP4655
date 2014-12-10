@@ -7,6 +7,7 @@
 //
 
 #import "CTStatisticsTableViewController.h"
+#import "Constants.h"
 
 @interface CTStatisticsTableViewController ()
 
@@ -14,8 +15,7 @@
 
 @implementation CTStatisticsTableViewController
 {
-    NSArray * categories;
-    NSArray * requestStatistics ;
+    NSArray * statistics;
     NSArray * cartStatistics ;
     NSArray * userStatistics ;
 }
@@ -23,7 +23,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    categories = @[@"Request Statistics", @"Cart Statistics", @"User Statistics"];
+    self.title = @"Statistics";
+    
+    //load underlying arrays first
+    cartStatistics = @[STAT_CART_CURR_AVAIL, STAT_CART_CURR_INUSE];
+    userStatistics = @[STAT_USER_OPEN_REQ, STAT_USER_LATE_RET];
+    
+    //load these arrays into main array
+    statistics = @[cartStatistics, userStatistics];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,42 +44,36 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return categories.count;
+    return statistics.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    return [statistics[section] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return requestStatistics.count;
+            return @"Statistics by Cart";
         case 1:
-            return cartStatistics.count;
-        case 2:
-            return userStatistics.count;
+            return @"Statistics by User";
+        default:
+            return nil;
     }
-    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * cellID = @"statCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    
-    // Configure the cell...
-    switch(indexPath.section){
-            case 0:
-            cell.textLabel.text = requestStatistics[indexPath.row];
-            break;
-        case 1:
-            cell.textLabel.text = cartStatistics[indexPath.row];
-            break;
-        case 2:
-            cell.textLabel.text = userStatistics[indexPath.row];
-            break;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    
+    // Configure the cell...
+    cell.textLabel.text = [[statistics objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     return cell;
 }
 
