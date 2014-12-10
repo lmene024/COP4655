@@ -33,6 +33,8 @@
 @synthesize reqStTextField;
 @synthesize userTextField;
 @synthesize cartTextField;
+@synthesize userImageView;
+@synthesize processButton;
 
 #pragma mark - UIViewController
 
@@ -77,13 +79,26 @@
                           localizedStringFromDate:self.request.reqDate
                           dateStyle:NSDateFormatterShortStyle
                           timeStyle:NSDateFormatterNoStyle];
+        NSString * start = [NSDateFormatter
+                            localizedStringFromDate:self.request.schedStartTime
+                            dateStyle:NSDateFormatterNoStyle
+                            timeStyle:NSDateFormatterShortStyle];
+        NSString * end = [NSDateFormatter
+                            localizedStringFromDate:self.request.schedEndTime
+                            dateStyle:NSDateFormatterNoStyle
+                            timeStyle:NSDateFormatterShortStyle];
         
         [self.reqIdTextField setText:[self.request.reqID stringValue]];
         [self.reqDateTextField setText:date];
         NSLog(@"From: %@ To: %@",[self.request schedStartTime],[self.request schedEndTime]);
-        [self.reqStTextField setText:[self.request.reqStatus stringValue]];
+        [self.reqStTextField setText:[self displayStatusFor:self.request.reqStatus.intValue]];
         [self.userTextField setText:self.request.user.firstName];
         [self.cartTextField setText:self.request.cart.cartID];
+        [self.requestStartTime setText:start];
+        [self.requestEndTime setText:end];
+        if (self.request.user.image) {
+            [self.userImageView setImage:self.request.user.image];
+        }
     }
 }
 
@@ -191,6 +206,19 @@
     [reqNav pushViewController:processViewController animated:YES];
     tabController.selectedViewController = reqNav;
     
+}
+
+- (NSString *) displayStatusFor:(int) requestStatus{
+    switch (requestStatus){
+        case REQUEST_STATUS_COMPLETED:
+            return @"Closed";
+        case REQUEST_STATUS_INPROCESS:
+            return @"In Process";
+        case REQUEST_STATUS_SCHEDULED:
+            return @"Ready";
+        default:
+            return @"";
+    }
 }
 
 @end

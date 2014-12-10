@@ -196,6 +196,23 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (REQUEST_VIEW) {
+        
+        static CTCartStatusTableViewCell * cell = nil;
+        if (cell == nil) {
+            cell = [tableView dequeueReusableCellWithIdentifier:self.title];
+        }
+        
+        [cell layoutIfNeeded];
+        CGSize size = cell.contentView.frame.size;
+        return size.height;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     [self tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
@@ -220,20 +237,29 @@
         NSString *date = [NSDateFormatter localizedStringFromDate:aRequest.schedStartTime
                                                         dateStyle:NSDateFormatterShortStyle
                                                         timeStyle:NSDateFormatterShortStyle];
-        cellInformation = [NSString stringWithFormat:@"%@  %@  Cart: %@", name, date, aRequest.cart.cartName];
         switch (aRequest.reqStatus.intValue) {
             case REQUEST_STATUS_INPROCESS:
-                cell.cartStatus.backgroundColor = [UIColor yellowColor];
+                cell.statusView.backgroundColor = [UIColor yellowColor];
                 break;
             case REQUEST_STATUS_COMPLETED:
-                cell.cartStatus.backgroundColor = [UIColor redColor];
+                cell.statusView.backgroundColor = [UIColor redColor];
             default:
-                cell.cartStatus.backgroundColor = [UIColor greenColor];
+                cell.statusView.backgroundColor = [UIColor greenColor];
                 break;
         }
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            //put everything on one line
+            cellInformation = [NSString stringWithFormat:@"%@  %@  Cart: %@", name, date, aRequest.cart.cartName];
+            cell.centerText.text = cellInformation;
+        }else{
+            //split up the info
+            cellInformation = [NSString stringWithFormat:@"%@", name];
+            NSString * cellSub = [NSString stringWithFormat:@"%@ Cart: %@", date, aRequest.cart.cartName];
+            cell.mainText.text = cellInformation;
+            cell.subText.text = cellSub;
+        }
+       
         
-        
-        cell.textLabel.text = cellInformation;
         
     } else if (USERS_VIEW){
         
@@ -311,46 +337,6 @@
     }
 }
 
- 
-/*
-
-- (void) setupCustomCell:(CTCartStatusTableViewCell *) cell forIndexPath: (NSIndexPath *) indexPath{
-    
-    NSString *cellInformation;
-    
-    if (CART_VIEW) {
-        
-        Cart * aCart = [self.dataController objectAtIndexPath:indexPath];
-        
-        //cellInformation = [NSString stringWithFormat:@"%@, %@",aCart]
-        
-        cell.cartName.text = aCart.cartName;
-        
-    } else if (REQUEST_VIEW){
-        
-        Request *aRequest = [self.dataController objectAtIndexPath:indexPath];
-        
-        // Show open requests only
-        if (aRequest.reqStatus == [NSNumber numberWithInt:1]) {
-            //cellInformation = [NSString stringWithFormat:@"%@  %@  %@",aRequest.reqID,aRequest.cart.cartID,aRequest.user.firstName];
-            //cell.cartName.text = aRequest.user.firstName;
-            //cell.cartID.text = [aRequest.reqID stringValue];
-            //cell.cartStatus.backgroundColor = [UIColor yellowColor];
-        }
-        
-        //cell.textLabel.text = cellInformation;
-        
-    } else if (USERS_VIEW){
-        
-        User *aUser = [self.dataController objectAtIndexPath:indexPath];
-        
-        cellInformation = [NSString stringWithFormat:@"%@,  %@",aUser.lastName,aUser.firstName];
-        
-        cell.cartName.text = cellInformation;
-    }
-}
- 
- */
 
 - (NSFetchedResultsController *) dataController{
     

@@ -82,20 +82,20 @@
 
 - (void) setupCell:(CTCartStatusTableViewCell *) cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     Cart * cart = cartsArray[indexPath.row];
-    cell.cartName.text = cart.cartName;
-    cell.cartID.text = cart.cartID;
-    cell.cartStatus.backgroundColor = [UIColor greenColor];
+    cell.mainText.text = cart.cartName;
+    cell.subText.text = cart.cartID;
+    cell.statusView.backgroundColor = [UIColor greenColor];
     
     
     NSSet * requestSet = [cart.requests filteredSetUsingPredicate:[self getCurrentItems]];
     if (requestSet.count > 0) {
         Request * request = (Request *)[requestSet allObjects][0];
         if (request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED) {
-            cell.cartStatus.backgroundColor = [UIColor redColor];
+            cell.statusView.backgroundColor = [UIColor redColor];
         }else if (request.reqStatus.intValue == REQUEST_STATUS_INPROCESS){
-            cell.cartStatus.backgroundColor = [UIColor yellowColor];
+            cell.statusView.backgroundColor = [UIColor yellowColor];
         }else
-            cell.cartStatus.backgroundColor = [UIColor greenColor];
+            cell.statusView.backgroundColor = [UIColor greenColor];
     }
 }
 

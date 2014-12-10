@@ -56,6 +56,7 @@
     [[UISegmentedControl appearance] setTintColor:[UIColor blackColor]];
     
     if (self.requestToProcess != nil) {
+        chooserView.selectedSegmentIndex = 0;
         NSLog(@"RequestToProcess not nil %@",self.requestToProcess.user.firstName);
         [self displayRequestForUser:self.requestToProcess.user];
     } else {
@@ -365,7 +366,7 @@
             [alert show];
         }
     }else{
-        if (requestToProcess != nil) {
+     /*   if (requestToProcess != nil) {
             //check if request is open
             if (requestToProcess.reqStatus.intValue == REQUEST_STATUS_INPROCESS) {
                 //set it to completed
@@ -380,6 +381,9 @@
                 [alert show];
             }
         }
+      */
+        [self scanQrCode:nil];
+
     }
 }
 
@@ -403,8 +407,8 @@
         self.notFoundView.hidden = true;
         
         //change button text
-        [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
-        [self.actionButton setTitle:@"Loan Cart" forState:UIControlStateNormal];
+       // [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
+        //[self.actionButton setTitle:@"Loan Cart" forState:UIControlStateNormal];
         
         //load user data to search by user
         NSError * error = nil;
@@ -418,8 +422,10 @@
         //hide loan view
         self.loanView.hidden = true;
         
-        [self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
-        [self.actionButton setTitle:@"Return Cart" forState:UIControlStateNormal];
+        self.actionButton.enabled = true;
+        
+        //[self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
+        //[self.actionButton setTitle:@"Return Cart" forState:UIControlStateNormal];
         
     }
 }
