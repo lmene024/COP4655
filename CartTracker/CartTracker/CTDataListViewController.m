@@ -59,13 +59,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CTCartStatusTableViewCell" bundle:nil] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
-    
+    // Change color to all Navigation Buttons
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
     /*NSError *error = nil;
     NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
     searchBarDataArray = [[NSArray alloc] initWithArray:array];*/
-    
-    
     
     self.navigationItem.rightBarButtonItem = addItem;
 

@@ -53,6 +53,8 @@
     self.returnView.hidden = true;
     self.actionButton.hidden = true;*/
     
+    [[UISegmentedControl appearance] setTintColor:[UIColor blackColor]];
+    
     if (self.requestToProcess != nil) {
         NSLog(@"RequestToProcess not nil %@",self.requestToProcess.user.firstName);
         [self displayRequestForUser:self.requestToProcess.user];

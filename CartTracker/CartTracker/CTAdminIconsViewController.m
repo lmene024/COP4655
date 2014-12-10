@@ -5,6 +5,8 @@
 //  Created by Andres Ruggiero on 12/8/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: CTAdminIconsViewController contains three buttons that link to
+// the Cart, User Statistics and LogOut views.
 
 #import "CTAdminIconsViewController.h"
 #import "Constants.h"
@@ -29,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Admin";
     // Do any additional setup after loading the view from its nib.
 }
 

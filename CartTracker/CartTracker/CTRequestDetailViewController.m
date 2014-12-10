@@ -49,7 +49,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.title = @"Request";
     if (self.request != nil) {
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem;

@@ -5,6 +5,8 @@
 //  Created by leo on 11/13/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: CTViewController is a subclass of UITabBarController. It contains
+// the four main UINavigationViewControllers of the application
 
 #import "CTViewController.h"
 #import "CTAdminNavigationViewController.h"
@@ -38,7 +40,7 @@
     [[UITabBar appearance] setBarTintColor:color3];
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
 
-    self.viewControllers = @[processController, adminController,requestController, calendarController];
+    self.viewControllers = @[processController,calendarController,requestController, adminController];
     //UITabBarItem *item = [self.tabBar.items objectAtIndex:0];
     
     [self initTabBar];
@@ -58,38 +60,50 @@
     [self setIconForTabBarItems];
 }
 
--(void) setIconForTabBarItems{
-    UITabBarItem *calendarItem = [self.tabBar.items objectAtIndex:3];
-    UIImage *selectedImageCalendar = [UIImage imageNamed:@"calendarSelectedIcon.png"];
-    UIImage *unselectedImageCalendar = [UIImage imageNamed:@"calendarUnselectedIcon.png"];
+-(void) setIconWithTitle:(NSString *)title
+       withSelectedImage:(NSString *)selectedImageName
+      andUnselectedImage:(NSString*)unselectedImageName
+                 atIndex:(NSInteger)index{
+    UITabBarItem *calendarItem = [self.tabBar.items objectAtIndex:index];
+    UIImage *selectedImageCalendar = [UIImage imageNamed:selectedImageName];
+    UIImage *unselectedImageCalendar = [UIImage imageNamed:unselectedImageName];
     //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
     
-    calendarItem = [calendarItem initWithTitle:@"Calendar" image:unselectedImageCalendar selectedImage:selectedImageCalendar];
+    calendarItem = [calendarItem initWithTitle:title image:unselectedImageCalendar selectedImage:selectedImageCalendar];
     [calendarItem setImage: [unselectedImageCalendar imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+}
+
+-(void) setIconForTabBarItems{
     
-    UITabBarItem *adminItem = [self.tabBar.items objectAtIndex:1];
-    UIImage *selectedImageAdmin = [UIImage imageNamed:@"administrator-25.png"];
-    UIImage *unselectedImageAdmin = [UIImage imageNamed:@"administrator-25-2.png"];
-    //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
+    //NSNumber *index = [NSNumber numberWithInteger:0];
+    NSInteger index = 0;
     
-    adminItem = [adminItem initWithTitle:@"Admin" image:unselectedImageAdmin selectedImage:selectedImageAdmin];
-    [adminItem setImage: [unselectedImageAdmin imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [self setIconWithTitle:@"Process"
+         withSelectedImage:@"process_selected.png"
+        andUnselectedImage:@"process_unselected.png"
+                   atIndex:index];
     
-    UITabBarItem *processItem = [self.tabBar.items objectAtIndex:0];
-    UIImage *selectedImageProcess = [UIImage imageNamed:@"process_selected.png"];
-    UIImage *unselectedImageProcess = [UIImage imageNamed:@"process_unselected.png"];
-    //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
+    index = index + 1;
     
-    processItem = [processItem initWithTitle:@"Process" image:unselectedImageProcess selectedImage:selectedImageProcess];
-    [processItem setImage: [unselectedImageProcess imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [self setIconWithTitle:@"Calendar"
+         withSelectedImage:@"calendarSelectedIcon.png"
+        andUnselectedImage:@"calendarUnselectedIcon.png"
+                   atIndex:index];
     
-    UITabBarItem *requestItem = [self.tabBar.items objectAtIndex:2];
-    UIImage *selectedImageRequest = [UIImage imageNamed:@"list_selected.png"];
-    UIImage *unselectedImageRequest = [UIImage imageNamed:@"list_unselected.png"];
-    //[item1 setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:nil];
+    index = index + 1;
     
-    requestItem = [requestItem initWithTitle:@"Request" image:unselectedImageRequest selectedImage:selectedImageRequest];
-    [requestItem setImage: [unselectedImageRequest imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [self setIconWithTitle:@"Request"
+         withSelectedImage:@"list_selected.png"
+        andUnselectedImage:@"list_unselected.png"
+                   atIndex:index];
+    
+    index = index + 1;
+    
+    [self setIconWithTitle:@"Admin"
+         withSelectedImage:@"administrator-25.png"
+        andUnselectedImage:@"administrator-25-2.png"
+                   atIndex:index];
+    
 }
 
 - (void)didReceiveMemoryWarning
