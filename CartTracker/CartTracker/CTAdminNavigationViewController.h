@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTcartManager.h"
 
 @interface CTAdminNavigationViewController : UINavigationController
 
 @property BOOL firstTimeLogin;
+@property (nonatomic, strong) CTcartManager * manager;
+@property (nonatomic, strong) NSFetchedResultsController * dataController;
 
 @end

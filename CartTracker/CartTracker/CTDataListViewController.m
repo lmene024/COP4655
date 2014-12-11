@@ -66,6 +66,16 @@
     searchBarDataArray = [[NSArray alloc] initWithArray:array];*/
     
     self.navigationItem.rightBarButtonItem = addItem;
+    
+    if (self.firstTimeLogin == YES) {
+        [self performSelector:@selector(insertNewItem:) withObject:nil afterDelay:0.25];
+        //[self.navigationItem.rightBarButtonItem performSelector:@selector(insertNewItem:) withObject:NO afterDelay:0.25];
+        /*CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
+        userController.manager = self.manager;
+        userController.firstTimeLogin = self.firstTimeLogin;
+        [self.navigationController pushViewController:userController animated:YES];*/
+        
+    }
 
 }
 
@@ -365,7 +375,6 @@
         
         User *aUser = [self.dataController objectAtIndexPath:indexPath];
         CTUserDetailViewController *userDetailViewController = [[CTUserDetailViewController alloc] init];
-        userDetailViewController.firstTimeUser = self.firstTimeLogin;
         userDetailViewController.user = aUser;
         userDetailViewController.manager = self.manager;
         NSLog(@"User %@ has #requests: %lu",aUser.firstName,(unsigned long)[aUser.requests count]);
@@ -389,7 +398,7 @@
 - (void) insertNewItem:(id) sender{
     
     if (CART_VIEW) {
-        
+        NSLog(@"Cart View");
         CTCartDetailViewController *cartController = [[CTCartDetailViewController alloc] init];
         cartController.manager = self.manager;
         cartController.cart = nil;
@@ -402,11 +411,12 @@
         [self.navigationController pushViewController:requestController animated:YES];
         
     } else if (USERS_VIEW){
-        
+        NSLog(@"USers VIew");
         CTUserDetailViewController *userController = [[CTUserDetailViewController alloc] init];
         userController.user = nil;
         userController.manager = self.manager;
-        [self.navigationController pushViewController:userController animated:YES];
+        userController.firstTimeLogin = self.firstTimeLogin;
+        [self.navigationController pushViewController:userController animated:NO];
         
     }
     

@@ -12,13 +12,19 @@
 #import "Constants.h"
 #import "CTDataListViewController.h"
 #import "CTLoginViewController.h"
+<<<<<<< HEAD
 #import "CTStatisticsTableViewController.h"
+=======
+#import "CTcartManager.h"
+>>>>>>> origin/arugg003
 
 @interface CTAdminIconsViewController ()
 
 @end
 
 @implementation CTAdminIconsViewController
+@synthesize firstTimeLogin;
+@synthesize manager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +40,12 @@
     [super viewDidLoad];
     
     self.title = @"Admin";
+    if (self.firstTimeLogin == YES) {
+        NSLog(@"inside AdminIcons");
+        [self.navigationItem setHidesBackButton:YES];
+        [self.navigationItem.leftBarButtonItem setEnabled:NO];
+    }
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -43,41 +55,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)buttonPressed:(id)sender {
-    int tag = [sender tag];
-    switch (tag) {
-        case USERS:
-        {   CTDataListViewController *userController = [[CTDataListViewController alloc] initWithData:@"Users"];
-            userController.firstTimeLogin = self.firstTimeLogin;
-            [self.navigationController pushViewController:userController animated:YES];
-        }
-            break;
-        case CARTS:
-        {
-            CTDataListViewController *cartsController = [[CTDataListViewController alloc] initWithData:@"Carts"];
-            [self.navigationController pushViewController:cartsController animated:YES];
-        }
-            break;
-        case STATISTICS:
-        {
-            CTStatisticsTableViewController *statsController = [[CTStatisticsTableViewController alloc] init];
-            [self.navigationController pushViewController:statsController animated:YES];
 
-        }
-            break;
-        case LOG_OUT:
-        {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Confirmation"
-                                  message:@"Are you sure you want to log out"
-                                  delegate:self
-                                  cancelButtonTitle:@"Yes"
-                                  otherButtonTitles:@"No", nil];
-            
-            [alert show];
-        }
-            break;
+- (IBAction)userButtonPressed:(id)sender {
+    
+    CTDataListViewController *userController = [[CTDataListViewController alloc] initWithData:@"Users"];
+    userController.firstTimeLogin = self.firstTimeLogin;
+    if (firstTimeLogin == YES) {
+        NSLog(@"AdminIcon Bool %hhd",self.firstTimeLogin);
+        [self.navigationController pushViewController:userController animated:NO];
+    } else {
+        [self.navigationController pushViewController:userController animated:YES];
     }
+    
+}
+
+- (IBAction)cartButtonPressed:(id)sender {
+    CTDataListViewController *cartsController = [[CTDataListViewController alloc] initWithData:@"Carts"];
+    [self.navigationController pushViewController:cartsController animated:YES];
 }
 
 #pragma mark UIAlertViewDelegate
@@ -93,4 +87,17 @@
     }
 }
 
+- (IBAction)statisticsButtonPressed:(id)sender {
+}
+
+- (IBAction)logOutButtonPressed:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Confirmation"
+                          message:@"Are you sure you want to log out"
+                          delegate:self
+                          cancelButtonTitle:@"Yes"
+                          otherButtonTitles:@"No", nil];
+    
+    [alert show];
+}
 @end

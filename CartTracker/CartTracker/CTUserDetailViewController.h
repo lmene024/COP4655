@@ -25,7 +25,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *takePictureButton;
 @property (strong, nonatomic) IBOutlet UISwitch *adminSwitch;
 @property (strong, nonatomic) CTcartManager * manager;
-@property BOOL firstTimeUser;
+@property BOOL firstTimeLogin;
 
 - (IBAction)changeAdmin:(id)sender;
 

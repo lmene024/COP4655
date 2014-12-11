@@ -28,7 +28,7 @@
                             <state key="normal" image="userSelectedIcon.png"/>
                             <state key="selected" image="userSelectedIcon.png" backgroundImage="find_user-100.png"/>
                             <connections>
-                                <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="MeK-qu-jdt"/>
+                                <action selector="userButtonPressed:" destination="-1" eventType="touchUpInside" id="lwt-T3-HGW"/>
                             </connections>
                         </button>
                         <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tHJ-Hm-qms">
@@ -46,7 +46,7 @@
                             </state>
                             <state key="selected" image="cartSelectedIcon.png" backgroundImage="cartEnteredIcon.png"/>
                             <connections>
-                                <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="c50-07-IWF"/>
+                                <action selector="cartButtonPressed:" destination="-1" eventType="touchUpInside" id="Vb1-z2-cBu"/>
                             </connections>
                         </button>
                         <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yOP-0C-grT">
@@ -64,7 +64,7 @@
                             </state>
                             <state key="selected" image="area_chart-100-2.png" backgroundImage="area_chart-100.png"/>
                             <connections>
-                                <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="ePG-JY-5rM"/>
+                                <action selector="statisticsButtonPressed:" destination="-1" eventType="touchUpInside" id="ueE-Ug-38C"/>
                             </connections>
                         </button>
                         <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Udf-fm-has">
@@ -82,7 +82,7 @@
                             </state>
                             <state key="selected" image="exit-100-3.png" backgroundImage="exit-100-4.png"/>
                             <connections>
-                                <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="JV0-gp-qWU"/>
+                                <action selector="logOutButtonPressed:" destination="-1" eventType="touchUpInside" id="tJ1-b1-cSs"/>
                             </connections>
                         </button>
                         <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log Out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Op7-Hg-6Bq">

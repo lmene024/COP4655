@@ -8,11 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class CTcartManager;
+
 @interface CTAdminIconsViewController : UIViewController
+
 @property (strong, nonatomic) IBOutlet UIButton *userButton;
 @property (strong, nonatomic) IBOutlet UIButton *cartsButton;
 @property (strong, nonatomic) IBOutlet UIButton *statisticsButton;
 @property (strong, nonatomic) IBOutlet UIButton *logOutButton;
+@property (nonatomic, strong) CTcartManager * manager;
+@property (nonatomic, strong) NSFetchedResultsController * dataController;
 @property BOOL firstTimeLogin;
-- (IBAction)buttonPressed:(id)sender;
+
+- (IBAction)userButtonPressed:(id)sender;
+- (IBAction)cartButtonPressed:(id)sender;
+- (IBAction)statisticsButtonPressed:(id)sender;
+- (IBAction)logOutButtonPressed:(id)sender;
+
 @end

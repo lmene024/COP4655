@@ -71,10 +71,10 @@
     NSLog(@"Button Pressed");
     
     if (firstTimeUser == YES) {
-        CTViewController *controller = [[CTViewController alloc] init];
-        controller.firstTimeLogin = firstTimeUser;
-        NSLog(@"controller firstTimeLogin : %hhd",controller.firstTimeLogin);
-        [self presentViewController:controller animated:YES completion:nil];
+        CTAdminNavigationViewController *nav = [[CTAdminNavigationViewController alloc] init];
+        nav.firstTimeLogin = firstTimeUser;
+        NSLog(@"controller firstTimeLogin : %hhd",nav.firstTimeLogin);
+        [self presentViewController:nav animated:YES completion:nil];
     } else {
         if ([self validateCredentials]) {
             CTViewController *controller = [[CTViewController alloc] init];
@@ -90,23 +90,10 @@
     
     BOOL result = NO;
     
-    /*if ([self firstTimeAuthentification]) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Login"
-                              message:@"Welcome to Cart Tracker! You will be redirected to create a new user"
-                              delegate:self
-                              cancelButtonTitle:@"Ok"
-                              otherButtonTitles:nil, nil];
-        [alert show];
-        
-        result = NO;
-        
-    } else {*/
         if ([self compareUser:self.usernameTextField.text
                  withPassword:self.passwordTextField.text]) {
-            //CTViewController *controller = [[CTViewController alloc] init];
-            //[self presentViewController:controller animated:YES completion:nil];
+            CTViewController *controller = [[CTViewController alloc] init];
+            [self presentViewController:controller animated:YES completion:nil];
             result = YES;
         } else {
             UIAlertView *alert = [[UIAlertView alloc]
@@ -118,12 +105,12 @@
             [alert show];
             result = NO;
         }
-    //}
     
     return result;
 }
 
 -(BOOL) firstTimeAuthentification{
+    
     if ([userArray count] == 0) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Login"
@@ -138,6 +125,7 @@
     } else {
         return NO;
     }
+    
 }
 
 -(BOOL) compareUser:(NSString*)user withPassword:(NSString*) password{
