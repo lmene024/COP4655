@@ -55,7 +55,8 @@
     if (self.firstTimeLogin == YES) {
         NSLog(@"inside adminnavigation");
         [self.navigationItem setHidesBackButton:YES];
-        [self.navigationItem.leftBarButtonItem setEnabled:NO];
+        self.navigationItem.leftBarButtonItem = nil;
+        [self.navigationItem setHidesBackButton:nil];
         [adminViewController performSelector:@selector(userButtonPressed:) withObject:NO afterDelay:0];
     }
     

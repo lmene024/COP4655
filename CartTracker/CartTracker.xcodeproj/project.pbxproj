@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C0735301A36738900AE56E8 /* FIU-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C07352F1A36738900AE56E8 /* FIU-logo.jpg */; };
 		4C0735341A367D4100AE56E8 /* CTProcessNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0735321A367D4100AE56E8 /* CTProcessNavigationViewController.m */; };
 		4C0735351A367D4100AE56E8 /* CTProcessNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735331A367D4100AE56E8 /* CTProcessNavigationViewController.xib */; };
 		4C0735391A367ED700AE56E8 /* CTCalendarNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0735371A367ED700AE56E8 /* CTCalendarNavigationViewController.m */; };
@@ -31,6 +30,11 @@
 		4C0735AE1A36B0E900AE56E8 /* CTAdminIconsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735AD1A36B0E900AE56E8 /* CTAdminIconsViewController.xib */; };
 		4C0735B11A36B19300AE56E8 /* area_chart-100-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735AF1A36B19300AE56E8 /* area_chart-100-2.png */; };
 		4C0735B21A36B19300AE56E8 /* area_chart-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0735B01A36B19300AE56E8 /* area_chart-100.png */; };
+		4C175D171A3A0BA800ECE15D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C175D131A3A0BA800ECE15D /* Icon-76.png */; };
+		4C175D181A3A0BA800ECE15D /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C175D141A3A0BA800ECE15D /* Icon-40@2x.png */; };
+		4C175D191A3A0BA800ECE15D /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C175D151A3A0BA800ECE15D /* Icon-76@2x.png */; };
+		4C175D1A1A3A0BA800ECE15D /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C175D161A3A0BA800ECE15D /* Icon-40.png */; };
+		4C175D1C1A3A0CEF00ECE15D /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C175D1B1A3A0CEF00ECE15D /* Icon-60@2x.png */; };
 		4C576AE11A2E4F04000E9053 /* CTRequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */; };
 		4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */; };
 		4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376591A2CB751003108BB /* CTUserDetailViewController.m */; };
@@ -115,7 +119,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C07352F1A36738900AE56E8 /* FIU-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "FIU-logo.jpg"; sourceTree = "<group>"; };
 		4C0735311A367D4100AE56E8 /* CTProcessNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTProcessNavigationViewController.h; sourceTree = "<group>"; };
 		4C0735321A367D4100AE56E8 /* CTProcessNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTProcessNavigationViewController.m; sourceTree = "<group>"; };
 		4C0735331A367D4100AE56E8 /* CTProcessNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTProcessNavigationViewController.xib; sourceTree = "<group>"; };
@@ -142,6 +145,11 @@
 		4C0735AD1A36B0E900AE56E8 /* CTAdminIconsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTAdminIconsViewController.xib; sourceTree = "<group>"; };
 		4C0735AF1A36B19300AE56E8 /* area_chart-100-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "area_chart-100-2.png"; sourceTree = "<group>"; };
 		4C0735B01A36B19300AE56E8 /* area_chart-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "area_chart-100.png"; sourceTree = "<group>"; };
+		4C175D131A3A0BA800ECE15D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		4C175D141A3A0BA800ECE15D /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		4C175D151A3A0BA800ECE15D /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		4C175D161A3A0BA800ECE15D /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		4C175D1B1A3A0CEF00ECE15D /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
 		4C576ADE1A2E4F03000E9053 /* CTRequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRequestDetailViewController.h; sourceTree = "<group>"; };
 		4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestDetailViewController.m; sourceTree = "<group>"; };
 		4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTRequestDetailViewController.xib; sourceTree = "<group>"; };
@@ -397,6 +405,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C175D0A1A3A09E200ECE15D /* App Icon */ = {
+			isa = PBXGroup;
+			children = (
+				4C175D1B1A3A0CEF00ECE15D /* Icon-60@2x.png */,
+				4C175D131A3A0BA800ECE15D /* Icon-76.png */,
+				4C175D141A3A0BA800ECE15D /* Icon-40@2x.png */,
+				4C175D151A3A0BA800ECE15D /* Icon-76@2x.png */,
+				4C175D161A3A0BA800ECE15D /* Icon-40.png */,
+			);
+			name = "App Icon";
+			sourceTree = "<group>";
+		};
 		4C8376561A2CB708003108BB /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +489,7 @@
 		B3232DCB1A2FE85F00F98CF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C175D0A1A3A09E200ECE15D /* App Icon */,
 				4C9CCCBF1A3745E300420FB7 /* barcode_scanner-100-2.png */,
 				4C9CCCC01A3745E300420FB7 /* barcode_scanner-100.png */,
 				4C0735AF1A36B19300AE56E8 /* area_chart-100-2.png */,
@@ -489,7 +510,6 @@
 				4C07358B1A369CBA00AE56E8 /* calendarSelectedIcon.png */,
 				4C0735891A369C7E00AE56E8 /* calendarUnselectedIcon.png */,
 				4CE473451A35FE1B006CE1B4 /* circle-outline-xxl.png */,
-				4C07352F1A36738900AE56E8 /* FIU-logo.jpg */,
 				4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */,
 				4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */,
 				B3232DC91A2FE85500F98CF4 /* contactIcon.png */,
@@ -905,6 +925,7 @@
 				B3CAF5A61A14E69A00274EEF /* Main_iPad.storyboard in Resources */,
 				B3232DEB1A2FF34700F98CF4 /* zbar-back.png in Resources */,
 				B3232DEE1A2FF34700F98CF4 /* zbar-samples.png in Resources */,
+				4C175D181A3A0BA800ECE15D /* Icon-40@2x.png in Resources */,
 				4C07359E1A36A96D00AE56E8 /* userEnteredIcon.png in Resources */,
 				4C0735951A36A28E00AE56E8 /* list_unselected.png in Resources */,
 				4C0735B11A36B19300AE56E8 /* area_chart-100-2.png in Resources */,
@@ -915,12 +936,14 @@
 				B3CAF5AB1A14E69B00274EEF /* Images.xcassets in Resources */,
 				4CE4733F1A34BEB6006CE1B4 /* CTLoginViewController.xib in Resources */,
 				4C0735351A367D4100AE56E8 /* CTProcessNavigationViewController.xib in Resources */,
+				4C175D1C1A3A0CEF00ECE15D /* Icon-60@2x.png in Resources */,
 				4C07358A1A369C7E00AE56E8 /* calendarUnselectedIcon.png in Resources */,
 				B3BFE9EB1A25884900B86E9B /* CTDataListViewController.xib in Resources */,
 				B3BFE9F61A25890700B86E9B /* CTAdminNavigationViewController.xib in Resources */,
+				4C175D191A3A0BA800ECE15D /* Icon-76@2x.png in Resources */,
+				4C175D171A3A0BA800ECE15D /* Icon-76.png in Resources */,
 				4C9CCCC21A3745E300420FB7 /* barcode_scanner-100.png in Resources */,
 				4CE473461A35FE1B006CE1B4 /* circle-outline-xxl.png in Resources */,
-				4C0735301A36738900AE56E8 /* FIU-logo.jpg in Resources */,
 				B3232DEC1A2FF34700F98CF4 /* zbar-help.html in Resources */,
 				B3232DED1A2FF34700F98CF4 /* zbar-helpicons.png in Resources */,
 				4C07353A1A367ED700AE56E8 /* CTCalendarNavigationViewController.xib in Resources */,
@@ -934,6 +957,7 @@
 				4CE473511A360235006CE1B4 /* CTUserDetailViewController.xib in Resources */,
 				B34ADA4C1A2EDC4E00D3A29A /* CTRequestNewViewController.xib in Resources */,
 				B3CAF5A31A14E69A00274EEF /* Main_iPhone.storyboard in Resources */,
+				4C175D1A1A3A0BA800ECE15D /* Icon-40.png in Resources */,
 				B3CAF59A1A14E69A00274EEF /* InfoPlist.strings in Resources */,
 				4CE473431A34E62B006CE1B4 /* fiu-ps-logo11-trans.png in Resources */,
 				4C07359C1A36A79700AE56E8 /* userSelectedIcon.png in Resources */,
