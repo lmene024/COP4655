@@ -5,6 +5,7 @@
 //  Created by Andres Ruggiero on 12/8/14.
 //  Copyright (c) 2014 FIU. All rights reserved.
 //
+// Class Description: 
 
 #import "CTCalendarNavigationViewController.h"
 #import "CTCalendarViewController.h"
