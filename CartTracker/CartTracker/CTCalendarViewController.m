@@ -47,10 +47,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSError * error = nil;
-    cartsArray = [manager.context executeFetchRequest:[manager getAllCarts] error:&error];
+    [self loadData];
     [tableView registerNib:[UINib nibWithNibName:@"CTCartStatusTableViewCell" bundle:nil] forCellReuseIdentifier:@"CartCell"];
     //[tableView registerClass:[CTCartStatusTableViewCell class] forCellReuseIdentifier:@"CartCell"];
+}
+
+-(void) loadData{
+    NSError * error = nil;
+    cartsArray = [manager.context executeFetchRequest:[manager getAllCarts] error:&error];
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    [self loadData];
+    [self.tableView reloadData];
+    NSLog(@"Calendar View Did Appear");
 }
 
 - (void)didReceiveMemoryWarning

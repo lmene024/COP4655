@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) CTcartManager * manager;
 @property (nonatomic, strong) NSFetchedResultsController * dataController;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBarData;
 
 - (instancetype) initWithData:(NSString *) dataType;
 

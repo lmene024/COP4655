@@ -54,8 +54,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //searchBarFilteredArray = [[NSMutableArray alloc] init];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"CTCartStatusTableViewCell" bundle:nil] forCellReuseIdentifier:self.title];
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewItem:)];
     
@@ -79,93 +77,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-
-#pragma mark UISearchBarDelegate
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    
-    NSLog(@"DidBeginEditing");
-    
-    isSearching = YES;
-    
-    [self.searchBar setShowsCancelButton:YES animated:YES];
-    self.tableView.allowsSelection = NO;
-    self.tableView.scrollEnabled = NO;
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    
-    //Remove all objects first.
-    [searchBarFilteredArray removeAllObjects];
-    
-    if([searchText length] != 0) {
-        isSearching = YES;
-        [self searchTableList];
-    }
-    else {
-        //[self.tableView setHidden:YES];
-        isSearching = NO;
-    }
-    
-    [self.tableView reloadData];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    //NSLog(@"Cancel clicked");
-    
-    self.searchBar.text=@"";
-    
-    //[self.tableView setHidden:YES];
-    
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    [self.searchBar resignFirstResponder];
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
-    
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    [self.searchBar resignFirstResponder];
-    self.tableView.allowsSelection = YES;
-    self.tableView.scrollEnabled = YES;
-    
-    [self searchTableList];
-}
-
--(void) searchTableList{
-    //NSLog(@"Searching Table List...");
-    
-    [self.tableView setHidden:NO];
-    
-    NSString *searchString = self.searchBar.text;
-    
-    NSLog(@"SearchBarText: %@",self.searchBar.text);
-    
-    for (User *aUser in searchBarDataArray) {
-        
-        NSComparisonResult resultFirstName = [self compareString:aUser.firstName toSearchString:searchString];
-        
-        NSComparisonResult resultLastName = [self compareString:aUser.lastName toSearchString:searchString];
-        
-        if ((resultFirstName == NSOrderedSame) || (resultLastName == NSOrderedSame)) {
-            NSLog(@"Testing result");
-            [searchBarFilteredArray addObject:aUser];
-        }
-    }
-    
-}
-
--(NSComparisonResult) compareString:(NSString*)string toSearchString:(NSString*)searchString{
-    
-    NSComparisonResult result = [string compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchString length])];
-    
-    return result;
-}*/
-
 
 #pragma mark - UITableViewDataSource
 

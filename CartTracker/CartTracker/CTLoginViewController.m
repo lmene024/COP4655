@@ -182,13 +182,13 @@
     [self.loginView setHidden:YES];
     self.backgroundImage.alpha = 1.0f;
     self.backgroundLogo.alpha = 1.0f;
-    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
+    // Then fades it away after 2 seconds
     [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
         // Animate the alpha value of your imageView from 1.0 to 0.0 here
         self.backgroundImage.alpha = 0.0f;
         self.backgroundLogo.alpha = 0.0f;
     } completion:^(BOOL finished) {
-        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
+        // Once the animation is completed and the alpha has gone to 0.0, hide the view
         self.backgroundImage.hidden = YES;
     }];
     [self.loginView setHidden:NO];

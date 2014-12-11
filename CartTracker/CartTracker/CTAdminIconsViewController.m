@@ -58,8 +58,7 @@
             break;
         case STATISTICS:
         {
-            //CTStatisticsTableViewController *statsController = [[CTStatisticsTableViewController alloc] init];
-            //[self.navigationController pushViewController:statsController animated:YES];
+            
         }
             break;
         case LOG_OUT:
