@@ -441,15 +441,18 @@
 
 #pragma mark Email Method
 
--(void) composeEmailToUserEmail:(NSString*)email {
+-(void) composeEmailToUser:(User*)aUser {
     
     // Email Subject
-    NSString *emailTitle = @"Test Email";
+    NSString *emailTitle = @"Golf Cart Reservation ";
+    
     // Email Content
-    NSString *messageBody = @"<h1>You just made a reservation!</h1>"; // Change the message body to HTML
+    NSString *messageBody = @"<h1>You just made a golf cart reservation</h1>"; // Change the message body to HTML
+    
+    //NSString *message = [[NSString alloc] initWithFormat:@"<h1>You just made a golf cart reservation\n from %@ to %@</h1>",existingRequest.schedStartTime,existingRequest.schedEndTime];
     // To address
-    NSLog(@"Message sent to email: %@",userForRequest.email);
-    NSArray *toRecipents = [NSArray arrayWithObject:email];
+    NSLog(@"Message sent to email: %@",aUser.email);
+    NSArray *toRecipents = [NSArray arrayWithObject:aUser.email];
     
     confirmationComposer = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
@@ -473,7 +476,8 @@
     
     if([title isEqualToString:@"Yes"])
     {
-        [self composeEmailToUserEmail:userForRequest.email];
+        [self composeEmailToUser:userForRequest];
+        
         //[self.navigationController popViewControllerAnimated:YES];
     }
     else if([title isEqualToString:@"No"])
