@@ -17,5 +17,6 @@
 @property BOOL firstTimeLogin;
 
 - (instancetype) initWithData:(NSString *) dataType;
+- (void) insertNewItem:(id) sender;
 
 @end

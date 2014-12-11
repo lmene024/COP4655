@@ -14,6 +14,7 @@
 #import "User.h"
 #import "CTcartManager.h"
 #import "Constants.h"
+#import "CTLoginViewController.h"
 
 @interface CTUserDetailViewController ()
 
@@ -30,6 +31,7 @@
 @synthesize userImage;
 @synthesize licenseTextField,firstNameTextField,lastNameTextField,pantherIdTextField,passwordTextField,adminSwitch;
 @synthesize manager;
+@synthesize firstTimeLogin;
 
 #pragma mark - UIViewController
 
@@ -248,7 +250,7 @@
 
 - (bool) saveUserDataForUser:(User *)aUser{
     if (![self fieldsAreEmpty]) {
-        
+        NSLog(@"Creating New User");
         [aUser setDriversLicense:self.licenseTextField.text];
         [aUser setEmpID:self.pantherIdTextField.text];
         [aUser setFirstName:self.firstNameTextField.text];
@@ -264,6 +266,7 @@
         }
         [self.manager save];
         return true;
+        
     } else {
         
         UIAlertView *alert = [[UIAlertView alloc]
@@ -282,8 +285,15 @@
     User *aUser = [self.manager newUser];
     
     if ([self saveUserDataForUser:aUser]) {
+        if (self.firstTimeLogin == YES) {
+            NSLog(@"User Saved But needs to go back to login view");
+            CTLoginViewController *loginController = [[CTLoginViewController alloc] init];
+            [self.navigationController presentViewController:loginController animated:YES completion:nil];
+            //[self.navigationController popToViewController:loginController animated:YES];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         
-        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

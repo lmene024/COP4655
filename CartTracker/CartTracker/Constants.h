@@ -43,6 +43,8 @@
 #define STAT_USER_LAST_CART @"Last Cart by User"
 #define STAT_USER_TOTAL_REQ @"Total Requests by User"
 
+#import "CTAdminNavigationViewController.h"
+
 #define STAT_REQ_COUNT_HOURLY @"Number of Requests per Hour"
 #define STAT_REQ_COUNT_WEEKLY @"Number of Requests per Week"
 
