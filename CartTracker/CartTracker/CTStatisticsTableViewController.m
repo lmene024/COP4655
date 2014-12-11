@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     self.title = @"Statistics";
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
     //load underlying arrays first
     cartStatistics = @[STAT_CART_CURR_AVAIL, STAT_CART_CURR_INUSE, STAT_CART_OPEN_REQ, STAT_CART_CLOSE_REQ, STAT_CART_USE_TIME, STAT_CART_LAST_USE];

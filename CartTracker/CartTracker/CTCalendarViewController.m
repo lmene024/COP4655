@@ -107,8 +107,8 @@
 
 - (NSPredicate *) getCurrentItems{
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
-        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: DatePicker.date];
-        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:DatePicker.date];
+        NSComparisonResult start = [request.schedStartTime compare: DatePicker.date];
+        NSComparisonResult end = [request.schedEndTime compare:DatePicker.date];
         
         return  (start != NSOrderedDescending && end!=NSOrderedAscending);
     }];

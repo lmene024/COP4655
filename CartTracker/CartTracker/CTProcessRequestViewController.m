@@ -170,7 +170,6 @@
     
     [self.searchUserBar resignFirstResponder];
     [self.searchUserBar setShowsCancelButton:false animated:false];
-#warning not sure why but there are two table views showing up here...
     [self.searchDisplayController setActive:false animated:true];
     self.searchUserBar.text = [self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName];
     [self displayRequestForUser:userToProcess];
@@ -268,8 +267,8 @@
     startTime = [startTime dateByAddingTimeInterval:-(MAX_REQUEST_TIME_VARIANCE)];
     
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
-        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: startTime];
-        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:endTime];
+        NSComparisonResult start = [request.schedStartTime compare: startTime];
+        NSComparisonResult end = [request.schedEndTime compare:endTime];
         
         return  (start != NSOrderedDescending && end!=NSOrderedAscending);
     }];

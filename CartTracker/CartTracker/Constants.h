@@ -46,5 +46,7 @@
 #define STAT_REQ_COUNT_HOURLY @"Number of Requests per Hour"
 #define STAT_REQ_COUNT_WEEKLY @"Number of Requests per Week"
 
+#define WEEK_INTERVAL 60*60*24*7
+
 
 #endif

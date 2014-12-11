@@ -10,7 +10,7 @@
 
 @class CTcartManager;
 
-@interface CTViewController : UITabBarController
+@interface CTViewController : UITabBarController <NSFetchedResultsControllerDelegate>
 
 @property BOOL firstTimeLogin;
 @property (nonatomic, strong) CTcartManager * manager;
