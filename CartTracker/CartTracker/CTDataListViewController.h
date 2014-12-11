@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) CTcartManager * manager;
 @property (nonatomic, strong) NSFetchedResultsController * dataController;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBarData;
+@property BOOL firstTimeLogin;
 
 - (instancetype) initWithData:(NSString *) dataType;
 

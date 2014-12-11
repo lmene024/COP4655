@@ -48,6 +48,7 @@
     switch (tag) {
         case USERS:
         {   CTDataListViewController *userController = [[CTDataListViewController alloc] initWithData:@"Users"];
+            userController.firstTimeLogin = self.firstTimeLogin;
             [self.navigationController pushViewController:userController animated:YES];
         }
             break;
@@ -61,6 +62,7 @@
         {
             CTStatisticsTableViewController *statsController = [[CTStatisticsTableViewController alloc] init];
             [self.navigationController pushViewController:statsController animated:YES];
+
         }
             break;
         case LOG_OUT:

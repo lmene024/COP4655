@@ -73,11 +73,25 @@
     didAddQR = false;
 }
 
+/*! Initialize the array with existing carts
+ 
+ @param
+ @return
+ 
+ */
+
 -(void)initArray{
     NSError *error = nil;
     NSArray *array = [manager.context executeFetchRequest:[manager getAllCarts] error:&error];
     cartArray = [[NSArray alloc] initWithArray:array];
 }
+
+/*! Method that returns the maximum cart ID number
+ 
+ @param
+ @return
+ 
+ */
 
 -(int) getMaxCartId{
     int maxCartId = 0;
@@ -206,6 +220,13 @@
     [self setBorderStyleToUITextFields:borderStyle];
 }
 
+/*! Method that validates is fields are empty
+ 
+ @param
+ @return
+ 
+ */
+
 -(BOOL) fieldsAreEmpty{
     
     if ( FIELD_ISEMPTY(self.cartIdTextField.text)
@@ -217,12 +238,27 @@
     return NO;
 }
 
+/*! Method that sets the Cart Id value
+ 
+ @param
+ @return
+ 
+ */
+
 -(void) setIdValueForTextField{
     int maxCartId = [self getMaxCartId];
     NSString *max = [[NSString alloc] initWithFormat:@"%d",maxCartId+1];
     [self.cartIdTextField setText:max];
     [self.cartIdTextField setEnabled:NO];
 }
+
+/*! Method that sets by default the Cart name 
+    to Cart#(CartId)
+ 
+ @param
+ @return
+ 
+ */
 
 -(void) setCartNameWithMaxValue:(int)maxValue{
     NSString *cartName = [[NSString alloc] initWithFormat:@"Cart #%d",maxValue];
@@ -286,6 +322,13 @@
     return false;
 }
 
+/*! Button that saves the cart
+ 
+ @param
+ @return
+ 
+ */
+
 -(IBAction)saveButton:(id)sender{
     
     if (![self fieldsAreEmpty]) {
@@ -298,6 +341,12 @@
     
 }
 
+/*! Scan QR code button
+ 
+ @param
+ @return
+ 
+ */
 
 - (IBAction)scanQrCode:(id)sender {
     ZBarReaderViewController * scannerController = [ZBarReaderViewController new];

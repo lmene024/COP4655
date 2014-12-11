@@ -47,6 +47,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
     [tableView registerNib:[UINib nibWithNibName:@"CTCartStatusTableViewCell" bundle:nil] forCellReuseIdentifier:@"CartCell"];
     //[tableView registerClass:[CTCartStatusTableViewCell class] forCellReuseIdentifier:@"CartCell"];
 }

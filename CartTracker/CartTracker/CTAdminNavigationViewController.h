@@ -10,4 +10,6 @@
 
 @interface CTAdminNavigationViewController : UINavigationController
 
+@property BOOL firstTimeLogin;
+
 @end

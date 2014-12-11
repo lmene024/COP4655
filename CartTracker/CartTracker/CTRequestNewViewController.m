@@ -28,8 +28,6 @@
     NSMutableArray *filteredCartArray;
     Boolean isSecondSearchBar;
     NSArray *requestArray;
- //   User *userForRequest;
- //   Cart *cartForRequest;
 }
 
 #pragma mark - Properties
@@ -125,6 +123,7 @@
  @return
  
  */
+
 -(void) initArrays{
     filteredContentList = [[NSMutableArray alloc] init];
     NSError *error = nil;
@@ -175,9 +174,11 @@
 #pragma mark UISearchBarDelegate
 
 -(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    
     [searchBar setText:[searchBar text]];
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.cartSearchBar setShowsCancelButton:NO animated:YES];
+    
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
@@ -348,20 +349,9 @@
         // Configure the cell...
         if (isSearching == YES) {
             User *a = [filteredContentList objectAtIndex:indexPath.row];
-           /* NSMutableString *firstAndLast = [[NSMutableString alloc] initWithString:a.lastName];
-            [firstAndLast appendString:@", "];
-            [firstAndLast appendString:a.firstName];
-            cell.textLabel.text = firstAndLast;
-            */
             cell.textLabel.text = [self getFormatedNameWithFirst:a.firstName andLast:a.lastName];
         }
         else {
-            /*
-            NSMutableString *firstAndLast = [[NSMutableString alloc] initWithString:aUser.lastName];
-            [firstAndLast appendString:@", "];
-            [firstAndLast appendString:aUser.firstName];
-            [cell.textLabel setText:firstAndLast];
-             */
             cell.textLabel.text = [self getFormatedNameWithFirst:aUser.firstName andLast:aUser.lastName];
         }
     } else {
@@ -396,31 +386,13 @@
     
     [self setViewHidden:NO];
     
-    //[self.searchBar setText:[userArray objectAtIndex:[indexPath row]]];
-    //[self.cartSearchBar setText:[cartArray objectAtIndex:[indexPath row]]];
-    
-    //UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    
     if (!isSecondSearchBar){
         
-       /* NSString *userName = cell.textLabel.text;
-        
-        [self.searchBar setText:userName];
-        
-        NSArray *splitName = [userName componentsSeparatedByString:@","];
-        
-        //splitName[0] contains the last name of the person
-        userForRequest = [self searchArray:userArray withCriteria:splitName[0] theClass:[User class]];
-        */
         userForRequest = [filteredContentList objectAtIndex:indexPath.row];
         [self.searchBar setText:[self getFormatedNameWithFirst:userForRequest.firstName andLast:userForRequest.lastName]];
         
     } else {
-        /*
-        NSString *cartName = cell.textLabel.text;
-        [self.cartSearchBar setText:cartName];
-        cartForRequest = [self searchArray:cartArray withCriteria:cartName theClass:[Cart class]];
-         */
+        
         cartForRequest = [filteredCartArray objectAtIndex:indexPath.row];
         [self.cartSearchBar setText:cartForRequest.cartName];
     }

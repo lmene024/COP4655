@@ -7,6 +7,7 @@
 //
 // Class Description: CTLoginViewController is in charge of validating the login process of a user
 
+#import "CTUserDetailViewController.h"
 #import "CTLoginViewController.h"
 #import "CTViewController.h"
 #import "Constants.h"
@@ -19,6 +20,7 @@
 @implementation CTLoginViewController
 {
     NSArray *userArray;
+    BOOL firstTimeUser;
 }
 
 #pragma mark - Properties
@@ -50,6 +52,8 @@
     NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
     userArray = [[NSArray alloc] initWithArray:array];
     
+    [self firstTimeAuthentification];
+    
     // Do any additional setup after loading the view from its nib.
     //[self popupImage];
 }
@@ -66,13 +70,17 @@
     
     NSLog(@"Button Pressed");
     
-    /*if ([self validateCredentials]) {
+    if (firstTimeUser == YES) {
         CTViewController *controller = [[CTViewController alloc] init];
+        controller.firstTimeLogin = firstTimeUser;
+        NSLog(@"controller firstTimeLogin : %hhd",controller.firstTimeLogin);
         [self presentViewController:controller animated:YES completion:nil];
-    }*/
-    
-    CTViewController *controller = [[CTViewController alloc] init];
-    [self presentViewController:controller animated:YES completion:nil];
+    } else {
+        if ([self validateCredentials]) {
+            CTViewController *controller = [[CTViewController alloc] init];
+            [self presentViewController:controller animated:YES completion:nil];
+        }
+    }
     
 }
 
@@ -80,19 +88,54 @@
 
 -(BOOL) validateCredentials{
     
-    if ([self compareUser:self.usernameTextField.text
-             withPassword:self.passwordTextField.text]) {
-        CTViewController *controller = [[CTViewController alloc] init];
-        [self presentViewController:controller animated:YES completion:nil];
-        return YES;
-    } else {
+    BOOL result = NO;
+    
+    /*if ([self firstTimeAuthentification]) {
+        
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"Check username or password"
+                              initWithTitle:@"Login"
+                              message:@"Welcome to Cart Tracker! You will be redirected to create a new user"
                               delegate:self
                               cancelButtonTitle:@"Ok"
                               otherButtonTitles:nil, nil];
         [alert show];
+        
+        result = NO;
+        
+    } else {*/
+        if ([self compareUser:self.usernameTextField.text
+                 withPassword:self.passwordTextField.text]) {
+            //CTViewController *controller = [[CTViewController alloc] init];
+            //[self presentViewController:controller animated:YES completion:nil];
+            result = YES;
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Check username or password"
+                                  delegate:self
+                                  cancelButtonTitle:@"Ok"
+                                  otherButtonTitles:nil, nil];
+            [alert show];
+            result = NO;
+        }
+    //}
+    
+    return result;
+}
+
+-(BOOL) firstTimeAuthentification{
+    if ([userArray count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Login"
+                              message:@"Welcome to Cart Tracker! Press Sign In to create a new user"
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil, nil];
+        [alert show];
+        firstTimeUser = YES;
+        NSLog(@"firstTimeUser : %hhd",firstTimeUser);
+        return YES;
+    } else {
         return NO;
     }
 }
@@ -182,13 +225,13 @@
     [self.loginView setHidden:YES];
     self.backgroundImage.alpha = 1.0f;
     self.backgroundLogo.alpha = 1.0f;
-    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
+    // Then fades it away after 2 seconds
     [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
         // Animate the alpha value of your imageView from 1.0 to 0.0 here
         self.backgroundImage.alpha = 0.0f;
         self.backgroundLogo.alpha = 0.0f;
     } completion:^(BOOL finished) {
-        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
+        // Once the animation is completed and the alpha has gone to 0.0, hide the view
         self.backgroundImage.hidden = YES;
     }];
     [self.loginView setHidden:NO];
