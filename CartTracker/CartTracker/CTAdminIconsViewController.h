@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *cartsButton;
 @property (strong, nonatomic) IBOutlet UIButton *statisticsButton;
 @property (strong, nonatomic) IBOutlet UIButton *logOutButton;
+@property BOOL firstTimeLogin;
 - (IBAction)buttonPressed:(id)sender;
 @end

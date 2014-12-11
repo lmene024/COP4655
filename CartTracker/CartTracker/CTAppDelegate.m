@@ -8,6 +8,7 @@
 
 #import "CTAppDelegate.h"
 #import "CTLoginViewController.h"
+#import "CTViewController.h"
 
 @implementation CTAppDelegate
 
@@ -17,6 +18,9 @@
     
     CTLoginViewController *loginController = [[CTLoginViewController alloc] init];
     [self.window setRootViewController:loginController];
+    
+    //CTViewController *viewController = [[CTViewController alloc] init];
+    //[self.window setRootViewController:viewController];
     
     return YES;
 }

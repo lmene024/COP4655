@@ -19,6 +19,8 @@
 
 @implementation CTAdminNavigationViewController
 
+@synthesize firstTimeLogin;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,6 +38,7 @@
     // Do any additional setup after loading the view from its nib.
     
     CTAdminIconsViewController *adminViewController = [[CTAdminIconsViewController alloc] init];
+    adminViewController.firstTimeLogin = self.firstTimeLogin;
     
     UIColor* color3 = [UIColor colorWithRed: 0.769 green: 0.584 blue: 0.145 alpha: 1];
     

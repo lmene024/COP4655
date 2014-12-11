@@ -7,6 +7,7 @@
 //
 // Class Description: CTLoginViewController is in charge of validating the login process of a user
 
+#import "CTUserDetailViewController.h"
 #import "CTLoginViewController.h"
 #import "CTViewController.h"
 #import "Constants.h"
@@ -19,6 +20,7 @@
 @implementation CTLoginViewController
 {
     NSArray *userArray;
+    BOOL firstTimeUser;
 }
 
 #pragma mark - Properties
@@ -50,6 +52,8 @@
     NSArray *array = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
     userArray = [[NSArray alloc] initWithArray:array];
     
+    [self firstTimeAuthentification];
+    
     // Do any additional setup after loading the view from its nib.
     //[self popupImage];
 }
@@ -66,13 +70,17 @@
     
     NSLog(@"Button Pressed");
     
-    /*if ([self validateCredentials]) {
+    if (firstTimeUser == YES) {
         CTViewController *controller = [[CTViewController alloc] init];
+        controller.firstTimeLogin = firstTimeUser;
+        NSLog(@"controller firstTimeLogin : %hhd",controller.firstTimeLogin);
         [self presentViewController:controller animated:YES completion:nil];
-    }*/
-    
-    CTViewController *controller = [[CTViewController alloc] init];
-    [self presentViewController:controller animated:YES completion:nil];
+    } else {
+        if ([self validateCredentials]) {
+            CTViewController *controller = [[CTViewController alloc] init];
+            [self presentViewController:controller animated:YES completion:nil];
+        }
+    }
     
 }
 
@@ -80,19 +88,54 @@
 
 -(BOOL) validateCredentials{
     
-    if ([self compareUser:self.usernameTextField.text
-             withPassword:self.passwordTextField.text]) {
-        CTViewController *controller = [[CTViewController alloc] init];
-        [self presentViewController:controller animated:YES completion:nil];
-        return YES;
-    } else {
+    BOOL result = NO;
+    
+    /*if ([self firstTimeAuthentification]) {
+        
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"Check username or password"
+                              initWithTitle:@"Login"
+                              message:@"Welcome to Cart Tracker! You will be redirected to create a new user"
                               delegate:self
                               cancelButtonTitle:@"Ok"
                               otherButtonTitles:nil, nil];
         [alert show];
+        
+        result = NO;
+        
+    } else {*/
+        if ([self compareUser:self.usernameTextField.text
+                 withPassword:self.passwordTextField.text]) {
+            //CTViewController *controller = [[CTViewController alloc] init];
+            //[self presentViewController:controller animated:YES completion:nil];
+            result = YES;
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Check username or password"
+                                  delegate:self
+                                  cancelButtonTitle:@"Ok"
+                                  otherButtonTitles:nil, nil];
+            [alert show];
+            result = NO;
+        }
+    //}
+    
+    return result;
+}
+
+-(BOOL) firstTimeAuthentification{
+    if ([userArray count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Login"
+                              message:@"Welcome to Cart Tracker! Press Sign In to create a new user"
+                              delegate:self
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil, nil];
+        [alert show];
+        firstTimeUser = YES;
+        NSLog(@"firstTimeUser : %hhd",firstTimeUser);
+        return YES;
+    } else {
         return NO;
     }
 }

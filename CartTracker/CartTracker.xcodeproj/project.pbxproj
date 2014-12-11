@@ -47,8 +47,6 @@
 		4CE473411A34C103006CE1B4 /* campus-gl-gc-night-close.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */; };
 		4CE473431A34E62B006CE1B4 /* fiu-ps-logo11-trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */; };
 		4CE473461A35FE1B006CE1B4 /* circle-outline-xxl.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473451A35FE1B006CE1B4 /* circle-outline-xxl.png */; };
-		4CE473491A360095006CE1B4 /* CTContactUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE473481A360095006CE1B4 /* CTContactUI.m */; };
-		4CE4734F1A360201006CE1B4 /* CTLoginViewUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4734E1A360201006CE1B4 /* CTLoginViewUI.m */; };
 		4CE473511A360235006CE1B4 /* CTUserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE473501A360235006CE1B4 /* CTUserDetailViewController.xib */; };
 		4CE4AF1F1A2D2DFB00C3C8A3 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */; };
 		4CF895A21A30E9A3003C6809 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF895A11A30E9A3003C6809 /* MessageUI.framework */; };
@@ -163,10 +161,6 @@
 		4CE473401A34C103006CE1B4 /* campus-gl-gc-night-close.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "campus-gl-gc-night-close.jpg"; path = "../campus-gl-gc-night-close.jpg"; sourceTree = "<group>"; };
 		4CE473421A34E62A006CE1B4 /* fiu-ps-logo11-trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fiu-ps-logo11-trans.png"; path = "../fiu-ps-logo11-trans.png"; sourceTree = "<group>"; };
 		4CE473451A35FE1B006CE1B4 /* circle-outline-xxl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-outline-xxl.png"; sourceTree = "<group>"; };
-		4CE473471A360095006CE1B4 /* CTContactUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTContactUI.h; sourceTree = "<group>"; };
-		4CE473481A360095006CE1B4 /* CTContactUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTContactUI.m; sourceTree = "<group>"; };
-		4CE4734D1A360201006CE1B4 /* CTLoginViewUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLoginViewUI.h; sourceTree = "<group>"; };
-		4CE4734E1A360201006CE1B4 /* CTLoginViewUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewUI.m; sourceTree = "<group>"; };
 		4CE473501A360235006CE1B4 /* CTUserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTUserDetailViewController.xib; sourceTree = "<group>"; };
 		4CE4AF1C1A2D2DFB00C3C8A3 /* CTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTLoginViewController.h; sourceTree = "<group>"; };
 		4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewController.m; sourceTree = "<group>"; };
@@ -742,10 +736,6 @@
 		B3CAF5831A14E69A00274EEF = {
 			isa = PBXGroup;
 			children = (
-				4CE4734D1A360201006CE1B4 /* CTLoginViewUI.h */,
-				4CE4734E1A360201006CE1B4 /* CTLoginViewUI.m */,
-				4CE473471A360095006CE1B4 /* CTContactUI.h */,
-				4CE473481A360095006CE1B4 /* CTContactUI.m */,
 				B3CAF5951A14E69A00274EEF /* CartTracker */,
 				B3CAF5B71A14E69B00274EEF /* CartTrackerTests */,
 				B3CAF58E1A14E69A00274EEF /* Frameworks */,
@@ -995,8 +985,6 @@
 				B30C56EC1A2D80A200F79E60 /* CTScrollView.m in Sources */,
 				4C07357F1A36832E00AE56E8 /* CTAdminIconsViewController.m in Sources */,
 				B3CAF5A01A14E69A00274EEF /* CTAppDelegate.m in Sources */,
-				4CE4734F1A360201006CE1B4 /* CTLoginViewUI.m in Sources */,
-				4CE473491A360095006CE1B4 /* CTContactUI.m in Sources */,
 				4C0735341A367D4100AE56E8 /* CTProcessNavigationViewController.m in Sources */,
 				B32BC9081A3169EC00DB3E51 /* CTProcessRequestViewController.m in Sources */,
 				4C0735391A367ED700AE56E8 /* CTCalendarNavigationViewController.m in Sources */,

@@ -10,7 +10,7 @@
 #import "CTcartManager.h"
 #import "CTADetailViewController.h"
 
-@interface CTLoginViewController : CTADetailViewController <NSFetchedResultsControllerDelegate,UITextFieldDelegate>
+@interface CTLoginViewController : CTADetailViewController <NSFetchedResultsControllerDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *signInButton;
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 

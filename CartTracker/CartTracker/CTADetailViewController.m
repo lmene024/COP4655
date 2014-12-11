@@ -28,7 +28,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     ((UIScrollView *)self.view).contentSize = [self.view.subviews[0] bounds].size;
-
 }
 
 - (void)didReceiveMemoryWarning

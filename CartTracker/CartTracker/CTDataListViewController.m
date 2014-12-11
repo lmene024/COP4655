@@ -27,6 +27,7 @@
 #pragma mark - Properties
 
 @synthesize manager;
+@synthesize firstTimeLogin;
 
 #pragma mark - UIViewController
 
@@ -364,6 +365,7 @@
         
         User *aUser = [self.dataController objectAtIndexPath:indexPath];
         CTUserDetailViewController *userDetailViewController = [[CTUserDetailViewController alloc] init];
+        userDetailViewController.firstTimeUser = self.firstTimeLogin;
         userDetailViewController.user = aUser;
         userDetailViewController.manager = self.manager;
         NSLog(@"User %@ has #requests: %lu",aUser.firstName,(unsigned long)[aUser.requests count]);
