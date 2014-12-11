@@ -10,7 +10,6 @@
 // This view controller is also used to create a new User in the application.
 
 #import "CTUserDetailViewController.h"
-#import "CTCameraViewController.h"
 #import "User.h"
 #import "CTcartManager.h"
 #import "Constants.h"

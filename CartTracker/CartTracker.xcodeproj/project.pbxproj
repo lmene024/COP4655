@@ -38,7 +38,6 @@
 		4C576AE11A2E4F04000E9053 /* CTRequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C576ADF1A2E4F04000E9053 /* CTRequestDetailViewController.m */; };
 		4C576AE21A2E4F04000E9053 /* CTRequestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C576AE01A2E4F04000E9053 /* CTRequestDetailViewController.xib */; };
 		4C83765B1A2CB751003108BB /* CTUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376591A2CB751003108BB /* CTUserDetailViewController.m */; };
-		4C8376651A2CF402003108BB /* CTCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8376631A2CF402003108BB /* CTCameraViewController.m */; };
 		4C8376661A2CF402003108BB /* CTCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376641A2CF402003108BB /* CTCameraViewController.xib */; };
 		4C8376681A2CF453003108BB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8376671A2CF453003108BB /* MobileCoreServices.framework */; };
 		4C8376731A2D097E003108BB /* CTAdminTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8376711A2D097E003108BB /* CTAdminTableViewController.xib */; };
@@ -157,7 +156,6 @@
 		4C576AEE1A2E61F8000E9053 /* CTRequestNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRequestNewViewController.m; sourceTree = "<group>"; };
 		4C8376581A2CB751003108BB /* CTUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTUserDetailViewController.h; sourceTree = "<group>"; };
 		4C8376591A2CB751003108BB /* CTUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTUserDetailViewController.m; sourceTree = "<group>"; };
-		4C8376631A2CF402003108BB /* CTCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCameraViewController.m; sourceTree = "<group>"; };
 		4C8376641A2CF402003108BB /* CTCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCameraViewController.xib; sourceTree = "<group>"; };
 		4C8376671A2CF453003108BB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4C8376691A2D0118003108BB /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -361,7 +359,6 @@
 		B3CAF5BD1A14E69B00274EEF /* CartTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartTrackerTests.m; sourceTree = "<group>"; };
 		B3CE64CA1A2ECFE5004470A7 /* CTCalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCalendarViewController.xib; sourceTree = "<group>"; };
 		B3CE64CC1A2ED033004470A7 /* CTCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCalendarViewController.m; sourceTree = "<group>"; };
-		B3CE64CD1A2ED033004470A7 /* CTCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCameraViewController.h; sourceTree = "<group>"; };
 		B3D667481A2E8FF900A91C9A /* CTCartStatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCartStatusTableViewCell.h; sourceTree = "<group>"; };
 		B3D667491A2E8FF900A91C9A /* CTCartStatusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCartStatusTableViewCell.m; sourceTree = "<group>"; };
 		B3D6674A1A2E8FF900A91C9A /* CTCartStatusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCartStatusTableViewCell.xib; sourceTree = "<group>"; };
@@ -479,9 +476,6 @@
 				4CE4AF1D1A2D2DFB00C3C8A3 /* CTLoginViewController.m */,
 				B30C56ED1A2D82D300F79E60 /* CTADetailViewController.h */,
 				B30C56EE1A2D82D300F79E60 /* CTADetailViewController.m */,
-				B3CE64CD1A2ED033004470A7 /* CTCameraViewController.h */,
-				4C8376631A2CF402003108BB /* CTCameraViewController.m */,
-				B3CE64CD1A2ED033004470A7 /* CTCameraViewController.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1014,7 +1008,6 @@
 				4C0735391A367ED700AE56E8 /* CTCalendarNavigationViewController.m in Sources */,
 				B30C56EF1A2D82D300F79E60 /* CTADetailViewController.m in Sources */,
 				B3BFE9EA1A25884900B86E9B /* CTDataListViewController.m in Sources */,
-				4C8376651A2CF402003108BB /* CTCameraViewController.m in Sources */,
 				B3BFE9EE1A25888E00B86E9B /* CTcartManager.m in Sources */,
 				B3BFE9DF1A25870A00B86E9B /* Request.m in Sources */,
 				B3D6674B1A2E8FF900A91C9A /* CTCartStatusTableViewCell.m in Sources */,
