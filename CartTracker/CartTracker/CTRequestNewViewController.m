@@ -604,8 +604,8 @@
 
 -(BOOL) validateCarAvailability:(Cart *)cart forUser:(User*)user{
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
-        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: requestDatePicker.date];
-        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:requestDatePicker.date];
+        NSComparisonResult start = [request.schedStartTime compare: requestDatePicker.date];
+        NSComparisonResult end = [request.schedEndTime compare:requestDatePicker.date];
         
         return  (start != NSOrderedDescending && end != NSOrderedAscending);
     }];

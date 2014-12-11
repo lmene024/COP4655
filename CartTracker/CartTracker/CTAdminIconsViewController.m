@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "CTDataListViewController.h"
 #import "CTLoginViewController.h"
+#import "CTStatisticsTableViewController.h"
 #import "CTcartManager.h"
 
 @interface CTAdminIconsViewController ()
@@ -51,6 +52,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)userButtonPressed:(id)sender {
     
     CTDataListViewController *userController = [[CTDataListViewController alloc] initWithData:@"Users"];
@@ -83,6 +85,8 @@
 }
 
 - (IBAction)statisticsButtonPressed:(id)sender {
+    CTStatisticsTableViewController * statsController = [[CTStatisticsTableViewController alloc] init];
+    [self.navigationController pushViewController:statsController animated:true];
 }
 
 - (IBAction)logOutButtonPressed:(id)sender {

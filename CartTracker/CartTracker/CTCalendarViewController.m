@@ -47,20 +47,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self loadData];
+
     [tableView registerNib:[UINib nibWithNibName:@"CTCartStatusTableViewCell" bundle:nil] forCellReuseIdentifier:@"CartCell"];
     //[tableView registerClass:[CTCartStatusTableViewCell class] forCellReuseIdentifier:@"CartCell"];
 }
 
--(void) loadData{
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     NSError * error = nil;
     cartsArray = [manager.context executeFetchRequest:[manager getAllCarts] error:&error];
-}
-
--(void) viewDidAppear:(BOOL)animated{
-    [self loadData];
     [self.tableView reloadData];
-    NSLog(@"Calendar View Did Appear");
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,8 +107,8 @@
 
 - (NSPredicate *) getCurrentItems{
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
-        NSComparisonResult * start = (NSComparisonResult *)[request.schedStartTime compare: DatePicker.date];
-        NSComparisonResult * end = (NSComparisonResult *)[request.schedEndTime compare:DatePicker.date];
+        NSComparisonResult start = [request.schedStartTime compare: DatePicker.date];
+        NSComparisonResult end = [request.schedEndTime compare:DatePicker.date];
         
         return  (start != NSOrderedDescending && end!=NSOrderedAscending);
     }];
