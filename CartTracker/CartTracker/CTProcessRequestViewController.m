@@ -46,12 +46,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    //self.chooserView.selectedSegmentIndex = 0;
-    /*
-    //initially hide all views
-    self.loanView.hidden = true;
-    self.returnView.hidden = true;
-    self.actionButton.hidden = true;*/
     
     [[UISegmentedControl appearance] setTintColor:[UIColor blackColor]];
     
@@ -64,6 +58,7 @@
         self.loanView.hidden = true;
         self.returnView.hidden = true;
         self.actionButton.hidden = true;
+        self.notFoundView.hidden = true;
     }
     
 }
@@ -77,6 +72,14 @@
         [self displayRequest:requestToProcess];
     }
     
+}
+
+- (void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //hide all
+    self.searchUserBar.text = @"";
+    self.notFoundView.hidden = true;
+    self.detailView.hidden = true;
 }
 
 
@@ -207,8 +210,10 @@
         self.detailView.hidden = true;
         [self.actionButton setEnabled:false];
         //load not found details
-        self.notFoundLabel.text = [NSString stringWithFormat:@"No current Request was found\rfor User: %@\rPlease check at a later time!", [self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName]];
+        self.notFoundLabel.text = [NSString stringWithFormat:@"No current Request was found for User: %@\nPlease check at a later time!", [self getFormatedNameWithFirst:userToProcess.firstName andLast:userToProcess.lastName]];
         self.notFoundView.hidden = false;
+        [self.notFoundLabel sizeToFit];
+
     }
 }
 
@@ -237,6 +242,7 @@
     NSLog(@"button enabled");
     self.detailView.hidden = false;
     self.notFoundView.hidden = true;
+    self.returnView.hidden = true;
     
     //enable action button
     if (request.reqStatus.intValue == REQUEST_STATUS_SCHEDULED) {
@@ -261,16 +267,19 @@
 }
 
 - (NSPredicate *) getCurrentItems{
-    NSDate * startTime, * endTime = [NSDate date];
-    endTime = [endTime dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
-    
-    startTime = [startTime dateByAddingTimeInterval:-(MAX_REQUEST_TIME_VARIANCE)];
     
     NSPredicate * currentItemsOnly = [NSPredicate predicateWithBlock:^BOOL(Request* request, NSDictionary *bindings) {
-        NSComparisonResult start = [request.schedStartTime compare: startTime];
-        NSComparisonResult end = [request.schedEndTime compare:endTime];
+        NSDate * startEarlyTime, * endLateTime;
+        endLateTime = [request.schedEndTime dateByAddingTimeInterval:MAX_REQUEST_TIME_VARIANCE];
         
-        return  (start != NSOrderedDescending && end!=NSOrderedAscending);
+        startEarlyTime = [request.schedStartTime dateByAddingTimeInterval:-1*(MAX_REQUEST_TIME_VARIANCE)];
+
+        NSComparisonResult start = [startEarlyTime compare: [NSDate date]];
+        NSComparisonResult end = [endLateTime compare:[NSDate date]];
+        
+        
+        
+        return  (start != NSOrderedDescending && end !=NSOrderedAscending);
     }];
     return currentItemsOnly;
 }
@@ -365,22 +374,6 @@
             [alert show];
         }
     }else{
-     /*   if (requestToProcess != nil) {
-            //check if request is open
-            if (requestToProcess.reqStatus.intValue == REQUEST_STATUS_INPROCESS) {
-                //set it to completed
-                requestToProcess.reqStatus = [NSNumber numberWithInt:REQUEST_STATUS_COMPLETED];
-                [manager save];
-                
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Request Complete"
-                                                                 message:@"Your Request has been closed"
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil, nil];
-                [alert show];
-            }
-        }
-      */
         [self scanQrCode:nil];
 
     }
@@ -405,10 +398,6 @@
         self.detailView.hidden = true;
         self.notFoundView.hidden = true;
         
-        //change button text
-       // [self.actionButton setTitle:@"Loan Cart" forState:self.actionButton.state];
-        //[self.actionButton setTitle:@"Loan Cart" forState:UIControlStateNormal];
-        
         //load user data to search by user
         NSError * error = nil;
         userArray = [manager.context executeFetchRequest:[manager getAllUsers] error:&error];
@@ -422,9 +411,6 @@
         self.loanView.hidden = true;
         
         self.actionButton.enabled = true;
-        
-        //[self.actionButton setTitle:@"Return Cart" forState:self.actionButton.state];
-        //[self.actionButton setTitle:@"Return Cart" forState:UIControlStateNormal];
         
     }
 }

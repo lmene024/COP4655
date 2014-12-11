@@ -165,6 +165,7 @@
                 break;
             case REQUEST_STATUS_COMPLETED:
                 cell.statusView.backgroundColor = [UIColor redColor];
+                break;
             default:
                 cell.statusView.backgroundColor = [UIColor greenColor];
                 break;
