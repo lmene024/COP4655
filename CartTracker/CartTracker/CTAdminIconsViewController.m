@@ -12,11 +12,8 @@
 #import "Constants.h"
 #import "CTDataListViewController.h"
 #import "CTLoginViewController.h"
-<<<<<<< HEAD
 #import "CTStatisticsTableViewController.h"
-=======
 #import "CTcartManager.h"
->>>>>>> origin/arugg003
 
 @interface CTAdminIconsViewController ()
 
@@ -88,6 +85,8 @@
 }
 
 - (IBAction)statisticsButtonPressed:(id)sender {
+    CTStatisticsTableViewController * statsController = [[CTStatisticsTableViewController alloc] init];
+    [self.navigationController pushViewController:statsController animated:true];
 }
 
 - (IBAction)logOutButtonPressed:(id)sender {

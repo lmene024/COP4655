@@ -133,7 +133,7 @@
     BOOL userIsValid = NO;
     
 #if DEBUG
-    return YES;
+   // return YES;
 #endif
     
     //NSLog(@"Testing compare user");
