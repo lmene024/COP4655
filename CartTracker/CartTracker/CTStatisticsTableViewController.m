@@ -7,7 +7,9 @@
 //
 
 #import "CTStatisticsTableViewController.h"
+#import "CTStatisticsDetailViewController.h"
 #import "Constants.h"
+
 
 @interface CTStatisticsTableViewController ()
 
@@ -79,6 +81,12 @@
     // Configure the cell...
     cell.textLabel.text = [[statistics objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString * stat = [[statistics objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    CTStatisticsDetailViewController * details = [[CTStatisticsDetailViewController alloc] initWithStatistic:stat];
+    [self.navigationController pushViewController:details animated:true];
 }
 
 

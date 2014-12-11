@@ -10,4 +10,9 @@
 
 @interface CTStatisticsDetailViewController : CTADetailViewController
 
+@property (strong, nonatomic) IBOutlet UILabel *outputField;
+@property (strong, nonatomic) IBOutlet UILabel *reportTitle;
+
+- (instancetype) initWithStatistic:(NSString * ) statisticToDisplay;
+
 @end
