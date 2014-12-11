@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "CTDataListViewController.h"
 #import "CTLoginViewController.h"
+#import "CTStatisticsTableViewController.h"
 
 @interface CTAdminIconsViewController ()
 
@@ -58,8 +59,8 @@
             break;
         case STATISTICS:
         {
-            //CTStatisticsTableViewController *statsController = [[CTStatisticsTableViewController alloc] init];
-            //[self.navigationController pushViewController:statsController animated:YES];
+            CTStatisticsTableViewController *statsController = [[CTStatisticsTableViewController alloc] init];
+            [self.navigationController pushViewController:statsController animated:YES];
         }
             break;
         case LOG_OUT:
