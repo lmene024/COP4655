@@ -132,10 +132,6 @@
     
     BOOL userIsValid = NO;
     
-#if DEBUG
-    return YES;
-#endif
-    
     //NSLog(@"Testing compare user");
     for (User *aUser in userArray) {
         //NSLog(@"%@ %@",aUser.email,aUser.password);
