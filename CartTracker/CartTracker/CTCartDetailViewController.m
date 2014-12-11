@@ -62,6 +62,7 @@
                                        initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                        target:self
                                        action:@selector(saveButton:)];
+        [saveButton setTintColor:[UIColor blackColor]];
         
         self.navigationItem.rightBarButtonItem = saveButton;
         [self enableFields:YES andSetBorderStyle:UITextBorderStyleRoundedRect];

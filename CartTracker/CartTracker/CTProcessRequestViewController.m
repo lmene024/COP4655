@@ -53,6 +53,8 @@
     self.returnView.hidden = true;
     self.actionButton.hidden = true;*/
     
+    [[UISegmentedControl appearance] setTintColor:[UIColor blackColor]];
+    
     if (self.requestToProcess != nil) {
         chooserView.selectedSegmentIndex = 0;
         NSLog(@"RequestToProcess not nil %@",self.requestToProcess.user.firstName);
